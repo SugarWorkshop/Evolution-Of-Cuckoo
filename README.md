@@ -1,3 +1,5 @@
+[简体中文](README.md) & [English](README-en_us.md)
+
 # Evolution Of Cuckoo 1.12
 
 这是 Minecraft 1.12.2 版本的模组 Evolution Of Cuckoo（不咕鸟の进化）的代码仓库。
