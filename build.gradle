@@ -1,0 +1,80 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url = "https://files.minecraftforge.net/maven" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+
+// 在这里更改版本
+version = '1.0.0-alpha'
+group = "com.github.mo_ink.eoc" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "eoc"
+
+// 添加前缀后缀
+String mcVersion = '1.12.2'
+version = mcVersion + '-' + version + getVersionAppendage()
+
+sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
+
+static String getVersionAppendage() {
+    def proc = 'git rev-parse --short HEAD'.execute()
+    proc.waitFor()
+    return '-' + (proc.exitValue() ? 'NO-GIT' : proc.text.trim())
+}
+
+minecraft {
+    version = "1.12.2-14.23.5.2847"
+    runDir = "run"
+
+    mappings = "snapshot_20171003"
+    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+
+    // 替换EOZ版本号
+    replaceIn 'EOC.java'
+    replace '@EOCVERSION@', project.version
+}
+
+dependencies {
+
+}
+
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+                
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    // copy everything else except the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+repositories{
+    maven {
+        name = 'AliyunMaven'
+        url = 'http://maven.aliyun.com/nexus/content/groups/public'
+    }
+}
+
+// 强制UTF-8构建
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+

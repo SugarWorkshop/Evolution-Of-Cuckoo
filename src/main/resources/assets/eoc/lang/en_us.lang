@@ -1,0 +1,8 @@
+
+item.eoc.funny_apple.name=Funny Apple
+effect.eoc.funny=Funny
+itemGroup.eoc.tab=Evolution Of Cuckoo
+death.attack.eoc.funnyDied=%1$s died by funny
+
+entity.eoc.entity_zijing.name=zijing_233
+entity.eoc.entity_moink.name=Mo_Ink
