@@ -13,7 +13,7 @@ This is the development repository of the Minecraft mod The Evolution Of Cuckoo 
 - [Features](#features)
 - [Development Guide](#development-guide)
   - [How to Build](#how-to-build)
-- [Spacial Thanks](#spacial-thanks)
+- [Special Thanks](#special-thanks)
 
 # Introduction
 **Cuckoo Dev Team** is a development team of Minecraft Mod. The members are **friendly and morality**, they also **has good grades in mod development**. So one of the members, [Mo_Ink](https://github.com/Mo-Ink), decides to develop a mod to **commemorate the noble moral sentiments of the team and its members**. 
@@ -44,7 +44,7 @@ or if you're using Linux/Unix:
 
 Then you can find the archives in the directory `build/libs`.
 
-# Spacial Thanks
+# Special Thanks
 
 1. The leader of Cuckoo Dev Team [@gonggongjohn](https://github.com/gonggongjohn)
 2. The origin of the name of this mod [Evolution-Of-Knowledge](https://github.com/gonggongjohn/Evolution-Of-Knowledge)
