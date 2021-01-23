@@ -30,7 +30,7 @@ public class EntityHandler {
                 "eoc.entity_osir", 4, EOC.instance, 64, 1, true, 0xFF99FF, 0x99FF99);
 
         EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.nat"), EntityNat.class,
-                "eoc.entity_nat", 5, EOC.instance, 64, 1, true, 0xFF88FF, 0x88FF88);
+                "eoc.entity_nat", 5, EOC.instance, 64, 1, true, 0xFB66FF, 0x66FF66);
     }
 
     @SuppressWarnings("unchecked")
