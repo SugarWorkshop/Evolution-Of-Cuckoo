@@ -49,3 +49,4 @@ gradlew build
 1. 成绩优越、品德高尚、乐于助人、和蔼可亲、人见人爱の领袖 [@gonggongjohn](https://github.com/gonggongjohn)
 2. 此Mod名字的由来 [Evolution-Of-Knowledge](https://github.com/gonggongjohn/Evolution-Of-Knowledge)
 3. 可能会作为依赖库的 [CuckooLib](https://github.com/zi-jing/CuckooLib)
+4. 此模组的前身 [Evolution-Of-Zijing](https://github.com/Wu-baozi/Evolution-Of-Zijing)

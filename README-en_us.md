@@ -49,3 +49,4 @@ Then you can find the archives in the directory `build/libs`.
 1. The leader of Cuckoo Dev Team [@gonggongjohn](https://github.com/gonggongjohn)
 2. The origin of the name of this mod [Evolution-Of-Knowledge](https://github.com/gonggongjohn/Evolution-Of-Knowledge)
 3. May be used as a dependent library in the future [CuckooLib](https://github.com/zi-jing/CuckooLib)
+4. The predecessor of this mod [Evolution-Of-Zijing](https://github.com/Wu-baozi/Evolution-Of-Zijing)
