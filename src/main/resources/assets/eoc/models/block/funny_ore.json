@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "particle": "eoc:blocks/funny_ore",
+    "down": "eoc:blocks/funny_ore_up_down",
+    "up": "eoc:blocks/funny_ore_up_down",
+    "north": "eoc:blocks/funny_ore",
+    "south": "eoc:blocks/funny_ore",
+    "west": "eoc:blocks/funny_ore",
+    "east": "eoc:blocks/funny_ore"
+  }
+}

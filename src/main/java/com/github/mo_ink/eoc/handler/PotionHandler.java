@@ -10,7 +10,6 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -57,8 +56,6 @@ public class PotionHandler {
         damage += 1;
 
         if (player.isPotionActive(potion)) { //若玩家有滑稽效果
-            player.sendMessage(new TextComponentString(Float.toString(damage)));
-            player.sendMessage(new TextComponentString(Float.toString(damage / 2 * (effect.getAmplifier() + 1))));
             player.attackEntityFrom(DamageSourceHandler.FUNNY_DIED, damage / 2 * (effect.getAmplifier() + 1)); //减少生命值
         }
     }

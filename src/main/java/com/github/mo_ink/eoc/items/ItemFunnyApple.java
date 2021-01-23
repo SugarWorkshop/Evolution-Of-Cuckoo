@@ -1,4 +1,4 @@
-package com.github.mo_ink.eoc.item;
+package com.github.mo_ink.eoc.items;
 
 import com.github.mo_ink.eoc.EOC;
 import com.github.mo_ink.eoc.EOCTab;
