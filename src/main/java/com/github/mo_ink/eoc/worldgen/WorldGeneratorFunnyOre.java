@@ -16,17 +16,14 @@ public class WorldGeneratorFunnyOre extends WorldGenerator {
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos) {
-        if (TerrainGen.generateOre(world, rand, this, pos, OreGenEvent.GenerateMinable.EventType.CUSTOM))
-        {
-            for (int i = 0; i < 3; ++i)
-            {
+        if (TerrainGen.generateOre(world, rand, this, pos, OreGenEvent.GenerateMinable.EventType.CUSTOM)) {
+            for (int i = 0; i < 3; ++i) {
                 int posX = pos.getX() + rand.nextInt(16);
                 int posY = 16 + rand.nextInt(16);
                 int posZ = pos.getZ() + rand.nextInt(16);
                 BlockPos blockpos = new BlockPos(posX, posY, posZ);
                 Biome biomeGenBase = world.getBiomeForCoordsBody(blockpos);
-                if (biomeGenBase.getRainfall() < rand.nextInt(65536))
-                {
+                if (biomeGenBase.getRainfall() < rand.nextInt(65536)) {
                     funnyOreGenerator.generate(world, rand, blockpos);
                 }
             }
