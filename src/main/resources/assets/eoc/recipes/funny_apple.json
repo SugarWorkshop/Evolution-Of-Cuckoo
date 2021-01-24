@@ -1,0 +1,13 @@
+{
+  "type": "forge:ore_shaped",
+  "result": { "item": "eoc:funny_apple" },
+  "pattern": [
+    " X ",
+    "XYX",
+    " X "
+  ],
+  "key": {
+    "X": { "type": "forge:ore_dict", "ore": "ingotFunny" },
+    "Y": { "item": "minecraft:apple" }
+  }
+}
