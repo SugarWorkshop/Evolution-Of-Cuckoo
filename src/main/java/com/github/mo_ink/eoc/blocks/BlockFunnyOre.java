@@ -67,4 +67,16 @@ public class BlockFunnyOre extends BlockOre {
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         return new ItemStack(this);
     }
+
+    @Override // Forge patch 的方法
+    public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
+        // 这个方法决定了精准采集有没有效果。
+        return true;
+    }
+
+    @Override // func_180643_i
+    public ItemStack getSilkTouchDrop(IBlockState state) {
+        // 而这个方法决定了精准采集会掉什么
+        return new ItemStack(this);
+    }
 }
