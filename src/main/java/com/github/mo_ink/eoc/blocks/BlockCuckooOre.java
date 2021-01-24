@@ -19,13 +19,13 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import java.util.Random;
 
-public class BlockFunnyOre extends BlockOre {
-    public BlockFunnyOre() {
+public class BlockCuckooOre extends BlockOre {
+    public BlockCuckooOre() {
         super(MapColor.STONE);
-        String name = "funny_ore";
+        String name = "cuckoo_ore";
         this.setSoundType(SoundType.STONE);
-        this.setHardness(2F);
-        this.setHarvestLevel("pickaxe", 1);
+        this.setHardness(3F);
+        this.setHarvestLevel("pickaxe", 2);
         this.setCreativeTab(EOCTab.EOC_TAB);
         this.setRegistryName(name);
         this.setUnlocalizedName(EOC.MODID + "." + name);
@@ -35,7 +35,7 @@ public class BlockFunnyOre extends BlockOre {
     @Nonnull
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return ItemHandler.ITEM_FUNNY_INGOT;
+        return ItemHandler.ITEM_CUCKOO_INGOT;
     }
 
     // SRG func_149745_a，用于决定掉落的物品数量

@@ -1,6 +1,8 @@
 ﻿
 item.eoc.funny_apple.name=滑稽果
 item.eoc.funny_ingot.name=滑稽锭
+item.eoc.cuckoo_ingot.name=咕咕锭
+
 itemGroup.eoc.tab=不咕鸟の进化
 death.attack.eoc.funnyDied=%1$s 太滑稽以至于他去世了
 effect.eoc.funny=滑稽
@@ -13,3 +15,4 @@ entity.eoc.entity_osir.name=Os_Ir
 entity.eoc.entity_nat.name=Nat
 
 tile.eoc.funny_ore.name=滑稽矿石
+tile.eoc.cuckoo_ore.name=咕咕矿石

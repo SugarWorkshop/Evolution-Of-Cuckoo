@@ -12,9 +12,11 @@ public class CraftingHandler {
 
     public void registerOreDictionary() {
         OreDictionary.registerOre("ingotFunny", ItemHandler.ITEM_FUNNY_INGOT);
+        OreDictionary.registerOre("ingotCuckoo", ItemHandler.ITEM_CUCKOO_INGOT);
     }
 
     public void registerSmelting() {
         GameRegistry.addSmelting(new ItemStack(ItemHandler.ITEM_FUNNY_ORE), new ItemStack(ItemHandler.ITEM_FUNNY_INGOT), 4);
+        GameRegistry.addSmelting(new ItemStack(ItemHandler.ITEM_CUCKOO_ORE), new ItemStack(ItemHandler.ITEM_CUCKOO_INGOT), 6);
     }
 }

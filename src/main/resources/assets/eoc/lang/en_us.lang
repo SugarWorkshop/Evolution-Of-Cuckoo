@@ -1,6 +1,8 @@
 
 item.eoc.funny_apple.name=Funny Apple
 item.eoc.funny_ingot.name=Funny Ingot
+item.eoc.cuckoo_ingot.name=Cuckoo Ingot
+
 effect.eoc.funny=Funny
 itemGroup.eoc.tab=Evolution Of Cuckoo
 death.attack.eoc.funnyDied=%1$s died by funny
@@ -13,3 +15,4 @@ entity.eoc.entity_osir.name=Os_Ir
 entity.eoc.entity_nat.name=Nat
 
 tile.eoc.funny_ore.name=Funny Ore
+tile.eoc.cuckoo_ore.name=Cuckoo Ore
