@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class EntityChenweilin extends EntityNPCBase {
+public class EntityChenweilin extends EntityCuckooMemberBase {
     public EntityChenweilin(World worldIn) {
         super(worldIn);
     }

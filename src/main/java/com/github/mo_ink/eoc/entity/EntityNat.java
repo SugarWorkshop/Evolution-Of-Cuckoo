@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class EntityNat extends EntityNPCBase {
+public class EntityNat extends EntityCuckooMemberBase {
     public EntityNat(World worldIn) {
         super(worldIn);
     }

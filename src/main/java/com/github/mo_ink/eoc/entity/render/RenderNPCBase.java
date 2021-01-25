@@ -1,6 +1,6 @@
 package com.github.mo_ink.eoc.entity.render;
 
-import com.github.mo_ink.eoc.entity.model.ModelNPC;
+import com.github.mo_ink.eoc.entity.model.ModelCuckooMember;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public abstract class RenderNPCBase<T extends EntityLiving> extends RenderLiving<T> {
 
     public RenderNPCBase(RenderManager rendermanagerIn) {
-        super(rendermanagerIn, new ModelNPC(0.0F, false), 0.5F);
+        super(rendermanagerIn, new ModelCuckooMember(0.0F, false), 0.5F);
         this.addLayer(new LayerBipedArmor(this));
         this.addLayer(new LayerHeldItem(this));
         this.addLayer(new LayerArrow(this));

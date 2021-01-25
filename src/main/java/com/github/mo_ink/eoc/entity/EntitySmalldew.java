@@ -1,12 +1,13 @@
 package com.github.mo_ink.eoc.entity;
 
 import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class EntitySmalldew extends EntityNPCBase {
+public class EntitySmalldew extends EntityCuckooMemberBase {
     public EntitySmalldew(World worldIn) {
         super(worldIn);
     }
@@ -19,4 +20,8 @@ public class EntitySmalldew extends EntityNPCBase {
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 
+    @Override
+    protected void setEquipmentBasedOnDifficulty() {
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
+    }
 }

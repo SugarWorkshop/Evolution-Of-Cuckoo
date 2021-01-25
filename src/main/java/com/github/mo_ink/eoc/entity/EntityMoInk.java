@@ -1,12 +1,13 @@
 package com.github.mo_ink.eoc.entity;
 
 import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class EntityMoInk extends EntityNPCBase {
+public class EntityMoInk extends EntityCuckooMemberBase {
     public EntityMoInk(World worldIn) {
         super(worldIn);
     }
@@ -25,4 +26,8 @@ public class EntityMoInk extends EntityNPCBase {
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 
+    @Override
+    protected void setEquipmentBasedOnDifficulty() {
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.DIAMOND_SWORD));
+    }
 }
