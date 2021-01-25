@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 
 @SideOnly(Side.CLIENT)
-public class ModelCuckooMember extends ModelBiped {
+public class ModelNPC extends ModelBiped {
     public final ModelRenderer bipedLeftArmwear;
     public final ModelRenderer bipedRightArmwear;
     public final ModelRenderer bipedLeftLegwear;
@@ -20,7 +20,7 @@ public class ModelCuckooMember extends ModelBiped {
     private final ModelRenderer bipedDeadmau5Head;
     private final boolean smallArms;
 
-    public ModelCuckooMember(float modelSize, boolean smallArmsIn) {
+    public ModelNPC(float modelSize, boolean smallArmsIn) {
         super(modelSize, 0.0F, 64, 64);
         this.smallArms = smallArmsIn;
         this.bipedDeadmau5Head = new ModelRenderer(this, 24, 0);

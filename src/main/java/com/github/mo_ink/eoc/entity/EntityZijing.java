@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class EntityZijing extends EntityCuckooMemberBase {
+public class EntityZijing extends EntityNPCMelee {
     public EntityZijing(World worldIn) {
         super(worldIn);
     }

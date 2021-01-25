@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class EntitySmalldew extends EntityCuckooMemberBase {
+public class EntitySmalldew extends EntityNPCMelee {
     public EntitySmalldew(World worldIn) {
         super(worldIn);
     }

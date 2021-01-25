@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class EntityMoInk extends EntityCuckooMemberBase {
+public class EntityMoInk extends EntityNPCMelee {
     public EntityMoInk(World worldIn) {
         super(worldIn);
     }

@@ -5,6 +5,7 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -15,8 +16,8 @@ import javax.annotation.Nullable;
 
 import static com.github.mo_ink.eoc.handler.ItemHandler.ITEM_FUNNY_APPLE;
 
-public abstract class EntityCuckooMemberBase extends EntityTameable {
-    public EntityCuckooMemberBase(World worldIn) {
+public abstract class EntityNPCBase extends EntityTameable {
+    public EntityNPCBase(World worldIn) {
         super(worldIn);
         setTamed(false);
         setSize(0.6F, 1.8F);
@@ -36,7 +37,6 @@ public abstract class EntityCuckooMemberBase extends EntityTameable {
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIAttackMelee(this, 0.65D, true));
         this.tasks.addTask(2, new EntityAIFollowOwner(this, 0.55D, 10.0F, 3.5F));
         this.tasks.addTask(3, new EntityAIWanderAvoidWater(this, 0.45D));
         this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
@@ -80,7 +80,7 @@ public abstract class EntityCuckooMemberBase extends EntityTameable {
                     }
                 }
             }
-        } else if (itemstack.getItem().equals(ITEM_FUNNY_APPLE)) {
+        } else if (itemstack.getItem().equals(ITEM_FUNNY_APPLE) || itemstack.getItem().equals(Items.APPLE)) {
             if (!player.capabilities.isCreativeMode) {
                 itemstack.shrink(1);
             }
