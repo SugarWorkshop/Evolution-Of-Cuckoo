@@ -20,9 +20,6 @@ public class EntityHandler {
         EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.moink"), EntityMoInk.class,
                 "eoc.entity_moink", 1, EOC.instance, 64, 1, true, 0xffffb3, 0x66b2ff);
 
-        EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.bullet"), EntityBullet.class,
-                "eoc.entity_bullet", 2, EOC.instance, 128, 1, true);
-
         EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.smalldew"), EntitySmalldew.class,
                 "eoc.entity_smalldew", 3, EOC.instance, 64, 1, true, 0x0066CC, 0xCCE5FF);
 
@@ -39,7 +36,6 @@ public class EntityHandler {
         registerEntityRender(EntityZijing.class, RenderZijing.class);
         registerEntityRender(EntityMoInk.class, RenderMoInk.class);
         registerEntityRender(EntitySmalldew.class, RenderSmalldew.class);
-        // registerEntityRender(EntityChenweilin.class, RenderChenweilin.class);
         registerEntityRender(EntityOsIr.class, RenderOsIr.class);
         registerEntityRender(EntityNat.class, RenderNat.class);
     }

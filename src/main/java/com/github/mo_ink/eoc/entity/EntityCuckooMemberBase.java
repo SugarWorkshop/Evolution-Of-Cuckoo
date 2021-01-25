@@ -5,8 +5,6 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -18,13 +16,14 @@ import javax.annotation.Nullable;
 import static com.github.mo_ink.eoc.handler.ItemHandler.ITEM_FUNNY_APPLE;
 
 public abstract class EntityCuckooMemberBase extends EntityTameable {
-
     public EntityCuckooMemberBase(World worldIn) {
         super(worldIn);
         setTamed(false);
         setSize(0.6F, 1.8F);
         setEquipmentBasedOnDifficulty();
     }
+
+    protected abstract void setEquipmentBasedOnDifficulty();
 
     @Override
     protected void applyEntityAttributes() {
@@ -102,9 +101,5 @@ public abstract class EntityCuckooMemberBase extends EntityTameable {
     @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
         return null;
-    }
-
-    protected void setEquipmentBasedOnDifficulty() {
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.STONE_AXE));
     }
 }
