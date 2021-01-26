@@ -7,7 +7,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.item.ItemBow;
 import net.minecraft.util.EnumHand;
 
-public class EntityAIAttackBow extends EntityAIBase {
+public class EntityAIAttackWithBow extends EntityAIBase {
     private final EntityNPCBase entity;
     private final double moveSpeedAmp;
     private final float maxAttackDistance;
@@ -18,7 +18,7 @@ public class EntityAIAttackBow extends EntityAIBase {
     private boolean strafingBackwards;
     private int strafingTime = -1;
 
-    public EntityAIAttackBow(EntityNPCBase entity, double moveSpeedAmp, int attackCooldown, float maxAttackDistance) {
+    public EntityAIAttackWithBow(EntityNPCBase entity, double moveSpeedAmp, int attackCooldown, float maxAttackDistance) {
         this.entity = entity;
         this.moveSpeedAmp = moveSpeedAmp;
         this.attackCooldown = attackCooldown;
