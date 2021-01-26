@@ -1,5 +1,6 @@
 package com.github.mo_ink.eoc.entity;
 
+import com.github.mo_ink.eoc.entity.ai.EntityAIAttackBow;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.IMob;
@@ -31,7 +32,7 @@ import static com.github.mo_ink.eoc.handler.ItemHandler.ITEM_FUNNY_APPLE;
 
 public abstract class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityNPCBase.class, DataSerializers.BOOLEAN);
-    private final EntityAIAttackRanged aiArrowAttack = new EntityAIAttackRanged(this, 0.3D, 16, 16.0F);
+    private final EntityAIAttackBow aiArrowAttack = new EntityAIAttackBow(this, 0.15D, 16, 16.0F);
     private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 0.65D, false) {
         public void resetTask() {
             super.resetTask();
