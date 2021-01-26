@@ -15,10 +15,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EntityHandler {
     public static void register() {
         EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.zijing"), EntityZijing.class,
-                "eoc.entity_zijing", 0, EOC.instance, 64, 1, true, 0xB3FFFF, 0x4D94FF);
+                "eoc.entity_zijing", 0, EOC.instance, 64, 1, true, 0xFF6A6A, 0x00FF7F);
 
         EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.moink"), EntityMoInk.class,
-                "eoc.entity_moink", 1, EOC.instance, 64, 1, true, 0xffffb3, 0x66b2ff);
+                "eoc.entity_moink", 1, EOC.instance, 64, 1, true, 0xB3FFFF, 0x4D94FF);
 
         EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.smalldew"), EntitySmalldew.class,
                 "eoc.entity_smalldew", 3, EOC.instance, 64, 1, true, 0x0066CC, 0xCCE5FF);
@@ -27,10 +27,10 @@ public class EntityHandler {
                 "eoc.entity_osir", 4, EOC.instance, 64, 1, true, 0xFF99FF, 0x99FF99);
 
         EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.nat"), EntityNat.class,
-                "eoc.entity_nat", 5, EOC.instance, 64, 1, true, 0xFB66FF, 0x66FF66);
+                "eoc.entity_nat", 5, EOC.instance, 64, 1, true, 0x54FF9F, 0x2E8B57);
 
         EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.baozi"), EntityBaozi.class,
-                "eoc.entity_baozi", 6, EOC.instance, 64, 1, true, 0xFA67CC, 0x61CC86);
+                "eoc.entity_baozi", 6, EOC.instance, 64, 1, true, 0xFFEC8B, 0x8B8B7A);
     }
 
     @SuppressWarnings("unchecked")
