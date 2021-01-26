@@ -16,7 +16,7 @@ This is the development repository of the Minecraft mod The Evolution Of Cuckoo 
 - [Special Thanks](#special-thanks)
 
 # Introduction
-**Cuckoo Dev Team** is a development team of Minecraft Mod. The members are **friendly and morality**, they also **has good grades in mod development**. So one of the members, [Mo_Ink](https://github.com/Mo-Ink), decides to develop a mod to **commemorate the noble moral sentiments of the team and its members**. 
+**Cuckoo Dev Team** is a development team of Minecraft Mod. The members are **friendly and morality**, they also **has good grades in mod development**. So one of the members, [@Mo_Ink](https://github.com/Mo-Ink), decides to develop a mod to **commemorate the noble moral sentiments of the team and its members**. 
 
 # About Development
 EOC is maintained by Cuckoo Dev Team and the mod is still under development. There is no open-release version of this mod for now. If you have any issues or suggestions on the mod, you can directly contact us or [start an issue](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/issues).
