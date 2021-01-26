@@ -75,8 +75,6 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
-//        this.tasks.addTask(1, new EntityAIAttackMelee(this, 0.65D, true));
-//        this.tasks.addTask(1, new EntityAIAttackRanged(this, 0.25D, 15, 15.0F));
         this.tasks.addTask(2, new EntityAIFollowOwner(this, 0.55D, 10.0F, 3.5F));
         this.tasks.addTask(3, new EntityAIWanderAvoidWater(this, 0.45D));
         this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
