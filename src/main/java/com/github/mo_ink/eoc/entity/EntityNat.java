@@ -1,12 +1,13 @@
 package com.github.mo_ink.eoc.entity;
 
 import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class EntityNat extends EntityNPCRanged {
+public class EntityNat extends EntityNPCBase {
     public EntityNat(World worldIn) {
         super(worldIn);
     }
@@ -17,5 +18,9 @@ public class EntityNat extends EntityNPCRanged {
         ItemMonsterPlacer.applyEntityIdToItemStack(egg, new ResourceLocation("eoc:entity.nat"));
         this.entityDropItem(egg, 0.0F);
         super.dropFewItems(wasRecentlyHit, lootingModifier);
+    }
+
+    protected void setEquipmentBasedOnDifficulty() {
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
     }
 }

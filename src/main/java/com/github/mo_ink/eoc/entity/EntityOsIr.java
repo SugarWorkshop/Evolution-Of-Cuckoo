@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class EntityOsIr extends EntityNPCMelee {
+public class EntityOsIr extends EntityNPCBase {
     public EntityOsIr(World worldIn) {
         super(worldIn);
     }
