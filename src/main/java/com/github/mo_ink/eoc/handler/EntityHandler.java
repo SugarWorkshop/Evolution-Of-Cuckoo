@@ -28,6 +28,9 @@ public class EntityHandler {
 
         EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.nat"), EntityNat.class,
                 "eoc.entity_nat", 5, EOC.instance, 64, 1, true, 0xFB66FF, 0x66FF66);
+
+        EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.baozi"), EntityBaozi.class,
+                "eoc.entity_baozi", 6, EOC.instance, 64, 1, true, 0xFA67CC, 0x61CC86);
     }
 
     @SuppressWarnings("unchecked")
@@ -38,6 +41,7 @@ public class EntityHandler {
         registerEntityRender(EntitySmalldew.class, RenderSmalldew.class);
         registerEntityRender(EntityOsIr.class, RenderOsIr.class);
         registerEntityRender(EntityNat.class, RenderNat.class);
+        registerEntityRender(EntityBaozi.class, RenderBaozi.class);
     }
 
     @SideOnly(Side.CLIENT)

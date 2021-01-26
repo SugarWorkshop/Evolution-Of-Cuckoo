@@ -1,8 +1,10 @@
 package com.github.mo_ink.eoc.entity;
 
 import com.github.mo_ink.eoc.entity.ai.EntityAIAttackWithBow;
+import com.google.common.base.Predicate;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,6 +22,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
@@ -32,8 +35,9 @@ import static com.github.mo_ink.eoc.handler.ItemHandler.ITEM_FUNNY_APPLE;
 
 public abstract class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityNPCBase.class, DataSerializers.BOOLEAN);
+
     private final EntityAIAttackWithBow aiArrowAttack = new EntityAIAttackWithBow(this, 0.15D, 16, 16.0F);
-    private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 0.65D, false) {
+    private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 0.65D, true) {
         public void resetTask() {
             super.resetTask();
             EntityNPCBase.this.setSwingingArms(false);
@@ -44,6 +48,17 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
             EntityNPCBase.this.setSwingingArms(true);
         }
     };
+
+    EntityAINearestAttackableTarget aiNearestAttackableTarget = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
+        public boolean apply(@Nullable Entity entity) {
+            return entity instanceof IMob && !entity.isInvisible();
+        }
+    });
+    EntityAINearestAttackableTarget aiNearestAttackableTargetWhitoutEnderman = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
+        public boolean apply(@Nullable Entity entity) {
+            return entity instanceof IMob && !entity.isInvisible() && !(entity instanceof EntityEnderman);
+        }
+    });
 
     public EntityNPCBase(World worldIn) {
         super(worldIn);
@@ -76,15 +91,14 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIFollowOwner(this, 0.55D, 10.0F, 3.5F));
+        this.tasks.addTask(1, new EntityAIFollowOwner(this, 0.55D, 14.0F, 3F));
         this.tasks.addTask(3, new EntityAIWanderAvoidWater(this, 0.45D));
-        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
+        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityLiving.class, 10.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.targetTasks.addTask(0, new EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(1, new EntityAIOwnerHurtTarget(this));
         this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, IMob.MOB_SELECTOR));
         super.initEntityAI();
     }
 
@@ -109,12 +123,13 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
             if (!itemstack.isEmpty()) {
                 if (itemstack.getItem() instanceof ItemFood) {
                     ItemFood itemfood = (ItemFood) itemstack.getItem();
-
-                    if (itemfood.equals(ITEM_FUNNY_APPLE)) {
+                    if (itemfood.equals(ITEM_FUNNY_APPLE) && this.getHealth() < this.getMaxHealth()) {
                         if (!player.capabilities.isCreativeMode) {
                             itemstack.shrink(1);
                         }
-                        this.heal((float) itemfood.getHealAmount(itemstack));
+                        int heal = itemfood.getHealAmount(itemstack);
+                        this.heal(heal);
+                        this.playTameEffect(EnumParticleTypes.HEART, heal);
                         return true;
                     }
                 }
@@ -123,13 +138,12 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
             if (!player.capabilities.isCreativeMode) {
                 itemstack.shrink(1);
             }
-
-            if (!this.world.isRemote) {
-                if (!net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+            if (!net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+                if (!this.world.isRemote) {
                     this.setTamedBy(player);
-                    this.playTameEffect(true);
                     this.setAttackTarget((EntityLivingBase) null);
-                }
+                } else
+                    this.playTameEffect(EnumParticleTypes.VILLAGER_HAPPY, 8);
             }
             return true;
         }
@@ -177,11 +191,15 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
         if (this.world != null && !this.world.isRemote) {
             this.tasks.removeTask(this.aiAttackOnCollide);
             this.tasks.removeTask(this.aiArrowAttack);
+            this.targetTasks.removeTask(this.aiNearestAttackableTarget);
+            this.targetTasks.removeTask(this.aiNearestAttackableTargetWhitoutEnderman);
             ItemStack itemstack = this.getHeldItemMainhand();
             if (itemstack.getItem() instanceof net.minecraft.item.ItemBow) {
-                this.tasks.addTask(1, this.aiArrowAttack);
+                this.tasks.addTask(2, this.aiArrowAttack);
+                this.targetTasks.addTask(3, aiNearestAttackableTargetWhitoutEnderman);
             } else {
-                this.tasks.addTask(1, this.aiAttackOnCollide);
+                this.tasks.addTask(2, this.aiAttackOnCollide);
+                this.targetTasks.addTask(3, aiNearestAttackableTarget);
             }
         }
     }
@@ -216,5 +234,14 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setCombatTask();
+    }
+
+    protected void playTameEffect(EnumParticleTypes particleTypes, int times) {
+        for (int i = 1; i <= times; ++i) {
+            double d0 = this.rand.nextGaussian() * 0.02D;
+            double d1 = this.rand.nextGaussian() * 0.02D;
+            double d2 = this.rand.nextGaussian() * 0.02D;
+            this.world.spawnParticle(particleTypes, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, d0, d1, d2);
+        }
     }
 }
