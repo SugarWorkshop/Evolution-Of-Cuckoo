@@ -7,6 +7,7 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntitySpectralArrow;
@@ -98,7 +99,7 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.targetTasks.addTask(0, new EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(1, new EntityAIOwnerHurtTarget(this));
-        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
+        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
         super.initEntityAI();
     }
 

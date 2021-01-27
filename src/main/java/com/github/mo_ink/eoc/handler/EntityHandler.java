@@ -4,6 +4,7 @@ import com.github.mo_ink.eoc.EOC;
 import com.github.mo_ink.eoc.entity.*;
 import com.github.mo_ink.eoc.entity.render.*;
 import com.github.mo_ink.eoc.utils.EntityRenderFactory;
+import net.minecraft.advancements.ICriterionTrigger;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -21,18 +22,17 @@ public class EntityHandler {
                 "eoc.entity_moink", 1, EOC.instance, 64, 1, true, 0xB3FFFF, 0x4D94FF);
 
         EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.smalldew"), EntitySmalldew.class,
-                "eoc.entity_smalldew", 3, EOC.instance, 64, 1, true, 0x0066CC, 0xCCE5FF);
+                "eoc.entity_smalldew", 2, EOC.instance, 64, 1, true, 0x0066CC, 0xCCE5FF);
 
         EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.osir"), EntityOsIr.class,
-                "eoc.entity_osir", 4, EOC.instance, 64, 1, true, 0xFF99FF, 0x99FF99);
+                "eoc.entity_osir", 3, EOC.instance, 64, 1, true, 0xFF99FF, 0x99FF99);
 
         EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.nat"), EntityNat.class,
-                "eoc.entity_nat", 5, EOC.instance, 64, 1, true, 0x54FF9F, 0x2E8B57);
+                "eoc.entity_nat", 4, EOC.instance, 64, 1, true, 0x54FF9F, 0x2E8B57);
 
         EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.baozi"), EntityBaozi.class,
-                "eoc.entity_baozi", 6, EOC.instance, 64, 1, true, 0xFFEC8B, 0x8B8B7A);
+                "eoc.entity_baozi", 5, EOC.instance, 64, 1, true, 0xFFEC8B, 0x8B8B7A);
     }
-
     @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
