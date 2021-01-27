@@ -1,10 +1,9 @@
 package com.github.mo_ink.eoc.entity;
 
+import com.github.mo_ink.eoc.utils.RandomCreator;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class EntityNat extends EntityNPCBase {
@@ -14,10 +13,8 @@ public class EntityNat extends EntityNPCBase {
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        ItemStack egg = new ItemStack(Items.SPAWN_EGG, 1);
-        ItemMonsterPlacer.applyEntityIdToItemStack(egg, new ResourceLocation("eoc:entity.nat"));
-        this.entityDropItem(new ItemStack(Items.STICK, (int) (Math.random() * 5)), 0.3F);
-        this.entityDropItem(new ItemStack(Items.ARROW, (int) (Math.random() * 3)), 0.3F);
+        this.entityDropItem(new ItemStack(Items.STICK, RandomCreator.randomPrecent(5)), 0.3F);
+        this.entityDropItem(new ItemStack(Items.ARROW, RandomCreator.randomPrecent(3)), 0.3F);
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 

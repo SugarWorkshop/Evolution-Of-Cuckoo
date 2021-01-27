@@ -1,5 +1,6 @@
 package com.github.mo_ink.eoc.entity;
 
+import com.github.mo_ink.eoc.utils.RandomCreator;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -12,7 +13,7 @@ public class EntitySmalldew extends EntityNPCBase {
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        this.entityDropItem(new ItemStack(Items.IRON_INGOT, (int) (Math.random() * 4)), 0.3F);
+        this.entityDropItem(new ItemStack(Items.IRON_INGOT, RandomCreator.randomPrecent(3)), 0.3F);
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 

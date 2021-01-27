@@ -1,5 +1,6 @@
 package com.github.mo_ink.eoc.entity;
 
+import com.github.mo_ink.eoc.utils.RandomCreator;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -13,7 +14,7 @@ public class EntityBaozi extends EntityNPCBase {
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        this.entityDropItem(new ItemStack(Blocks.PLANKS, (int) (Math.random() * 5)), 0.3F);
+        this.entityDropItem(new ItemStack(Blocks.PLANKS, RandomCreator.randomPrecent(7)), 0.3F);
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 

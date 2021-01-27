@@ -1,5 +1,6 @@
 package com.github.mo_ink.eoc.entity;
 
+import com.github.mo_ink.eoc.utils.RandomCreator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -21,7 +22,7 @@ public class EntityMoInk extends EntityNPCBase {
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        this.entityDropItem(new ItemStack(Items.DIAMOND, (int) (Math.random() * 1)), 0.3F);
+        this.entityDropItem(new ItemStack(Items.DIAMOND, RandomCreator.randomPrecent(1)), 0.3F);
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 
