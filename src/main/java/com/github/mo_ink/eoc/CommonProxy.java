@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         EntityHandler.register();
+        EntityHandler.registerSpawn();
     }
 
     public void init(FMLInitializationEvent event) {

@@ -6,7 +6,11 @@ import com.github.mo_ink.eoc.entity.render.*;
 import com.github.mo_ink.eoc.utils.EntityRenderFactory;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -47,5 +51,31 @@ public class EntityHandler {
     @SideOnly(Side.CLIENT)
     private static <T extends Entity, E extends Render<T>> void registerEntityRender(Class<T> entityClass, Class<E> render) {
         RenderingRegistry.registerEntityRenderingHandler(entityClass, new EntityRenderFactory<>(render));
+    }
+
+    private static void registerEntitySpawn(Class<? extends Entity> entityClass, int spawnWeight, int min,
+                                            int max, EnumCreatureType typeOfCreature, Biome... biomes) {
+        if (EntityLiving.class.isAssignableFrom(entityClass)) {
+            Class<? extends EntityLiving> entityLivingClass = entityClass.asSubclass(EntityLiving.class);
+            EntityRegistry.addSpawn(entityLivingClass, spawnWeight, min, max, typeOfCreature, biomes);
+        }
+    }
+
+    public static void registerSpawn() {
+        Biome[] biomes = {
+                Biomes.PLAINS,
+                Biomes.MUTATED_PLAINS,
+                Biomes.FOREST,
+                Biomes.MUTATED_FOREST,
+                Biomes.EXTREME_HILLS,
+                Biomes.EXTREME_HILLS_WITH_TREES,
+                Biomes.EXTREME_HILLS_EDGE
+        };
+        registerEntitySpawn(EntityMoInk.class, 8, 1, 2, EnumCreatureType.CREATURE, biomes);
+        registerEntitySpawn(EntitySmalldew.class, 10, 1, 3, EnumCreatureType.CREATURE, biomes);
+        registerEntitySpawn(EntityNat.class, 12, 1, 3, EnumCreatureType.CREATURE, biomes);
+        registerEntitySpawn(EntityZijing.class, 14, 1, 4, EnumCreatureType.CREATURE, biomes);
+        registerEntitySpawn(EntityOsIr.class, 16, 1, 4, EnumCreatureType.CREATURE, biomes);
+        registerEntitySpawn(EntityBaozi.class, 18, 1, 4, EnumCreatureType.CREATURE, biomes);
     }
 }
