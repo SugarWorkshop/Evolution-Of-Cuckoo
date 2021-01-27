@@ -4,7 +4,6 @@ import com.github.mo_ink.eoc.EOC;
 import com.github.mo_ink.eoc.entity.*;
 import com.github.mo_ink.eoc.entity.render.*;
 import com.github.mo_ink.eoc.utils.EntityRenderFactory;
-import net.minecraft.advancements.ICriterionTrigger;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -33,6 +32,7 @@ public class EntityHandler {
         EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.baozi"), EntityBaozi.class,
                 "eoc.entity_baozi", 5, EOC.instance, 64, 1, true, 0xFFEC8B, 0x8B8B7A);
     }
+
     @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {

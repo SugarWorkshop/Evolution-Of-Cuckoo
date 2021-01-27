@@ -2,9 +2,7 @@ package com.github.mo_ink.eoc.entity;
 
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class EntityOsIr extends EntityNPCBase {
@@ -14,9 +12,7 @@ public class EntityOsIr extends EntityNPCBase {
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        ItemStack egg = new ItemStack(Items.SPAWN_EGG, 1);
-        ItemMonsterPlacer.applyEntityIdToItemStack(egg, new ResourceLocation("eoc:entity.osir"));
-        this.entityDropItem(egg, 0.0F);
+        this.entityDropItem(new ItemStack(Items.GOLD_INGOT, (int) Math.round(Math.random() * 3)), 0.3F);
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 

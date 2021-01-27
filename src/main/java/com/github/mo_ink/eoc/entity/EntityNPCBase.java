@@ -1,13 +1,13 @@
 package com.github.mo_ink.eoc.entity;
 
 import com.github.mo_ink.eoc.entity.ai.EntityAIAttackWithBow;
+import com.github.mo_ink.eoc.handler.ItemHandler;
 import com.google.common.base.Predicate;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityTameable;
-import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntitySpectralArrow;
@@ -31,8 +31,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-
-import static com.github.mo_ink.eoc.handler.ItemHandler.ITEM_FUNNY_APPLE;
 
 public abstract class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityNPCBase.class, DataSerializers.BOOLEAN);
@@ -99,7 +97,7 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.targetTasks.addTask(0, new EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(1, new EntityAIOwnerHurtTarget(this));
-        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
+        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
         super.initEntityAI();
     }
 
@@ -124,7 +122,7 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
             if (!itemstack.isEmpty()) {
                 if (itemstack.getItem() instanceof ItemFood) {
                     ItemFood itemfood = (ItemFood) itemstack.getItem();
-                    if (itemfood.equals(ITEM_FUNNY_APPLE) && this.getHealth() < this.getMaxHealth()) {
+                    if (itemfood.equals(ItemHandler.ITEM_FUNNY_APPLE) && this.getHealth() < this.getMaxHealth()) {
                         if (!player.capabilities.isCreativeMode) {
                             itemstack.shrink(1);
                         }
@@ -135,7 +133,7 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
                     }
                 }
             }
-        } else if (itemstack.getItem().equals(ITEM_FUNNY_APPLE) || itemstack.getItem().equals(Items.APPLE)) {
+        } else if (itemstack.getItem().equals(ItemHandler.ITEM_FUNNY_APPLE) || itemstack.getItem().equals(Items.APPLE)) {
             if (!player.capabilities.isCreativeMode) {
                 itemstack.shrink(1);
             }

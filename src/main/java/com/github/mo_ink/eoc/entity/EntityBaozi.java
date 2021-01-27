@@ -1,10 +1,9 @@
 package com.github.mo_ink.eoc.entity;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class EntityBaozi extends EntityNPCBase {
@@ -14,9 +13,7 @@ public class EntityBaozi extends EntityNPCBase {
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        ItemStack egg = new ItemStack(Items.SPAWN_EGG, 1);
-        ItemMonsterPlacer.applyEntityIdToItemStack(egg, new ResourceLocation("eoc:entity.baozi"));
-        this.entityDropItem(egg, 0.0F);
+        this.entityDropItem(new ItemStack(Blocks.PLANKS, (int) Math.round(Math.random() * 5)), 0.3F);
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 
