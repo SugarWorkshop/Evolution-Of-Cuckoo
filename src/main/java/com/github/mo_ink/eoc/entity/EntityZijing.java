@@ -13,7 +13,7 @@ public class EntityZijing extends EntityNPCBase {
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        this.entityDropItem(new ItemStack(Blocks.COBBLESTONE, (int) Math.round(Math.random() * 9)), 0.3F);
+        this.entityDropItem(new ItemStack(Blocks.COBBLESTONE, (int) (Math.random() * 9)), 0.3F);
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 

@@ -12,7 +12,7 @@ public class EntitySmalldew extends EntityNPCBase {
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        this.entityDropItem(new ItemStack(Items.IRON_INGOT, (int) Math.round(Math.random() * 4)), 0.3F);
+        this.entityDropItem(new ItemStack(Items.IRON_INGOT, (int) (Math.random() * 4)), 0.3F);
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 

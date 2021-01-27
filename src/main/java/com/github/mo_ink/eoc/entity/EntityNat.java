@@ -16,8 +16,8 @@ public class EntityNat extends EntityNPCBase {
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
         ItemStack egg = new ItemStack(Items.SPAWN_EGG, 1);
         ItemMonsterPlacer.applyEntityIdToItemStack(egg, new ResourceLocation("eoc:entity.nat"));
-        this.entityDropItem(new ItemStack(Items.STICK, (int) Math.round(Math.random() * 5)), 0.3F);
-        this.entityDropItem(new ItemStack(Items.ARROW, (int) Math.round(Math.random() * 3)), 0.3F);
+        this.entityDropItem(new ItemStack(Items.STICK, (int) (Math.random() * 5)), 0.3F);
+        this.entityDropItem(new ItemStack(Items.ARROW, (int) (Math.random() * 3)), 0.3F);
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 
