@@ -1,10 +1,12 @@
 package com.github.mo_ink.eoc.entity;
 
+import com.github.mo_ink.eoc.handler.ItemHandler;
 import com.github.mo_ink.eoc.utils.RandomCreator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -34,7 +36,7 @@ public class EntityMoInk extends EntityNPCBase {
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
-        if (itemstack.getItem().equals(Items.SUGAR) && player.isSneaking() && !isSprinkled()) {
+        if (canSprinkle(player)) {
             if (!player.capabilities.isCreativeMode) {
                 itemstack.shrink(1);
             }
@@ -67,6 +69,14 @@ public class EntityMoInk extends EntityNPCBase {
 
     public void setSprinkled(byte b) {
         this.getDataManager().set(SPRINKLED, b);
+    }
+
+    public boolean canSprinkle(EntityPlayer player) {
+        Item mainItem = player.getHeldItem(EnumHand.MAIN_HAND).getItem();
+        Item offItem = player.getHeldItem(EnumHand.OFF_HAND).getItem();
+        if (mainItem.equals(Items.SUGAR) && offItem.equals(ItemHandler.ITEM_FUNNY_INGOT) && player.isSneaking() && !isSprinkled())
+            return true;
+        return false;
     }
 
     @Override
