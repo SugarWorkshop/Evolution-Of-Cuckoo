@@ -9,11 +9,12 @@ import net.minecraft.world.World;
 public class EntityOsIr extends EntityNPCBase {
     public EntityOsIr(World worldIn) {
         super(worldIn);
+        this.experienceValue *= 0.5;
     }
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        this.entityDropItem(new ItemStack(Items.GOLD_INGOT, RandomCreator.randomPrecent(4)), 0.3F);
+        this.entityDropItem(new ItemStack(Items.GOLD_INGOT, RandomCreator.randomTenth(4)), 0.3F);
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 

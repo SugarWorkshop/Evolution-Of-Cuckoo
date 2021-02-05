@@ -10,11 +10,12 @@ import net.minecraft.world.World;
 public class EntityZijing extends EntityNPCBase {
     public EntityZijing(World worldIn) {
         super(worldIn);
+        this.experienceValue *= 1;
     }
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        this.entityDropItem(new ItemStack(Blocks.COBBLESTONE, RandomCreator.randomPrecent(6)), 0.3F);
+        this.entityDropItem(new ItemStack(Blocks.COBBLESTONE, RandomCreator.randomTenth(6)), 0.3F);
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 

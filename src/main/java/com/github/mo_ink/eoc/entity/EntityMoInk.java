@@ -20,11 +20,12 @@ public class EntityMoInk extends EntityNPCBase {
 
     public EntityMoInk(World worldIn) {
         super(worldIn);
+        this.experienceValue *= 2.5;
     }
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        this.entityDropItem(new ItemStack(Items.DIAMOND, RandomCreator.randomPrecent(1)), 0.3F);
+        this.entityDropItem(new ItemStack(Items.DIAMOND, RandomCreator.randomTenth(1)), 0.3F);
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 

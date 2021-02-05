@@ -61,9 +61,10 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
 
     public EntityNPCBase(World worldIn) {
         super(worldIn);
-        setTamed(false);
-        setSize(0.6F, 1.8F);
-        setEquipmentBasedOnDifficulty();
+        this.experienceValue = 5;
+        this.setTamed(false);
+        this.setSize(0.6F, 1.8F);
+        this.setEquipmentBasedOnDifficulty();
         this.setCombatTask();
     }
 

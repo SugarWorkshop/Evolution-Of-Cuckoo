@@ -9,11 +9,12 @@ import net.minecraft.world.World;
 public class EntitySmalldew extends EntityNPCBase {
     public EntitySmalldew(World worldIn) {
         super(worldIn);
+        this.experienceValue *= 2;
     }
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        this.entityDropItem(new ItemStack(Items.IRON_INGOT, RandomCreator.randomPrecent(3)), 0.3F);
+        this.entityDropItem(new ItemStack(Items.IRON_INGOT, RandomCreator.randomTenth(3)), 0.3F);
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 
