@@ -19,7 +19,7 @@ eoc.enum_npc_level.a=Excellent
 eoc.enum_npc_level.b=Good
 eoc.enum_npc_level.c=Normal
 eoc.enum_npc_level.d=Inferior
-eoc.enum_npc_level.sssss=The word as good as I can't say
+eoc.enum_npc_level.sssss=Super_Leader
 
 tile.eoc.funny_ore.name=Funny Ore
 tile.eoc.cuckoo_ore.name=Cuckoo Ore
