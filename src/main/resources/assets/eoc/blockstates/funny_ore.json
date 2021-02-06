@@ -1,5 +1,7 @@
 {
   "variants": {
-    "normal": { "model": "eoc:funny_ore" }
+    "normal": {
+      "model": "eoc:funny_ore"
+    }
   }
 }
