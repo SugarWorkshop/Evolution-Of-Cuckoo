@@ -19,7 +19,7 @@ eoc.enum_npc_level.a=精良
 eoc.enum_npc_level.b=优秀
 eoc.enum_npc_level.c=普通
 eoc.enum_npc_level.d=下等
-eoc.enum_npc_level.d=超级_领袖级
+eoc.enum_npc_level.sssss=究极
 
 tile.eoc.funny_ore.name=滑稽矿石
 tile.eoc.cuckoo_ore.name=咕咕矿石
