@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 public class EntityOsIr extends EntityNPCBase {
     public EntityOsIr(World worldIn) {
         super(worldIn);
-        this.experienceValue *= 0.5;
+        this.experienceValue = 5;
     }
 
     @Override

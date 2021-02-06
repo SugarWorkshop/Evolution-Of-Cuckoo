@@ -2,6 +2,7 @@ package com.github.mo_ink.eoc.entity;
 
 import com.github.mo_ink.eoc.entity.ai.EntityAIAttackWithBow;
 import com.github.mo_ink.eoc.handler.ItemHandler;
+import com.github.mo_ink.eoc.utils.RandomCreator;
 import com.google.common.base.Predicate;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -61,7 +62,6 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
 
     public EntityNPCBase(World worldIn) {
         super(worldIn);
-        this.experienceValue = 5;
         this.setTamed(false);
         this.setSize(0.6F, 1.8F);
         this.setEquipmentBasedOnDifficulty();
@@ -243,5 +243,10 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
             double d2 = this.rand.nextGaussian() * 0.02D;
             this.world.spawnParticle(particleTypes, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, d0, d1, d2);
         }
+    }
+
+    @Override
+    protected int getExperiencePoints(EntityPlayer player) {
+        return this.experienceValue + RandomCreator.randomTenth(5);
     }
 }

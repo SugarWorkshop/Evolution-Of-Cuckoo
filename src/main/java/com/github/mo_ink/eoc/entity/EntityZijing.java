@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 public class EntityZijing extends EntityNPCBase {
     public EntityZijing(World worldIn) {
         super(worldIn);
-        this.experienceValue *= 1;
+        this.experienceValue = 10;
     }
 
     @Override

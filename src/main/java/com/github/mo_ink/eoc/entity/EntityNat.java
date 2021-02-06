@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 public class EntityNat extends EntityNPCBase {
     public EntityNat(World worldIn) {
         super(worldIn);
-        this.experienceValue *= 1.5;
+        this.experienceValue = 15;
     }
 
     @Override

@@ -20,7 +20,7 @@ public class EntityMoInk extends EntityNPCBase {
 
     public EntityMoInk(World worldIn) {
         super(worldIn);
-        this.experienceValue *= 2.5;
+        this.experienceValue = 25;
     }
 
     @Override

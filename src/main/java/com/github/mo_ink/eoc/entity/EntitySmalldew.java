@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 public class EntitySmalldew extends EntityNPCBase {
     public EntitySmalldew(World worldIn) {
         super(worldIn);
-        this.experienceValue *= 2;
+        this.experienceValue = 20;
     }
 
     @Override
