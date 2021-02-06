@@ -1,5 +1,6 @@
 package com.github.mo_ink.eoc.entity;
 
+import com.github.mo_ink.eoc.utils.EnumNPCLevel;
 import com.github.mo_ink.eoc.utils.RandomCreator;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -10,7 +11,7 @@ import net.minecraft.world.World;
 public class EntityZijing extends EntityNPCBase {
     public EntityZijing(World worldIn) {
         super(worldIn);
-        this.experienceValue = 10;
+        this.setLevel(EnumNPCLevel.C);
     }
 
     @Override

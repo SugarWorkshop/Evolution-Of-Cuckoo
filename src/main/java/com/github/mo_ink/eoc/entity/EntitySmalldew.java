@@ -1,5 +1,6 @@
 package com.github.mo_ink.eoc.entity;
 
+import com.github.mo_ink.eoc.utils.EnumNPCLevel;
 import com.github.mo_ink.eoc.utils.RandomCreator;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -9,7 +10,7 @@ import net.minecraft.world.World;
 public class EntitySmalldew extends EntityNPCBase {
     public EntitySmalldew(World worldIn) {
         super(worldIn);
-        this.experienceValue = 20;
+        this.setLevel(EnumNPCLevel.B);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.github.mo_ink.eoc.entity;
 
 import com.github.mo_ink.eoc.handler.ItemHandler;
+import com.github.mo_ink.eoc.utils.EnumNPCLevel;
 import com.github.mo_ink.eoc.utils.RandomCreator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -20,7 +21,7 @@ public class EntityMoInk extends EntityNPCBase {
 
     public EntityMoInk(World worldIn) {
         super(worldIn);
-        this.experienceValue = 25;
+        this.setLevel(EnumNPCLevel.A);
     }
 
     @Override

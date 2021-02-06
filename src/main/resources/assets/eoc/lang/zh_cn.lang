@@ -15,5 +15,10 @@ entity.eoc.entity_osir.name=Os_Ir
 entity.eoc.entity_nat.name=Nat
 entity.eoc.entity_baozi.name=Wubaozi123（已去世）
 
+eoc.enum_npc_level.a=精良
+eoc.enum_npc_level.b=优秀
+eoc.enum_npc_level.c=普通
+eoc.enum_npc_level.d=下等
+
 tile.eoc.funny_ore.name=滑稽矿石
 tile.eoc.cuckoo_ore.name=咕咕矿石

@@ -2,6 +2,7 @@ package com.github.mo_ink.eoc.entity;
 
 import com.github.mo_ink.eoc.entity.ai.EntityAIAttackWithBow;
 import com.github.mo_ink.eoc.handler.ItemHandler;
+import com.github.mo_ink.eoc.utils.EnumNPCLevel;
 import com.github.mo_ink.eoc.utils.RandomCreator;
 import com.google.common.base.Predicate;
 import net.minecraft.entity.*;
@@ -35,7 +36,6 @@ import javax.annotation.Nullable;
 
 public abstract class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityNPCBase.class, DataSerializers.BOOLEAN);
-
     private final EntityAIAttackWithBow aiArrowAttack = new EntityAIAttackWithBow(this, 0.15D, 16, 16.0F);
     private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 0.65D, true) {
         public void resetTask() {
@@ -48,7 +48,7 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
             EntityNPCBase.this.setSwingingArms(true);
         }
     };
-
+    protected EnumNPCLevel level;
     EntityAINearestAttackableTarget aiNearestAttackableTarget = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
         public boolean apply(@Nullable Entity entity) {
             return entity instanceof IMob && !entity.isInvisible();
@@ -118,7 +118,6 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
 
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
-
         if (this.isTamed()) {
             if (!itemstack.isEmpty()) {
                 if (itemstack.getItem() instanceof ItemFood) {
@@ -248,5 +247,14 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
     @Override
     protected int getExperiencePoints(EntityPlayer player) {
         return this.experienceValue + RandomCreator.randomTenth(5);
+    }
+
+    public EnumNPCLevel getLevel() {
+        return this.level;
+    }
+
+    protected void setLevel(EnumNPCLevel level) {
+        this.level = level;
+        this.experienceValue = level.getExperienceValue();
     }
 }
