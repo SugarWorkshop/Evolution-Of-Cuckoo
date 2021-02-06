@@ -11,17 +11,17 @@ import net.minecraft.world.World;
 public class EntityZijing extends EntityNPCBase {
     public EntityZijing(World worldIn) {
         super(worldIn);
-        this.setLevel(EnumNPCLevel.C);
+        this.setLevel(EnumNPCLevel.A);
     }
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        this.entityDropItem(new ItemStack(Blocks.COBBLESTONE, RandomCreator.randomTenth(6)), 0.3F);
+        this.entityDropItem(new ItemStack(Items.STICK, RandomCreator.randomTenth(5)), 0.3F);
+        this.entityDropItem(new ItemStack(Items.ARROW, RandomCreator.randomTenth(3)), 0.3F);
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 
-    @Override
     protected void setEquipmentBasedOnDifficulty() {
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
     }
 }

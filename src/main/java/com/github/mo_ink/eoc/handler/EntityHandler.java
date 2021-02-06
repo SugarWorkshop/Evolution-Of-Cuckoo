@@ -72,9 +72,9 @@ public class EntityHandler {
                 Biomes.EXTREME_HILLS_EDGE
         };
         registerEntitySpawn(EntityMoInk.class, 10, 1, 2, EnumCreatureType.CREATURE, biomes);
-        registerEntitySpawn(EntityNat.class, 12, 1, 2, EnumCreatureType.CREATURE, biomes);
+        registerEntitySpawn(EntityZijing.class, 12, 1, 2, EnumCreatureType.CREATURE, biomes);
         registerEntitySpawn(EntitySmalldew.class, 14, 1, 3, EnumCreatureType.CREATURE, biomes);
-        registerEntitySpawn(EntityZijing.class, 16, 1, 4, EnumCreatureType.CREATURE, biomes);
+        registerEntitySpawn(EntityNat.class, 16, 1, 4, EnumCreatureType.CREATURE, biomes);
         registerEntitySpawn(EntityOsIr.class, 18, 1, 4, EnumCreatureType.CREATURE, biomes);
         //registerEntitySpawn(EntityBaozi.class, 18, 1, 4, EnumCreatureType.CREATURE, biomes);
     }
