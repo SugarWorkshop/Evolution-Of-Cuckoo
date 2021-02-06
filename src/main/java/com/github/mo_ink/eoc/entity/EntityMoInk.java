@@ -21,7 +21,7 @@ public class EntityMoInk extends EntityNPCBase {
 
     public EntityMoInk(World worldIn) {
         super(worldIn);
-        this.setLevel(EnumNPCLevel.A);
+        this.setLevel(EnumNPCLevel.B);
     }
 
     @Override

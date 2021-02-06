@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 public class EntityZijing extends EntityNPCBase {
     public EntityZijing(World worldIn) {
         super(worldIn);
-        this.setLevel(EnumNPCLevel.A);
+        this.setLevel(EnumNPCLevel.B);
     }
 
     @Override

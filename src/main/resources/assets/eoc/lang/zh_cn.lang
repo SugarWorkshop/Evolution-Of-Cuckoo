@@ -8,17 +8,18 @@ death.attack.eoc.funnyDied=%1$s 太滑稽以至于他去世了
 effect.eoc.funny=滑稽
 
 entity.eoc.entity_zijing.name=zijing_233
-entity.eoc.entity_moink.name=Mo_Ink
-entity.eoc.entity_smalldew.name=gonggongjohn
+entity.eoc.entity_moink.name=Mo_Ink（已成为鸽子精）
+entity.eoc.entity_smalldew.name=gonggongjohn（领袖）
 entity.eoc.entity_chenwe_i_lin.name=Chenwe_i_lin
 entity.eoc.entity_osir.name=Os_Ir
 entity.eoc.entity_nat.name=Nat
-entity.eoc.entity_baozi.name=Wubaozi123（已去世）
+entity.eoc.entity_baozi.name=Wubaozi123
 
 eoc.enum_npc_level.a=精良
 eoc.enum_npc_level.b=优秀
 eoc.enum_npc_level.c=普通
 eoc.enum_npc_level.d=下等
+eoc.enum_npc_level.d=超级_领袖级
 
 tile.eoc.funny_ore.name=滑稽矿石
 tile.eoc.cuckoo_ore.name=咕咕矿石

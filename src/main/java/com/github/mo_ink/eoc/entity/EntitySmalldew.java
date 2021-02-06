@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 public class EntitySmalldew extends EntityNPCBase {
     public EntitySmalldew(World worldIn) {
         super(worldIn);
-        this.setLevel(EnumNPCLevel.B);
+        this.setLevel(EnumNPCLevel.SSSSS);
     }
 
     @Override

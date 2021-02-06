@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 public class EntityOsIr extends EntityNPCBase {
     public EntityOsIr(World worldIn) {
         super(worldIn);
-        this.setLevel(EnumNPCLevel.C);
+        this.setLevel(EnumNPCLevel.B);
     }
 
     @Override

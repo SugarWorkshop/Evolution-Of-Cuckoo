@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 public class EntityBaozi extends EntityNPCBase {
     public EntityBaozi(World worldIn) {
         super(worldIn);
-        this.setLevel(EnumNPCLevel.D);
+        this.setLevel(EnumNPCLevel.B);
     }
 
     @Override
