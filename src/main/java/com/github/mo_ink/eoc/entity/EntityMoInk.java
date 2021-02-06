@@ -16,6 +16,9 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class EntityMoInk extends EntityNPCBase {
     private static DataParameter<Byte> SPRINKLED = EntityDataManager.createKey(EntityMoInk.class, DataSerializers.BYTE);
 
@@ -42,9 +45,26 @@ public class EntityMoInk extends EntityNPCBase {
             if (!player.capabilities.isCreativeMode) {
                 itemstack.shrink(1);
             }
-            for (int i = 1; i <= 16; i++) {
-                this.entityDropItem(new ItemStack(Items.SUGAR, 1), 1.5F);
-                this.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.25F, 1.0F);
+            if (!this.world.isRemote) {
+                EntityMoInk thisIn = this;
+                new Timer().schedule(new TimerTask() {
+                    private int count = 0;
+                    private float high = 1.65F;
+
+                    @Override
+                    public void run() {
+                        if (count >= 16) {
+                            this.cancel();
+                            return;
+                        }
+                        thisIn.world.getMinecraftServer().addScheduledTask(() -> {
+                            thisIn.entityDropItem(new ItemStack(Items.SUGAR, 1), high);
+                            thisIn.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.5F, 1.0F);
+                        });
+                        count++;
+                        high += 0.1F;
+                    }
+                }, 0, 250);
             }
             setSprinkled((byte) 1);
             return true;

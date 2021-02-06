@@ -128,7 +128,7 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
                         }
                         int heal = itemfood.getHealAmount(itemstack);
                         this.heal(heal);
-                        this.playTameEffect(EnumParticleTypes.HEART, heal);
+                        this.playEffect(EnumParticleTypes.HEART, heal);
                         return true;
                     }
                 }
@@ -142,7 +142,7 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
                     this.setTamedBy(player);
                     this.setAttackTarget((EntityLivingBase) null);
                 } else
-                    this.playTameEffect(EnumParticleTypes.VILLAGER_HAPPY, 8);
+                    this.playEffect(EnumParticleTypes.VILLAGER_HAPPY, 8);
             }
             return true;
         }
@@ -235,7 +235,7 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
         this.setCombatTask();
     }
 
-    protected void playTameEffect(EnumParticleTypes particleTypes, int times) {
+    protected void playEffect(EnumParticleTypes particleTypes, int times) {
         for (int i = 1; i <= times; ++i) {
             double d0 = this.rand.nextGaussian() * 0.02D;
             double d1 = this.rand.nextGaussian() * 0.02D;
