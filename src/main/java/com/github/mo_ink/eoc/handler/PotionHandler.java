@@ -2,6 +2,7 @@ package com.github.mo_ink.eoc.handler;
 
 import com.github.mo_ink.eoc.potion.PotionFunny;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
@@ -9,7 +10,6 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -29,34 +29,37 @@ public class PotionHandler {
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
-        DamageSource source = event.getSource(); //伤害原因
         EntityLivingBase target = event.getEntityLiving(); //被伤害目标
-        Potion potion = POTION_FUNNY; //滑稽药水效果
-        PotionEffect effect = target.getActivePotionEffect(potion); //滑稽药水效果
-        if (!"outOfWorld".equals(source.getDamageType()) && !"eoc.funnyDied".equals(source.getDamageType()) && target.isPotionActive(potion) && target instanceof EntityPlayer) { //如果不是掉出世界或滑稽死亡且玩家有滑稽效果
-            target.setHealth(target.getHealth() + event.getAmount() / 3 * (effect.getAmplifier() + 1)); //增加生命值
-            event.setAmount(0); //将伤害调为0
+        if (target.isPotionActive(POTION_FUNNY) && target instanceof EntityPlayer) { //如果目标有滑稽效果且是玩家
+            String damageType = event.getSource().getDamageType(); //伤害类型
+            PotionEffect effect = target.getActivePotionEffect(POTION_FUNNY); //滑稽药水效果
+            if (!"outOfWorld".equals(damageType) && !"eoc.funnyDied".equals(damageType)) { //如果不是掉出世界或滑稽死亡
+                target.setHealth(target.getHealth() + event.getAmount() / 3 * (effect.getAmplifier() + 1)); //增加生命值
+                event.setAmount(0); //将伤害调为0
+            }
         }
     }
 
     @SubscribeEvent
     public static void onPlayerAttack(AttackEntityEvent event) {
         EntityPlayer player = event.getEntityPlayer(); //玩家
-        Potion potion = POTION_FUNNY; //滑稽药水效果
-        PotionEffect effect = player.getActivePotionEffect(potion); //滑稽药水效果
-        Item item = player.getHeldItemMainhand().getItem();
+        if (player.isPotionActive(POTION_FUNNY)) { //若玩家有滑稽效果
+            PotionEffect effect = player.getActivePotionEffect(POTION_FUNNY); //滑稽药水效果
+            Item item = player.getHeldItemMainhand().getItem(); //玩家手持物品
+            float playerAttackDamage = (float) player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue(); //玩家攻击伤害
 
-        float damage = 0;
-        if (item instanceof ItemTool) //如果是工具（镐、斧、铲）
-            damage = (Item.ToolMaterial.valueOf(((ItemTool) item).getToolMaterialName())).getAttackDamage() + 3;
-        else if (item instanceof ItemSword)  //如果是剑
-            damage = ((ItemSword) item).getAttackDamage() + 3;
-        else if (item instanceof ItemHoe) //如果是锄头
-            damage = (Item.ToolMaterial.valueOf(((ItemHoe) item).getMaterialName())).getAttackDamage() + 3;
-        damage += 1;
+            float damage;
+            if (item instanceof ItemTool) {//如果是工具（镐、斧、铲）
+                damage = (Item.ToolMaterial.valueOf(((ItemTool) item).getToolMaterialName())).getAttackDamage() + 2.8F + playerAttackDamage;
+            } else if (item instanceof ItemSword) {  //如果是剑
+                damage = ((ItemSword) item).getAttackDamage() + 2.8F + playerAttackDamage;
+            } else if (item instanceof ItemHoe) { //如果是锄头
+                damage = (Item.ToolMaterial.valueOf(((ItemHoe) item).getMaterialName())).getAttackDamage() + 2.8F + playerAttackDamage;
+            } else { //其他
+                damage = playerAttackDamage;
+            }
 
-        if (player.isPotionActive(potion)) { //若玩家有滑稽效果
-            player.attackEntityFrom(DamageSourceHandler.FUNNY_DIED, damage / 2 * (effect.getAmplifier() + 1)); //减少生命值
+            player.attackEntityFrom(DamageSourceHandler.FUNNY_DIED, damage / 3 * (effect.getAmplifier() + 1)); //减少生命值
         }
     }
 }
