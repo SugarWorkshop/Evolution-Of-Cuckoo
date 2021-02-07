@@ -18,6 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityHandler {
     public static void register() {
+
         EntityRegistry.registerModEntity(new ResourceLocation(EOC.MODID, "entity.zijing"), EntityZijing.class,
                 "eoc.entity_zijing", 0, EOC.instance, 64, 1, true, 0xFFEC8B, 0x8B8B7A);
 
@@ -71,11 +72,10 @@ public class EntityHandler {
                 Biomes.EXTREME_HILLS_WITH_TREES,
                 Biomes.EXTREME_HILLS_EDGE
         };
-        registerEntitySpawn(EntityMoInk.class, 10, 1, 2, EnumCreatureType.CREATURE, biomes);
-        registerEntitySpawn(EntityZijing.class, 12, 1, 2, EnumCreatureType.CREATURE, biomes);
-        registerEntitySpawn(EntitySmalldew.class, 14, 1, 3, EnumCreatureType.CREATURE, biomes);
-        registerEntitySpawn(EntityNat.class, 16, 1, 4, EnumCreatureType.CREATURE, biomes);
-        registerEntitySpawn(EntityOsIr.class, 18, 1, 4, EnumCreatureType.CREATURE, biomes);
-        //registerEntitySpawn(EntityBaozi.class, 18, 1, 4, EnumCreatureType.CREATURE, biomes);
+        registerEntitySpawn(EntityMoInk.class, 8, 1, 2, EnumCreatureType.CREATURE, biomes);
+        registerEntitySpawn(EntityZijing.class, 10, 1, 2, EnumCreatureType.CREATURE, biomes);
+        registerEntitySpawn(EntitySmalldew.class, 12, 1, 3, EnumCreatureType.CREATURE, biomes);
+        registerEntitySpawn(EntityNat.class, 14, 1, 4, EnumCreatureType.CREATURE, biomes);
+        registerEntitySpawn(EntityOsIr.class, 16, 1, 4, EnumCreatureType.CREATURE, biomes);
     }
 }
