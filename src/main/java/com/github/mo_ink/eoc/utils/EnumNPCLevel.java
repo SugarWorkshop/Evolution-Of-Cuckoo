@@ -6,7 +6,7 @@ public enum EnumNPCLevel {
     A("eoc.enum_npc_level.a", 25, 28.0D, 2.0D, 0.8D),
     B("eoc.enum_npc_level.b", 20, 24.0D, 1.5D, 0.75D),
     C("eoc.enum_npc_level.c", 15, 20.0D, 1.0D, 0.7D),
-    D("eoc.enum_npc_level.d", 0, 14.5D, 0.5D, 0.55D);
+    D("eoc.enum_npc_level.d", 0, 14.0D, 0.5D, 0.55D);
 
     private final String descriptionTranslationKey;
     private final int experienceValue;

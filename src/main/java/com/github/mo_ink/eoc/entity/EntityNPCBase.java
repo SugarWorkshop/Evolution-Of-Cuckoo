@@ -78,7 +78,7 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
     }
 
     public EntityNPCBase(World worldIn) {
-        this(worldIn,null,EnumNPCLevel.D);
+        this(worldIn, null, EnumNPCLevel.C);
     }
 
     protected void entityInit() {
@@ -122,11 +122,9 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
 
     public boolean attackEntityAsMob(Entity entityIn) {
         boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) ((int) this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue()));
-
         if (flag) {
             this.applyEnchantments(this, entityIn);
         }
-
         return flag;
     }
 
