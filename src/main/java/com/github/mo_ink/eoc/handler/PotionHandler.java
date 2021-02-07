@@ -33,7 +33,7 @@ public class PotionHandler {
         EntityLivingBase target = event.getEntityLiving(); //被伤害目标
         Potion potion = POTION_FUNNY; //滑稽药水效果
         PotionEffect effect = target.getActivePotionEffect(potion); //滑稽药水效果
-        if (!"outOfWorld".equals(source.getDamageType()) && !"eoc.funnyDied".equals(source.getDamageType()) && target.isPotionActive(potion)) { //如果不是掉出世界或滑稽死亡且玩家有滑稽效果
+        if (!"outOfWorld".equals(source.getDamageType()) && !"eoc.funnyDied".equals(source.getDamageType()) && target.isPotionActive(potion) && target instanceof EntityPlayer) { //如果不是掉出世界或滑稽死亡且玩家有滑稽效果
             target.setHealth(target.getHealth() + event.getAmount() / 3 * (effect.getAmplifier() + 1)); //增加生命值
             event.setAmount(0); //将伤害调为0
         }

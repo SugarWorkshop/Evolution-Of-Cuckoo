@@ -17,6 +17,7 @@ import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -34,8 +35,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public abstract class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
+public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityNPCBase.class, DataSerializers.BOOLEAN);
+
     private final EntityAIAttackWithBow aiArrowAttack = new EntityAIAttackWithBow(this, 0.15D, 16, 16.0F);
     private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 0.65D, true) {
         public void resetTask() {
@@ -48,23 +50,37 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
             EntityNPCBase.this.setSwingingArms(true);
         }
     };
-    protected EnumNPCLevel level;
+
+    protected EnumNPCLevel level = EnumNPCLevel.D;
+    protected Item mainHandItem = null;
+
     EntityAINearestAttackableTarget aiNearestAttackableTarget = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
         public boolean apply(@Nullable Entity entity) {
             return entity instanceof IMob && !entity.isInvisible();
         }
     });
+
     EntityAINearestAttackableTarget aiNearestAttackableTargetWhitoutEnderman = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
         public boolean apply(@Nullable Entity entity) {
             return entity instanceof IMob && !entity.isInvisible() && !(entity instanceof EntityEnderman);
         }
     });
 
+    public EntityNPCBase(World worldIn, Item itemIn, EnumNPCLevel levelIn) {
+        super(worldIn);
+        this.setTamed(false);
+        this.setSize(0.6F, 1.8F);
+        this.setItem(itemIn);
+        this.setEquipmentBased();
+        this.setCombatTask();
+        this.setLevel(levelIn);
+    }
+
     public EntityNPCBase(World worldIn) {
         super(worldIn);
         this.setTamed(false);
         this.setSize(0.6F, 1.8F);
-        this.setEquipmentBasedOnDifficulty();
+        this.setEquipmentBased();
         this.setCombatTask();
     }
 
@@ -72,8 +88,6 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
         super.entityInit();
         this.dataManager.register(SWINGING_ARMS, Boolean.valueOf(false));
     }
-
-    protected abstract void setEquipmentBasedOnDifficulty();
 
     public void onLivingUpdate() {
         this.updateArmSwingProgress();
@@ -128,7 +142,7 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
                         }
                         int heal = itemfood.getHealAmount(itemstack);
                         this.heal(heal);
-                        this.playEffect(EnumParticleTypes.HEART, heal);
+                        this.playEffect(EnumParticleTypes.HEART, this.posX, this.posY + 0.2F, this.posZ, heal);
                         return true;
                     }
                 }
@@ -142,7 +156,7 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
                     this.setTamedBy(player);
                     this.setAttackTarget((EntityLivingBase) null);
                 } else
-                    this.playEffect(EnumParticleTypes.VILLAGER_HAPPY, 8);
+                    this.playEffect(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 0.2F, this.posZ, 10);
             }
             return true;
         }
@@ -235,12 +249,12 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
         this.setCombatTask();
     }
 
-    protected void playEffect(EnumParticleTypes particleTypes, int times) {
+    protected void playEffect(EnumParticleTypes particleTypes, Double posX, Double posY, Double posZ, int times) {
         for (int i = 1; i <= times; ++i) {
             double d0 = this.rand.nextGaussian() * 0.02D;
             double d1 = this.rand.nextGaussian() * 0.02D;
             double d2 = this.rand.nextGaussian() * 0.02D;
-            this.world.spawnParticle(particleTypes, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, d0, d1, d2);
+            this.world.spawnParticle(particleTypes, posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, posY + 0.5D + (double) (this.rand.nextFloat() * this.height), posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, d0, d1, d2);
         }
     }
 
@@ -256,5 +270,17 @@ public abstract class EntityNPCBase extends EntityTameable implements IRangedAtt
     protected void setLevel(EnumNPCLevel level) {
         this.level = level;
         this.experienceValue = level.getExperienceValue();
+    }
+
+    protected void setEquipmentBased() {
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(mainHandItem));
+    }
+
+    public Item getItem() {
+        return mainHandItem;
+    }
+
+    protected void setItem(Item itemIn) {
+        this.mainHandItem = itemIn;
     }
 }
