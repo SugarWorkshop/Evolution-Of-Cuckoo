@@ -38,8 +38,8 @@ import javax.annotation.Nullable;
 public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityNPCBase.class, DataSerializers.BOOLEAN);
 
-    private final EntityAIAttackWithBow aiArrowAttack = new EntityAIAttackWithBow(this, 0.15D, 16, 16.0F);
-    private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 0.65D, true) {
+    private final EntityAIAttackWithBow aiArrowAttack = new EntityAIAttackWithBow(this, 0.12D, 16, 16.0F);
+    private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 0.615D, true) {
         public void resetTask() {
             super.resetTask();
             EntityNPCBase.this.setSwingingArms(false);
@@ -51,8 +51,8 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
         }
     };
 
-    protected EnumNPCLevel level = EnumNPCLevel.D;
-    protected Item mainHandItem = null;
+    protected EnumNPCLevel enumNPCLevel;
+    protected Item mainHandItem;
 
     EntityAINearestAttackableTarget aiNearestAttackableTarget = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
         public boolean apply(@Nullable Entity entity) {
@@ -70,18 +70,15 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
         super(worldIn);
         this.setTamed(false);
         this.setSize(0.6F, 1.8F);
+        this.setEnumNPCLevel(levelIn);
+        this.changeEntityAttributes();
         this.setItem(itemIn);
         this.setEquipmentBased();
         this.setCombatTask();
-        this.setLevel(levelIn);
     }
 
     public EntityNPCBase(World worldIn) {
-        super(worldIn);
-        this.setTamed(false);
-        this.setSize(0.6F, 1.8F);
-        this.setEquipmentBased();
-        this.setCombatTask();
+        this(worldIn,null,EnumNPCLevel.D);
     }
 
     protected void entityInit() {
@@ -97,9 +94,16 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1024.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2048.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(1024.0D);
+    }
+
+    protected void changeEntityAttributes() {
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getEnumNPCLevel().getMaxHealth());
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(this.getEnumNPCLevel().getAttackDamage());
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(this.getEnumNPCLevel().getMovementSpeed());
     }
 
     @Override
@@ -263,13 +267,13 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
         return this.experienceValue + RandomCreator.randomTenth(5);
     }
 
-    public EnumNPCLevel getLevel() {
-        return this.level;
+    public EnumNPCLevel getEnumNPCLevel() {
+        return this.enumNPCLevel;
     }
 
-    protected void setLevel(EnumNPCLevel level) {
-        this.level = level;
-        this.experienceValue = level.getExperienceValue();
+    protected void setEnumNPCLevel(EnumNPCLevel enumNPCLevel) {
+        this.enumNPCLevel = enumNPCLevel;
+        this.experienceValue = enumNPCLevel.getExperienceValue();
     }
 
     protected void setEquipmentBased() {
