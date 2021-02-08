@@ -36,9 +36,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
+    private EnumNPCLevel enumNPCLevel;
+    private Item mainHandItem;
+    
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityNPCBase.class, DataSerializers.BOOLEAN);
 
     private final EntityAIAttackWithBow aiArrowAttack = new EntityAIAttackWithBow(this, 0.12D, 16, 16.0F);
+
     private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 0.615D, true) {
         public void resetTask() {
             super.resetTask();
@@ -50,9 +54,6 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
             EntityNPCBase.this.setSwingingArms(true);
         }
     };
-
-    protected EnumNPCLevel enumNPCLevel;
-    protected Item mainHandItem;
 
     EntityAINearestAttackableTarget aiNearestAttackableTarget = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
         public boolean apply(@Nullable Entity entity) {
@@ -96,8 +97,6 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
         super.applyEntityAttributes();
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1024.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2048.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(1024.0D);
     }
 
     protected void changeEntityAttributes() {
