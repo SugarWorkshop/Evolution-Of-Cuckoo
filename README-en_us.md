@@ -1,4 +1,4 @@
-[简体中文](README.md) & [English](README-en_us.md)
+🌏 [简体中文](README.md) ● [English](README-en_us.md)
 
 # Evolution Of Cuckoo 1.12
 
@@ -8,6 +8,8 @@ This is the development repository of the Minecraft mod The Evolution Of Cuckoo 
 
 # Table Of Contents
 
+- [Evolution Of Cuckoo 1.12](#evolution-of-cuckoo-112)
+- [Table Of Contents](#table-of-contents)
 - [Introduction](#introduction)
 - [About Development](#about-development)
 - [Features](#features)
@@ -24,7 +26,7 @@ EOC is maintained by Cuckoo Dev Team and the mod is still under development. The
 # Features
 * Minecraft Version: 1.12.2
 * Forge Version: 14.23.5.2847
-* Current Mod Version: N/A
+* Current Mod Version: N / A
 
 # Development Guide
 

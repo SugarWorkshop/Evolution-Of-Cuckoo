@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
 public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
     private EnumNPCLevel enumNPCLevel;
     private Item mainHandItem;
-    
+
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityNPCBase.class, DataSerializers.BOOLEAN);
 
     private final EntityAIAttackWithBow aiArrowAttack = new EntityAIAttackWithBow(this, 0.12D, 16, 16.0F);

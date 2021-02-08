@@ -1,4 +1,4 @@
-[简体中文](README.md) & [English](README-en_us.md)
+🌏 [简体中文](README.md) ● [English](README-en_us.md)
 
 # Evolution Of Cuckoo 1.12
 
@@ -8,6 +8,8 @@
 
 # 目录
 
+- [Evolution Of Cuckoo 1.12](#evolution-of-cuckoo-112)
+- [目录](#目录)
 - [模组介绍](#模组介绍)
 - [开发状态](#开发状态)
 - [模组基本信息](#模组基本信息)
@@ -24,7 +26,7 @@ EOC 目前由 **Cuckoo Dev Team** 维护，目前处于非常早期的版本；E
 # 模组基本信息
 * Minecraft版本: 1.12.2
 * Forge版本: 14.23.5.2847
-* 目前模组版本: N/A
+* 目前模组版本: N / A
 
 # 开发者指南
 
