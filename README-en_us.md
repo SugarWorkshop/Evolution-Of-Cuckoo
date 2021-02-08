@@ -4,7 +4,7 @@
 
 This is the development repository of the Minecraft mod The Evolution Of Cuckoo on Minecraft 1.12.2.
 
-<img src="logo.png" width="50%">
+<img src=".\docs_images\logo.png" width="50%">
 
 # Table Of Contents
 
