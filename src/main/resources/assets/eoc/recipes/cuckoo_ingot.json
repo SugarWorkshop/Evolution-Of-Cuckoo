@@ -1,0 +1,15 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "eoc:cuckoo_block"
+    }
+  },
+  "result": {
+    "item": "eoc:cuckoo_ingot",
+    "count": 9
+  }
+}

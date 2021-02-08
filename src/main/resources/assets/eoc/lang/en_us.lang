@@ -22,3 +22,5 @@ eoc.enum_npc_level.d=Inferior
 
 tile.eoc.funny_ore.name=Funny Ore
 tile.eoc.cuckoo_ore.name=Cuckoo Ore
+tile.eoc.funny_block.name=Funny Block
+tile.eoc.cuckoo_block.name=Cuckoo Block

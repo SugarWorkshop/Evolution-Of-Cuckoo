@@ -55,7 +55,7 @@ public class BlockFunnyOre extends BlockOre {
     @Override
     public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
         Random random = world instanceof World ? ((World) world).rand : new Random();
-        return MathHelper.getInt(random, 4, 10);
+        return MathHelper.getInt(random, 4, 12);
     }
 
     @Override

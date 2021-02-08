@@ -24,7 +24,7 @@ public class BlockCuckooOre extends BlockOre {
         super(MapColor.STONE);
         String name = "cuckoo_ore";
         this.setSoundType(SoundType.STONE);
-        this.setHardness(3F);
+        this.setHardness(2.5F);
         this.setHarvestLevel("pickaxe", 2);
         this.setCreativeTab(EOCTab.EOC_TAB);
         this.setRegistryName(name);
@@ -55,7 +55,7 @@ public class BlockCuckooOre extends BlockOre {
     @Override
     public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
         Random random = world instanceof World ? ((World) world).rand : new Random();
-        return MathHelper.getInt(random, 4, 10);
+        return MathHelper.getInt(random, 2, 6);
     }
 
     @Override

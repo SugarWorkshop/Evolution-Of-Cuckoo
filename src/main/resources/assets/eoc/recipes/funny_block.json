@@ -1,0 +1,16 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "eoc:funny_ingot"
+    }
+  },
+  "result": {
+    "item": "eoc:funny_block"
+  }
+}

@@ -22,6 +22,8 @@ public class ItemHandler {
     public static final ItemCuckooIngot ITEM_CUCKOO_INGOT = new ItemCuckooIngot();
     public static final ItemBlock ITEM_FUNNY_ORE = new ItemBlock(BlockHandler.BLOCK_FUNNY_ORE);
     public static final ItemBlock ITEM_CUCKOO_ORE = new ItemBlock(BlockHandler.BLOCK_CUCKOO_ORE);
+    public static final ItemBlock ITEM_FUNNY_BLOCK = new ItemBlock(BlockHandler.BLOCK_FUNNY_BLOCK);
+    public static final ItemBlock ITEM_CUCKOO_BLOCK = new ItemBlock(BlockHandler.BLOCK_CUCKOO_BLOCK);
 
     @SubscribeEvent
     public static void onRegister(RegistryEvent.Register<Item> event) {
@@ -31,6 +33,8 @@ public class ItemHandler {
         registry.register(ITEM_CUCKOO_INGOT);
         registry.register(ITEM_FUNNY_ORE.setRegistryName(ITEM_FUNNY_ORE.getBlock().getRegistryName()));
         registry.register(ITEM_CUCKOO_ORE.setRegistryName(ITEM_CUCKOO_ORE.getBlock().getRegistryName()));
+        registry.register(ITEM_FUNNY_BLOCK.setRegistryName(ITEM_FUNNY_BLOCK.getBlock().getRegistryName()));
+        registry.register(ITEM_CUCKOO_BLOCK.setRegistryName(ITEM_CUCKOO_BLOCK.getBlock().getRegistryName()));
     }
 
     @SubscribeEvent
@@ -41,5 +45,7 @@ public class ItemHandler {
         ModelLoader.setCustomModelResourceLocation(ITEM_CUCKOO_INGOT, 0, new ModelResourceLocation(ITEM_CUCKOO_INGOT.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(ITEM_FUNNY_ORE, 0, new ModelResourceLocation(ITEM_FUNNY_ORE.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(ITEM_CUCKOO_ORE, 0, new ModelResourceLocation(ITEM_CUCKOO_ORE.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ITEM_FUNNY_BLOCK, 0, new ModelResourceLocation(ITEM_FUNNY_BLOCK.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ITEM_CUCKOO_BLOCK, 0, new ModelResourceLocation(ITEM_CUCKOO_BLOCK.getRegistryName(), "inventory"));
     }
 }
