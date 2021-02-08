@@ -4,7 +4,7 @@
 
 这是 Minecraft 1.12.2 版本的模组 Evolution Of Cuckoo（不咕鸟の进化）的代码仓库。
 
-![Contributors](https://github.com/mo-ink/Evolution-Of-Cuckoo/graphs/contributors)
+[Contributors](https://github.com/mo-ink/Evolution-Of-Cuckoo/graphs/contributors)
 
 <img src=".\docs_images\logo.png" width="50%">
 
