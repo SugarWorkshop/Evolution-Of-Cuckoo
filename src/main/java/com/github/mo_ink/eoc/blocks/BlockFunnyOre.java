@@ -31,20 +31,17 @@ public class BlockFunnyOre extends BlockOre {
         this.setUnlocalizedName(EOC.MODID + "." + name);
     }
 
-    // SRG func_180660_a，用于决定掉落的物品种类
     @Nonnull
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         return ItemHandler.ITEM_FUNNY_INGOT;
     }
 
-    // SRG func_149745_a，用于决定掉落的物品数量
     @Override
     public int quantityDropped(Random random) {
         return 1;
     }
 
-    // SRG func_149679_a，用于决定受时运影响时掉落的物品数量
     @Override
     public int quantityDroppedWithBonus(int fortune, Random random) {
         if (fortune > 0) {
@@ -55,28 +52,24 @@ public class BlockFunnyOre extends BlockOre {
         }
     }
 
-    // Forge 的 patch，用于决定掉落的经验数量（参考原版煤炭、红石、青金石、钻石、绿宝石、下界石英）
     @Override
     public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
         Random random = world instanceof World ? ((World) world).rand : new Random();
         return MathHelper.getInt(random, 4, 10);
     }
 
-    // Forge 的 patch，取代 getItem (func_185473_a)，用于创造模式下鼠标中键选取方块的功能。
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         return new ItemStack(this);
     }
 
-    @Override // Forge patch 的方法
+    @Override
     public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
-        // 这个方法决定了精准采集有没有效果。
         return true;
     }
 
-    @Override // func_180643_i
+    @Override
     public ItemStack getSilkTouchDrop(IBlockState state) {
-        // 而这个方法决定了精准采集会掉什么
         return new ItemStack(this);
     }
 }
