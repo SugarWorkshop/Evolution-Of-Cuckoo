@@ -4,8 +4,10 @@ import com.github.mo_ink.eoc.handler.ItemHandler;
 import com.github.mo_ink.eoc.utils.EnumNPCLevel;
 import com.github.mo_ink.eoc.utils.RandomCreator;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,8 +15,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
@@ -68,6 +72,9 @@ public class EntityMoInk extends EntityNPCBase {
                 }
             }, 0, 250);
             setSprinkled((byte) 1);
+            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getEnumNPCLevel().getMaxHealth() + 4);
+            this.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 20, 9));
+            this.playEffect(EnumParticleTypes.HEART, this.posX, this.posY + 0.2F, this.posZ, 4);
             return true;
         }
         return super.processInteract(player, hand);
@@ -95,11 +102,26 @@ public class EntityMoInk extends EntityNPCBase {
     }
 
     public boolean canSprinkle(EntityPlayer player) {
-        Item mainItem = player.getHeldItem(EnumHand.MAIN_HAND).getItem();
-        Item offItem = player.getHeldItem(EnumHand.OFF_HAND).getItem();
-        if (mainItem.equals(Items.SUGAR) && offItem.equals(ItemHandler.ITEM_FUNNY_INGOT) && player.isSneaking() && !this.isSprinkled() && this.isTamed())
+        Item mainItem = player.getHeldItemMainhand().getItem();
+        Item offItem = player.getHeldItemOffhand().getItem();
+        NonNullList<ItemStack> armorInventoryList = (NonNullList<ItemStack>) player.getArmorInventoryList();
+        if (
+                mainItem.equals(Items.SUGAR) &&
+                        offItem.equals(ItemHandler.ITEM_FUNNY_INGOT) &&
+                        player.isSneaking() &&
+                        !this.isSprinkled() &&
+                        this.isTamed() &&
+                        this.getHealth() == this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() &&
+
+                        armorInventoryList.get(3).getItem().equals(Items.DIAMOND_HELMET) &&
+                        armorInventoryList.get(2).getItem().equals(ItemHandler.ITEM_FUNNY_CHESTPLATE) &&
+                        armorInventoryList.get(1).getItem().equals(Items.GOLDEN_LEGGINGS) &&
+                        armorInventoryList.get(0).getItem().equals(Items.IRON_BOOTS)
+        ) {
             return true;
-        return false;
+        } else {
+            return false;
+        }
     }
 
     @Override
