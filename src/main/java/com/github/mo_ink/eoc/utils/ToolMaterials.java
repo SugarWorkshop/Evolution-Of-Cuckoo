@@ -7,9 +7,9 @@ public class ToolMaterials {
     public static final Item.ToolMaterial CUCKOO = EnumHelper.addToolMaterial(
             "CUCKOO",
             3,
-            900,
+            750,
             7.0F,
-            4.0F,
-            12
+            5.0F,
+            13
     );
 }
