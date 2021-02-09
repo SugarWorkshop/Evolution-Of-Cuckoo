@@ -2,6 +2,11 @@
 item.eoc.funny_apple.name=Funny Apple
 item.eoc.funny_ingot.name=Funny Ingot
 item.eoc.cuckoo_ingot.name=Cuckoo Ingot
+item.eoc.cuckoo_axe.name=Cuckoo Axe
+item.eoc.cuckoo_pickaxe.name=Cuckoo Pickaxe
+item.eoc.cuckoo_sword.name=Cuckoo Sword
+item.eoc.cuckoo_hoe.name=Cuckoo Hoe
+item.eoc.cuckoo_shovel.name=Cuckoo Shovel
 
 effect.eoc.funny=Funny
 itemGroup.eoc.tab=Evolution Of Cuckoo

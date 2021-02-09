@@ -1,5 +1,6 @@
 package com.github.mo_ink.eoc.handler;
 
+import com.github.mo_ink.eoc.items.tools.ICuckooTools;
 import com.github.mo_ink.eoc.potion.PotionFunny;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -44,22 +45,24 @@ public class PotionHandler {
     public static void onPlayerAttack(AttackEntityEvent event) {
         EntityPlayer player = event.getEntityPlayer(); //玩家
         if (player.isPotionActive(POTION_FUNNY)) { //若玩家有滑稽效果
-            PotionEffect effect = player.getActivePotionEffect(POTION_FUNNY); //滑稽药水效果
             Item item = player.getHeldItemMainhand().getItem(); //玩家手持物品
-            float playerAttackDamage = (float) player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue(); //玩家攻击伤害
+            if (!(item instanceof ICuckooTools)) {
+                PotionEffect effect = player.getActivePotionEffect(POTION_FUNNY); //滑稽药水效果
+                float playerAttackDamage = (float) player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue(); //玩家攻击伤害
 
-            float damage;
-            if (item instanceof ItemTool) {//如果是工具（镐、斧、铲）
-                damage = (Item.ToolMaterial.valueOf(((ItemTool) item).getToolMaterialName())).getAttackDamage() + 2.8F + playerAttackDamage;
-            } else if (item instanceof ItemSword) {  //如果是剑
-                damage = ((ItemSword) item).getAttackDamage() + 2.8F + playerAttackDamage;
-            } else if (item instanceof ItemHoe) { //如果是锄头
-                damage = (Item.ToolMaterial.valueOf(((ItemHoe) item).getMaterialName())).getAttackDamage() + 2.8F + playerAttackDamage;
-            } else { //其他
-                damage = playerAttackDamage;
+                float damage;
+                if (item instanceof ItemTool) {//如果是工具（镐、斧、铲）
+                    damage = (Item.ToolMaterial.valueOf(((ItemTool) item).getToolMaterialName())).getAttackDamage() + 2.8F + playerAttackDamage;
+                } else if (item instanceof ItemSword) {  //如果是剑
+                    damage = ((ItemSword) item).getAttackDamage() + 2.8F + playerAttackDamage;
+                } else if (item instanceof ItemHoe) { //如果是锄头
+                    damage = (Item.ToolMaterial.valueOf(((ItemHoe) item).getMaterialName())).getAttackDamage() + 2.8F + playerAttackDamage;
+                } else { //其他
+                    damage = playerAttackDamage;
+                }
+
+                player.attackEntityFrom(DamageSourceHandler.FUNNY_DIED, damage / 3 * (effect.getAmplifier() + 1)); //减少生命值
             }
-
-            player.attackEntityFrom(DamageSourceHandler.FUNNY_DIED, damage / 3 * (effect.getAmplifier() + 1)); //减少生命值
         }
     }
 }

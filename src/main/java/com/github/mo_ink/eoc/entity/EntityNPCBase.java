@@ -36,13 +36,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
-    private EnumNPCLevel enumNPCLevel;
-    private Item mainHandItem;
-
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityNPCBase.class, DataSerializers.BOOLEAN);
-
     private final EntityAIAttackWithBow aiArrowAttack = new EntityAIAttackWithBow(this, 0.12D, 16, 16.0F);
-
     private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 0.615D, true) {
         public void resetTask() {
             super.resetTask();
@@ -54,18 +49,18 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
             EntityNPCBase.this.setSwingingArms(true);
         }
     };
-
     EntityAINearestAttackableTarget aiNearestAttackableTarget = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
         public boolean apply(@Nullable Entity entity) {
             return entity instanceof IMob && !entity.isInvisible();
         }
     });
-
     EntityAINearestAttackableTarget aiNearestAttackableTargetWhitoutEnderman = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
         public boolean apply(@Nullable Entity entity) {
             return entity instanceof IMob && !entity.isInvisible() && !(entity instanceof EntityEnderman);
         }
     });
+    private EnumNPCLevel enumNPCLevel;
+    private Item mainHandItem;
 
     public EntityNPCBase(World worldIn, Item itemIn, EnumNPCLevel levelIn) {
         super(worldIn);
