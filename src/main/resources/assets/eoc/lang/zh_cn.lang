@@ -1,12 +1,12 @@
 ﻿
 item.eoc.funny_apple.name=滑稽果
 item.eoc.funny_ingot.name=滑稽锭
-item.eoc.cuckoo_ingot.name=不咕鸟锭
-item.eoc.cuckoo_axe.name=不咕鸟斧
-item.eoc.cuckoo_pickaxe.name=不咕鸟镐
-item.eoc.cuckoo_sword.name=不咕鸟剑
-item.eoc.cuckoo_hoe.name=不咕鸟锄
-item.eoc.cuckoo_shovel.name=不咕鸟铲
+item.eoc.cuckoo_ingot.name=不咕锭
+item.eoc.cuckoo_axe.name=不咕斧
+item.eoc.cuckoo_pickaxe.name=不咕镐
+item.eoc.cuckoo_sword.name=不咕剑
+item.eoc.cuckoo_hoe.name=不咕锄
+item.eoc.cuckoo_shovel.name=不咕铲
 
 itemGroup.eoc.tab=不咕鸟の进化
 death.attack.eoc.funnyDied=%1$s 太滑稽以至于他去世了
@@ -26,6 +26,6 @@ eoc.enum_npc_level.c=普通
 eoc.enum_npc_level.d=下等
 
 tile.eoc.funny_ore.name=滑稽矿石
-tile.eoc.cuckoo_ore.name=不咕鸟矿石
+tile.eoc.cuckoo_ore.name=不咕矿石
 tile.eoc.funny_block.name=滑稽块
-tile.eoc.cuckoo_block.name=不咕鸟块
+tile.eoc.cuckoo_block.name=不咕块
