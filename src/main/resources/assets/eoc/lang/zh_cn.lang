@@ -2,11 +2,17 @@
 item.eoc.funny_apple.name=滑稽果
 item.eoc.funny_ingot.name=滑稽锭
 item.eoc.cuckoo_ingot.name=不咕锭
+
 item.eoc.cuckoo_axe.name=不咕斧
 item.eoc.cuckoo_pickaxe.name=不咕镐
 item.eoc.cuckoo_sword.name=不咕剑
 item.eoc.cuckoo_hoe.name=不咕锄
 item.eoc.cuckoo_shovel.name=不咕铲
+
+item.eoc.funny_boots.name=滑稽靴子
+item.eoc.funny_chestplate.name=滑稽胸甲
+item.eoc.funny_helmet.name=滑稽头盔
+item.eoc.funny_leggings.name=滑稽护腿
 
 itemGroup.eoc.tab=不咕鸟の进化
 death.attack.eoc.funnyDied=%1$s 太滑稽以至于他去世了
