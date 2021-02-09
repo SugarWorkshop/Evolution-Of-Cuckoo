@@ -9,7 +9,7 @@
   "variants": {
     "inventory": [
       {
-        "transform": "forge:default-item"
+        "transform": "forge:default-tool"
       }
     ]
   }

@@ -1,0 +1,17 @@
+{
+  "type": "forge:ore_shaped",
+  "result": {
+    "item": "eoc:funny_leggings"
+  },
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "ingotFunny"
+    }
+  }
+}

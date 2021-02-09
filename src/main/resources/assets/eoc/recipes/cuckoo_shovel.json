@@ -1,0 +1,20 @@
+{
+  "type": "forge:ore_shaped",
+  "result": {
+    "item": "eoc:cuckoo_shovel"
+  },
+  "pattern": [
+    "X",
+    "Y",
+    "Y"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "ingotCuckoo"
+    },
+    "Y": {
+      "item": "minecraft:stick"
+    }
+  }
+}

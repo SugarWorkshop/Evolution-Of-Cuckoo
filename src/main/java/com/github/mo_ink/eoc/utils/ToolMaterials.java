@@ -9,7 +9,7 @@ public class ToolMaterials {
             3,
             750,
             7.0F,
-            5.0F,
-            13
+            4.5F,
+            8
     );
 }

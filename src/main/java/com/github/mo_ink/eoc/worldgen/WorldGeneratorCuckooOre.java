@@ -12,7 +12,7 @@ import net.minecraftforge.event.terraingen.TerrainGen;
 import java.util.Random;
 
 public class WorldGeneratorCuckooOre extends WorldGenerator {
-    private final WorldGenerator cuckooOreGenerator = new WorldGenMinable(BlockHandler.BLOCK_CUCKOO_ORE.getDefaultState(), 16);
+    private final WorldGenerator cuckooOreGenerator = new WorldGenMinable(BlockHandler.BLOCK_CUCKOO_ORE.getDefaultState(), 9);
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos) {
