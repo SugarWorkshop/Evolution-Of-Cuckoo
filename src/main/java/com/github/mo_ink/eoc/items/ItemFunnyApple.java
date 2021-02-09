@@ -26,11 +26,11 @@ public class ItemFunnyApple extends ItemFood {
             int multiple;
             int count = stack.getCount();
 
-            if (count >= 48) {
+            if (count > 48) {
                 multiple = 4;
-            } else if (count >= 32) {
+            } else if (count > 32) {
                 multiple = 3;
-            } else if (count >= 16) {
+            } else if (count > 16) {
                 multiple = 2;
             } else {
                 multiple = 1;
