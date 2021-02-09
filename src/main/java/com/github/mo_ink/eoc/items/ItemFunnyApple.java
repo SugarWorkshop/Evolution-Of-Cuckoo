@@ -23,14 +23,20 @@ public class ItemFunnyApple extends ItemFood {
     @Override
     protected void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
         if (!world.isRemote) {
-            int amplifier;
-            if (stack.getCount() >= 32)
-                amplifier = 2;
-            else if (stack.getCount() >= 16)
-                amplifier = 1;
-            else
-                amplifier = 0;
-            player.addPotionEffect(new PotionEffect(PotionHandler.POTION_FUNNY, 300, amplifier));
+            int multiple;
+            int count = stack.getCount();
+
+            if (count >= 48) {
+                multiple = 4;
+            } else if (count >= 32) {
+                multiple = 3;
+            } else if (count >= 16) {
+                multiple = 2;
+            } else {
+                multiple = 1;
+            }
+
+            player.addPotionEffect(new PotionEffect(PotionHandler.POTION_FUNNY, (multiple + 1) * 100, multiple - 1));
         }
     }
 }
