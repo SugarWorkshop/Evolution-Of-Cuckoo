@@ -7,7 +7,7 @@ import net.minecraft.item.ItemAxe;
 
 public class ItemCuckooAxe extends ItemAxe implements ICuckooTools {
     public ItemCuckooAxe() {
-        super(ToolMaterials.CUCKOO, 8.5F, -3.1F);
+        super(ToolMaterials.CUCKOO, 9.0F, -3.2F);
         String name = "cuckoo_axe";
         this.setUnlocalizedName(EOC.MODID + "." + name);
         this.setRegistryName(name);
