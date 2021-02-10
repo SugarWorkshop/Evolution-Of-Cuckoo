@@ -101,7 +101,11 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
 
     public void onLivingUpdate() {
         this.updateArmSwingProgress();
-        this.playEffect(EnumParticleTypes.CLOUD, this.posX, this.posY - 1.6F, this.posZ, 1);
+        EnumParticleTypes particleTypes = this.getEnumNPCLevel().getParticleType();
+        int particleTimes = this.getEnumNPCLevel().getParticleTimes();
+        if (particleTypes != null) {
+            this.playEffect(particleTypes, this.posX, this.posY - 1.25F, this.posZ, particleTimes);
+        }
         super.onLivingUpdate();
     }
 

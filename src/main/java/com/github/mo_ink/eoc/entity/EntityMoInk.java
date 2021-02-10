@@ -9,7 +9,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -41,10 +40,12 @@ public class EntityMoInk extends EntityNPCBase {
 
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
-        ItemStack itemstack = player.getHeldItem(hand);
-        if (canSprinkle(player)) {
+        ItemStack mainStack = player.getHeldItemMainhand();
+        ItemStack offStack = player.getHeldItemOffhand();
+        if (canSprinkle(player, mainStack, offStack)) {
             if (!player.capabilities.isCreativeMode) {
-                itemstack.shrink(1);
+                mainStack.shrink(16);
+                offStack.shrink(16);
             }
             EntityMoInk thisIn = this;
             new Timer().schedule(new TimerTask() {
@@ -73,7 +74,9 @@ public class EntityMoInk extends EntityNPCBase {
                 }
             }, 0, 250);
             setSprinkled((byte) 1);
-            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getEnumNPCLevel().getMaxHealth() + 8);
+            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getEnumNPCLevel().getMaxHealth() + 16);
+            this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(this.getEnumNPCLevel().getAttackDamage() + 2);
+            this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(this.getEnumNPCLevel().getMovementSpeed() + 0.5);
             this.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 20, 9));
             this.playEffect(EnumParticleTypes.HEART, this.posX, this.posY + 0.12F, this.posZ, 4);
             return true;
@@ -102,13 +105,15 @@ public class EntityMoInk extends EntityNPCBase {
         this.getDataManager().set(SPRINKLED, b);
     }
 
-    public boolean canSprinkle(EntityPlayer player) {
-        Item mainItem = player.getHeldItemMainhand().getItem();
-        Item offItem = player.getHeldItemOffhand().getItem();
+    public boolean canSprinkle(EntityPlayer player, ItemStack mainStack, ItemStack offStack) {
+        ItemStack mainItem = mainStack;
+        ItemStack offItem = offStack;
         NonNullList<ItemStack> armorInventoryList = (NonNullList<ItemStack>) player.getArmorInventoryList();
         if (
-                mainItem.equals(Items.SUGAR) &&
-                        offItem.equals(ItemHandler.ITEM_FUNNY_INGOT) &&
+                mainItem.getItem().equals(Items.SUGAR) &&
+                        offItem.getItem().equals(ItemHandler.ITEM_CUCKOO_INGOT) &&
+                        mainItem.getCount() >= 16 &&
+                        offItem.getCount() >= 16 &&
                         player.isSneaking() &&
                         !this.isSprinkled() &&
                         this.isTamed() &&
