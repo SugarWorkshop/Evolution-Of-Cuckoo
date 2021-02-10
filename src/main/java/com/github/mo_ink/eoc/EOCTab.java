@@ -13,6 +13,6 @@ public class EOCTab extends CreativeTabs {
 
     @Override
     public ItemStack getTabIconItem() {
-        return new ItemStack(ItemHandler.ITEM_FUNNY_APPLE);
+        return new ItemStack(ItemHandler.ITEM_FUNNY_CHESTPLATE);
     }
 }
