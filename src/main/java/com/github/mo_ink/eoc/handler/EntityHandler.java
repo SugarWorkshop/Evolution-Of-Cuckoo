@@ -63,7 +63,7 @@ public class EntityHandler {
     }
 
     public static void registerSpawn() {
-        Biome[] biomes = {
+        Biome[] biomes = new Biome[]{
                 Biomes.PLAINS,
                 Biomes.MUTATED_PLAINS,
                 Biomes.FOREST,
