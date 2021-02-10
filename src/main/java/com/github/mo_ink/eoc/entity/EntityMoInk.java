@@ -6,7 +6,6 @@ import com.github.mo_ink.eoc.utils.RandomCreator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
@@ -114,7 +113,7 @@ public class EntityMoInk extends EntityNPCBase {
                         !this.isSprinkled() &&
                         this.isTamed() &&
                         this.getHealth() == this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() &&
-                        player.world.getBlockState(new BlockPos(player.posX, player.posY - 0.1F, player.posZ)).getBlock() == Blocks.AIR &&
+                        player.world.isAirBlock(new BlockPos(player.posX, player.posY - 0.1F, player.posZ)) &&
 
                         armorInventoryList.get(3).getItem().equals(Items.DIAMOND_HELMET) &&
                         armorInventoryList.get(2).getItem().equals(ItemHandler.ITEM_FUNNY_CHESTPLATE) &&
