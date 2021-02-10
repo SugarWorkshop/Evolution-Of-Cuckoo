@@ -1,7 +1,7 @@
 {
-    "pack": {
-        "description": "Evolution Of Cuckoo resources",
-        "pack_format": 3,
-        "_comment": ""
-    }
+  "pack": {
+    "description": "Evolution Of Cuckoo resources",
+    "pack_format": 3,
+    "_comment": ""
+  }
 }

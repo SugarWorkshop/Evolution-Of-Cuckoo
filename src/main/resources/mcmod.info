@@ -1,16 +1,18 @@
 [
-{
-  "modid": "eoc",
-  "name": "Evolution Of Cuckoo",
-  "description": "Evolution Of Cuckoo",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["Mo_Ink"],
-  "credits": "Mojang, Forge Development Team and Cuckoo Mod Development Team",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
-}
+  {
+    "modid": "eoc",
+    "name": "Evolution Of Cuckoo",
+    "description": "Evolution Of Cuckoo",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "Mo_Ink"
+    ],
+    "credits": "Mojang, Forge Development Team and Cuckoo Mod Development Team",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
 ]
