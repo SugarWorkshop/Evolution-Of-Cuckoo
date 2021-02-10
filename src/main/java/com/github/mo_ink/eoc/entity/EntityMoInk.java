@@ -69,13 +69,13 @@ public class EntityMoInk extends EntityNPCBase {
                         });
                     }
                     count++;
-                    high += 0.08F;
+                    high += 0.07F;
                 }
             }, 0, 250);
             setSprinkled((byte) 1);
-            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getEnumNPCLevel().getMaxHealth() + 4);
+            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getEnumNPCLevel().getMaxHealth() + 8);
             this.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 20, 9));
-            this.playEffect(EnumParticleTypes.HEART, this.posX, this.posY + 0.2F, this.posZ, 4);
+            this.playEffect(EnumParticleTypes.HEART, this.posX, this.posY + 0.12F, this.posZ, 4);
             return true;
         }
         return super.processInteract(player, hand);

@@ -101,6 +101,7 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
 
     public void onLivingUpdate() {
         this.updateArmSwingProgress();
+        this.playEffect(EnumParticleTypes.CLOUD, this.posX, this.posY - 1.6F, this.posZ, 1);
         super.onLivingUpdate();
     }
 
@@ -139,10 +140,6 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
         return flag;
     }
 
-    public void setAttackTarget(@Nullable EntityLivingBase entitylivingbaseIn) {
-        super.setAttackTarget(entitylivingbaseIn);
-    }
-
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
         if (this.isTamed()) {
@@ -155,7 +152,7 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
                         }
                         int heal = itemfood.getHealAmount(itemstack);
                         this.heal(heal);
-                        this.playEffect(EnumParticleTypes.HEART, this.posX, this.posY + 0.2F, this.posZ, heal);
+                        this.playEffect(EnumParticleTypes.HEART, this.posX, this.posY + 0.05F, this.posZ, heal);
                         return true;
                     }
                 }
@@ -169,7 +166,7 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
                     this.setTamedBy(player);
                     this.setAttackTarget((EntityLivingBase) null);
                 } else
-                    this.playEffect(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 0.2F, this.posZ, 10);
+                    this.playEffect(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 0.08F, this.posZ, 10);
             }
             return true;
         }
@@ -274,10 +271,10 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
 
     protected void playEffect(EnumParticleTypes particleTypes, Double posX, Double posY, Double posZ, int times) {
         for (int i = 1; i <= times; ++i) {
-            double d0 = this.rand.nextGaussian() * 0.02D;
-            double d1 = this.rand.nextGaussian() * 0.02D;
-            double d2 = this.rand.nextGaussian() * 0.02D;
-            this.world.spawnParticle(particleTypes, posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, posY + 0.5D + (double) (this.rand.nextFloat() * this.height), posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, d0, d1, d2);
+            double d0 = this.rand.nextGaussian() * 0.013D;
+            double d1 = this.rand.nextGaussian() * 0.013D;
+            double d2 = this.rand.nextGaussian() * 0.013D;
+            this.world.spawnParticle(particleTypes, posX + (double) (this.rand.nextFloat() * this.width * 1.5F) - (double) this.width, posY + 0.5D + (double) (this.rand.nextFloat() * this.height), posZ + (double) (this.rand.nextFloat() * this.width * 1.5F) - (double) this.width, d0, d1, d2);
         }
     }
 
