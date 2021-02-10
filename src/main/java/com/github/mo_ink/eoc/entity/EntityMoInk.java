@@ -105,15 +105,15 @@ public class EntityMoInk extends EntityNPCBase {
         this.getDataManager().set(SPRINKLED, b);
     }
 
-    public boolean canSprinkle(EntityPlayer player, ItemStack mainStack, ItemStack offStack) {
-        ItemStack mainItem = mainStack;
-        ItemStack offItem = offStack;
+    public boolean canSprinkle(EntityPlayer player, ItemStack mainStackIn, ItemStack offStackIn) {
+        ItemStack mainStack = mainStackIn;
+        ItemStack offStack = offStackIn;
         NonNullList<ItemStack> armorInventoryList = (NonNullList<ItemStack>) player.getArmorInventoryList();
         if (
-                mainItem.getItem().equals(Items.SUGAR) &&
-                        offItem.getItem().equals(ItemHandler.ITEM_CUCKOO_INGOT) &&
-                        mainItem.getCount() >= 16 &&
-                        offItem.getCount() >= 16 &&
+                mainStack.getItem().equals(Items.SUGAR) &&
+                        offStack.getItem().equals(ItemHandler.ITEM_CUCKOO_INGOT) &&
+                        mainStack.getCount() >= 16 &&
+                        offStack.getCount() >= 16 &&
                         player.isSneaking() &&
                         !this.isSprinkled() &&
                         this.isTamed() &&
