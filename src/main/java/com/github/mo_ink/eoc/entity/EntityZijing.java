@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 
 public class EntityZijing extends EntityNPCBase {
     public EntityZijing(World worldIn) {
-        super(worldIn, Items.BOW, EnumNPCLevel.A);
+        super(worldIn, Items.BOW, EnumNPCLevel.A, true);
     }
 
     @Override

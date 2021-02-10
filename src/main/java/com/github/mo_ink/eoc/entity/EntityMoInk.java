@@ -29,7 +29,7 @@ public class EntityMoInk extends EntityNPCBase {
     private static DataParameter<Byte> SPRINKLED = EntityDataManager.createKey(EntityMoInk.class, DataSerializers.BYTE);
 
     public EntityMoInk(World worldIn) {
-        super(worldIn, ItemHandler.ITEM_CUCKOO_SWORD, EnumNPCLevel.A);
+        super(worldIn, ItemHandler.ITEM_CUCKOO_SWORD, EnumNPCLevel.A, true);
     }
 
     @Override

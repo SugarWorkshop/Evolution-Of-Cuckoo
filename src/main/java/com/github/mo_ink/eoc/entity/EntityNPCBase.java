@@ -9,6 +9,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -54,27 +55,43 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
             return entity instanceof IMob && !entity.isInvisible();
         }
     });
+    EntityAINearestAttackableTarget aiNearestAttackableTargetKillHorse = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
+        public boolean apply(@Nullable Entity entity) {
+            return (entity instanceof IMob || entity instanceof EntityHorse) && !entity.isInvisible();
+        }
+    });
     EntityAINearestAttackableTarget aiNearestAttackableTargetWhitoutEnderman = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
         public boolean apply(@Nullable Entity entity) {
             return entity instanceof IMob && !entity.isInvisible() && !(entity instanceof EntityEnderman);
         }
     });
+    EntityAINearestAttackableTarget aiNearestAttackableTargetWhitoutEndermanKillHorse = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
+        public boolean apply(@Nullable Entity entity) {
+            return (entity instanceof IMob || entity instanceof EntityHorse) && !entity.isInvisible() && !(entity instanceof EntityEnderman);
+        }
+    });
     private EnumNPCLevel enumNPCLevel;
     private Item mainHandItem;
+    private boolean killHorse;
 
-    public EntityNPCBase(World worldIn, Item itemIn, EnumNPCLevel levelIn) {
+    public EntityNPCBase(World worldIn, Item itemIn, EnumNPCLevel levelIn, boolean killHorseIn) {
         super(worldIn);
         this.setTamed(false);
         this.setSize(0.6F, 1.8F);
         this.setEnumNPCLevel(levelIn);
         this.changeEntityAttributes();
         this.setItem(itemIn);
+        this.setKillHorse(killHorseIn);
         this.setEquipmentBased();
         this.setCombatTask();
     }
 
     public EntityNPCBase(World worldIn) {
-        this(worldIn, null, EnumNPCLevel.C);
+        this(worldIn, null, EnumNPCLevel.C, false);
+    }
+
+    public EntityNPCBase(World worldIn, Item itemIn, EnumNPCLevel levelIn) {
+        this(worldIn, itemIn, levelIn, false);
     }
 
     protected void entityInit() {
@@ -201,14 +218,24 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
             this.tasks.removeTask(this.aiAttackOnCollide);
             this.tasks.removeTask(this.aiArrowAttack);
             this.targetTasks.removeTask(this.aiNearestAttackableTarget);
+            this.targetTasks.removeTask(this.aiNearestAttackableTargetKillHorse);
             this.targetTasks.removeTask(this.aiNearestAttackableTargetWhitoutEnderman);
+            this.targetTasks.removeTask(this.aiNearestAttackableTargetWhitoutEndermanKillHorse);
             ItemStack itemstack = this.getHeldItemMainhand();
             if (itemstack.getItem() instanceof net.minecraft.item.ItemBow) {
                 this.tasks.addTask(2, this.aiArrowAttack);
-                this.targetTasks.addTask(3, aiNearestAttackableTargetWhitoutEnderman);
+                if (getKillhorse()) {
+                    this.targetTasks.addTask(3, aiNearestAttackableTargetWhitoutEndermanKillHorse);
+                } else {
+                    this.targetTasks.addTask(3, aiNearestAttackableTargetWhitoutEnderman);
+                }
             } else {
                 this.tasks.addTask(2, this.aiAttackOnCollide);
-                this.targetTasks.addTask(3, aiNearestAttackableTarget);
+                if (getKillhorse()) {
+                    this.targetTasks.addTask(3, aiNearestAttackableTargetKillHorse);
+                } else {
+                    this.targetTasks.addTask(3, aiNearestAttackableTarget);
+                }
             }
         }
     }
@@ -278,5 +305,13 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
 
     protected void setItem(Item itemIn) {
         this.mainHandItem = itemIn;
+    }
+
+    protected void setKillHorse(boolean killHorse) {
+        this.killHorse = killHorse;
+    }
+
+    public boolean getKillhorse() {
+        return this.killHorse;
     }
 }
