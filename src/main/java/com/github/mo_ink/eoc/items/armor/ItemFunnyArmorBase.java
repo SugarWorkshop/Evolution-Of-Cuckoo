@@ -12,6 +12,6 @@ public class ItemFunnyArmorBase extends ItemArmor {
                     {2, 6, 7, 3}, 9, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.0F);
 
     public ItemFunnyArmorBase(EntityEquipmentSlot equipmentSlotIn) {
-        super(FUNNY, FUNNY.ordinal(), equipmentSlotIn);
+        super(FUNNY, 0, equipmentSlotIn);
     }
 }
