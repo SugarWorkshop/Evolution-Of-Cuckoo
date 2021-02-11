@@ -8,18 +8,18 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
-//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-// 在这里更改版本
-version = '0.1.4.1-alpha'
-group = "com.github.mo_ink.eoc" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+def versionProperties = new Properties();
+versionProperties.load(new StringReader(project.file('version.properties').getText('UTF-8')))
+version = versionProperties.getOrDefault('modVersion', 'unknown')
+group = "com.github.mo_ink.eoc"
 archivesBaseName = "eoc"
 
 // 添加前缀后缀
 String mcVersion = '1.12.2'
 version = mcVersion + '-' + version + getVersionAppendage()
 
-sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+sourceCompatibility = targetCompatibility = '1.8' 
 compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
@@ -35,9 +35,8 @@ minecraft {
     runDir = "run"
 
     mappings = "snapshot_20171003"
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
-
-    // 替换EOZ版本号
+    
+    // 替换EOC版本号
     replaceIn 'EOC.java'
     replace '@EOCVERSION@', project.version
 }
@@ -47,19 +46,15 @@ dependencies {
 }
 
 processResources {
-    // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
-    // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
                 
-        // replace version and mcversion
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
         
-    // copy everything else except the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
