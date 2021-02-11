@@ -76,7 +76,7 @@ public class EntityMoInk extends EntityNPCBase {
             setSprinkled((byte) 1);
             this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getEnumNPCLevel().getMaxHealth() + 16);
             this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(this.getEnumNPCLevel().getAttackDamage() + 2);
-            this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(this.getEnumNPCLevel().getMovementSpeed() + 0.5);
+            this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(this.getEnumNPCLevel().getMovementSpeed() + 0.4);
             this.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 20, 9));
             this.playEffect(EnumParticleTypes.HEART, this.posX, this.posY + 0.12F, this.posZ, 4);
             return true;

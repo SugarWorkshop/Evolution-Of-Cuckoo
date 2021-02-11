@@ -12,12 +12,12 @@ import net.minecraftforge.event.terraingen.TerrainGen;
 import java.util.Random;
 
 public class WorldGeneratorFunnyOre extends WorldGenerator {
-    private final WorldGenerator funnyOreGenerator = new WorldGenMinable(BlockHandler.BLOCK_FUNNY_ORE.getDefaultState(), 12);
+    private final WorldGenerator funnyOreGenerator = new WorldGenMinable(BlockHandler.BLOCK_FUNNY_ORE.getDefaultState(), 6);
 
     @Override
     public boolean generate(World world, Random rand, BlockPos pos) {
         if (TerrainGen.generateOre(world, rand, this, pos, OreGenEvent.GenerateMinable.EventType.CUSTOM)) {
-            for (int i = 0; i < 3; ++i) {
+            for (int i = 1; i <= 4; ++i) {
                 int posX = pos.getX() + rand.nextInt(16);
                 int posY = 16 + rand.nextInt(16);
                 int posZ = pos.getZ() + rand.nextInt(16);

@@ -31,6 +31,8 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -39,7 +41,7 @@ import javax.annotation.Nullable;
 public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityNPCBase.class, DataSerializers.BOOLEAN);
     private final EntityAIAttackWithBow aiArrowAttack = new EntityAIAttackWithBow(this, 0.12D, 16, 16.0F);
-    private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 0.615D, true) {
+    private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 0.62D, true) {
         public void resetTask() {
             super.resetTask();
             EntityNPCBase.this.setSwingingArms(false);
@@ -124,15 +126,15 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
 
     @Override
     protected void initEntityAI() {
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIFollowOwner(this, 0.55D, 14.0F, 3F));
-        this.tasks.addTask(3, new EntityAIWanderAvoidWater(this, 0.38D));
-        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityLiving.class, 10.0F));
-        this.tasks.addTask(6, new EntityAILookIdle(this));
-        this.targetTasks.addTask(0, new EntityAIOwnerHurtByTarget(this));
+        this.tasks.addTask(1, new EntityAISwimming(this));
+        this.tasks.addTask(2, new EntityAIFollowOwner(this, 0.525D, 10.5F, 5.5F));
+        this.tasks.addTask(4, new EntityAIWanderAvoidWater(this, 0.34D));
+        this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityLiving.class, 10.0F));
+        this.tasks.addTask(7, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIOwnerHurtTarget(this));
-        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
+        this.targetTasks.addTask(2, new EntityAIOwnerHurtByTarget(this));
+        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, false));
         super.initEntityAI();
     }
 
@@ -224,18 +226,18 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
             this.targetTasks.removeTask(this.aiNearestAttackableTargetWhitoutEndermanKillHorse);
             ItemStack itemstack = this.getHeldItemMainhand();
             if (itemstack.getItem() instanceof net.minecraft.item.ItemBow) {
-                this.tasks.addTask(2, this.aiArrowAttack);
+                this.tasks.addTask(3, this.aiArrowAttack);
                 if (getKillhorse()) {
-                    this.targetTasks.addTask(3, aiNearestAttackableTargetWhitoutEndermanKillHorse);
+                    this.targetTasks.addTask(4, aiNearestAttackableTargetWhitoutEndermanKillHorse);
                 } else {
-                    this.targetTasks.addTask(3, aiNearestAttackableTargetWhitoutEnderman);
+                    this.targetTasks.addTask(4, aiNearestAttackableTargetWhitoutEnderman);
                 }
             } else {
-                this.tasks.addTask(2, this.aiAttackOnCollide);
+                this.tasks.addTask(3, this.aiAttackOnCollide);
                 if (getKillhorse()) {
-                    this.targetTasks.addTask(3, aiNearestAttackableTargetKillHorse);
+                    this.targetTasks.addTask(4, aiNearestAttackableTargetKillHorse);
                 } else {
-                    this.targetTasks.addTask(3, aiNearestAttackableTarget);
+                    this.targetTasks.addTask(4, aiNearestAttackableTarget);
                 }
             }
         }
