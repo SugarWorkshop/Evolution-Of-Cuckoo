@@ -34,7 +34,7 @@ jobs:
 
     - name: Package Release
       if: ${{github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')}}
-      run: tar -cvf test.tar ./build/libs
+      run: tar -cvf EOC-build.tar ./build/libs/*
 
     - name: Create a new GitHub release if a new tag is pushed
       uses: softprops/action-gh-release@v0.1.5
@@ -44,7 +44,7 @@ jobs:
       with:
         prerelease: true
         files: 
-          test.tar
+          EOC-build.tar
         body: |
           ## 更新日志
           * 这是 GitHub Action 自动化部署，更新日志将会手动更新。
