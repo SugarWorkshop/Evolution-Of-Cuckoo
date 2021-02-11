@@ -32,6 +32,7 @@ jobs:
       name: Cache .gradle
       with:
         job-id: eoc
+        gradle-version: 4.10
 
     - name: Grant execute permission for gradlew
       run: chmod +x ./EOC-1.12/gradlew
