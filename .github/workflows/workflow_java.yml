@@ -27,33 +27,31 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-
     - uses: burrunan/gradle-cache-action@v1
 
-    - name: Cache .gradle
+      name: Cache .gradle
       with:
         job-id: eoc
-
     - name: Grant execute permission for gradlew
       run: chmod +x ./EOC-1.12/gradlew
-
     - name: CI Setup
       run: cd ./EOC-1.12/ && ./gradlew setupCIWorkspace
 
     - name: Build
       run: cd ./EOC-1.12/ && ./gradlew build
-
     - uses: actions/upload-artifact@v2
       with:
         name: EOC snapshot
         path: ./EOC-1.12/build/libs
 
     - name: Create a new GitHub release if a new tag is pushed
-      uses: softprops/action-gh-release@v0.1.5
+      uses: softprops/action-gh-release@v1
+      if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
       env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       with:
         prerelease: true
+        draft: false
         files: |
           ./EOC-1.12/build/libs/*
         body: |
