@@ -17,7 +17,7 @@ archivesBaseName = "eoc"
 
 // 添加前缀后缀
 String mcVersion = '1.12.2'
-version = mcVersion + '-' + version + getVersionAppendage()
+version = mcVersion + '-' + version
 
 sourceCompatibility = targetCompatibility = '1.8' 
 compileJava {

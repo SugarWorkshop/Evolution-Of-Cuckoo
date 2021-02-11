@@ -34,7 +34,10 @@ jobs:
 
     - name: Package Release
       if: ${{github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')}}
-      run: tar -cvf EOC-build.tar ./build/libs/*
+      run: |
+        mkdir EOC-build
+        mv ./build/libs/* ./EOC-build
+        tar -cvf EOC-build.tar ./EOC-build
 
     - name: Create a new GitHub release if a new tag is pushed
       uses: softprops/action-gh-release@v0.1.5
