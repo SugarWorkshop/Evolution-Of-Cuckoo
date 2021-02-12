@@ -16,7 +16,7 @@ item.eoc.funny_leggings.name=Funny Leggings
 
 effect.eoc.funny=Funny
 itemGroup.eoc.tab=Evolution Of Cuckoo
-death.attack.eoc.funnyDied=%1$s died by funny
+death.attack.eoc.funnyDied=What a kidding! %1$s died by funny
 
 entity.eoc.entity_zijing.name=zijing_233
 entity.eoc.entity_moink.name=Mo_Ink
