@@ -316,7 +316,7 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
         return this.killHorse;
     }
 
-    public void dropNPCItem(ItemStack itemStack){
+    public void dropNPCItem(ItemStack itemStack) {
         this.entityDropItem(itemStack, 0.3F);
     }
 }

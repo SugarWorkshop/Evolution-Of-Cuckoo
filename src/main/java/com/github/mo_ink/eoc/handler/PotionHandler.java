@@ -32,10 +32,10 @@ public class PotionHandler {
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
-        EntityLivingBase target = event.getEntityLiving(); //被伤害目标
-        if (target.isPotionActive(POTION_FUNNY) && target instanceof EntityPlayer) { //如果目标有滑稽效果且是玩家
-            String damageType = event.getSource().getDamageType(); //伤害类型
-            int amplifier = target.getActivePotionEffect(POTION_FUNNY).getAmplifier() + 1; //滑稽药水效果
+        EntityLivingBase target = event.getEntityLiving();
+        if (target.isPotionActive(POTION_FUNNY) && target instanceof EntityPlayer) {
+            String damageType = event.getSource().getDamageType();
+            int amplifier = target.getActivePotionEffect(POTION_FUNNY).getAmplifier() + 1;
             if (
                     !"outOfWorld".equals(damageType) &&
                             !"eoc.funnyDied".equals(damageType) &&
@@ -46,37 +46,36 @@ public class PotionHandler {
                             !"hotFloor".equals(damageType) &&
                             !"drown".equals(damageType)
             ) {
-                IAttributeInstance attributeInstance = target.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
-                Double health = attributeInstance.getAttributeValue();
-                attributeInstance.setBaseValue(1024.0D); //防止生命值限制
-                target.setHealth(target.getHealth() + event.getAmount() / 5 * amplifier + event.getAmount()); //增加生命值
-                attributeInstance.setBaseValue(health);
+                IAttributeInstance targetEntityAttribute = target.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
+                double health = targetEntityAttribute.getAttributeValue();
+                targetEntityAttribute.setBaseValue(1024.0D); //防止生命值限制
+                target.setHealth(target.getHealth() + event.getAmount() / 5 * amplifier + event.getAmount());
+                targetEntityAttribute.setBaseValue(health);
             }
         }
     }
 
     @SubscribeEvent
     public static void onPlayerAttack(AttackEntityEvent event) {
-        EntityPlayer player = event.getEntityPlayer(); //玩家
-        if (player.isPotionActive(POTION_FUNNY)) { //若玩家有滑稽效果
-            Item item = player.getHeldItemMainhand().getItem(); //玩家手持物品
-            int amplifier = player.getActivePotionEffect(POTION_FUNNY).getAmplifier() + 1; //滑稽药水效果
-            float playerAttackDamage = (float) player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue(); //玩家攻击伤害
+        EntityPlayer player = event.getEntityPlayer();
+        if (player.isPotionActive(POTION_FUNNY)) {
+            Item heldItem = player.getHeldItemMainhand().getItem();
+            int amplifier = player.getActivePotionEffect(POTION_FUNNY).getAmplifier() + 1;
 
-            float damage = playerAttackDamage;
-            if (item instanceof ItemTool) {//如果是工具（镐、斧、铲）
-                damage = (Item.ToolMaterial.valueOf(((ItemTool) item).getToolMaterialName())).getAttackDamage() + 2.8F;
-            } else if (item instanceof ItemSword) {  //如果是剑
-                damage = ((ItemSword) item).getAttackDamage() + 2.8F;
-            } else if (item instanceof ItemHoe) { //如果是锄头
-                damage = (Item.ToolMaterial.valueOf(((ItemHoe) item).getMaterialName())).getAttackDamage() + 2.8F;
+            double damage = player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
+            if (heldItem instanceof ItemTool) {
+                damage = (Item.ToolMaterial.valueOf(((ItemTool) heldItem).getToolMaterialName())).getAttackDamage() + 2.8;
+            } else if (heldItem instanceof ItemSword) {
+                damage = ((ItemSword) heldItem).getAttackDamage() + 2.8;
+            } else if (heldItem instanceof ItemHoe) {
+                damage = (Item.ToolMaterial.valueOf(((ItemHoe) heldItem).getMaterialName())).getAttackDamage() + 2.8;
             }
 
-            float amount = damage / 3 * amplifier;
-            if (item instanceof ICuckooTools) { //如果是不咕工具则减少扣血
-                amount = amount / (new Random().nextInt(10) / 9.0F + 3.5F);
+            double amount = damage / 3.0 * amplifier;
+            if (heldItem instanceof ICuckooTools) { //如果是不咕工具则减少扣血
+                amount = amount / (new Random().nextInt(10) / 9.0 + 3.5);
             }
-            player.attackEntityFrom(DamageSourceHandler.FUNNY_DIED, amount); //减少生命值
+            player.attackEntityFrom(DamageSourceHandler.FUNNY_DIED, (float) amount);
         }
     }
 }
