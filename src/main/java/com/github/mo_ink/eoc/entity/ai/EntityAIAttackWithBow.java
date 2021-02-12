@@ -26,8 +26,8 @@ public class EntityAIAttackWithBow extends EntityAIBase {
         this.setMutexBits(3);
     }
 
-    public void setAttackCooldown(int p_189428_1_) {
-        this.attackCooldown = p_189428_1_;
+    public void setAttackCooldown(int attackCooldown) {
+        this.attackCooldown = attackCooldown;
     }
 
     public boolean shouldExecute() {

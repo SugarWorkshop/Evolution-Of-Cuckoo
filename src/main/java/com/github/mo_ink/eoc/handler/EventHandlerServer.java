@@ -34,7 +34,7 @@ public class EventHandlerServer {
                 }
             }
             if (count != 0) {
-                player.addPotionEffect(new PotionEffect(PotionHandler.POTION_FUNNY, 300, count - 1));
+                player.addPotionEffect(new PotionEffect(PotionHandler.POTION_FUNNY, 300, count - 1, false, false));
             }
         }
     }
