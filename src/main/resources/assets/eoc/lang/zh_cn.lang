@@ -15,7 +15,7 @@ item.eoc.funny_helmet.name=滑稽头盔
 item.eoc.funny_leggings.name=滑稽护腿
 
 itemGroup.eoc.tab=不咕鸟の进化
-death.attack.eoc.funnyDied=哈哈哈！%1$s 太滑稽以至于他去世了
+death.attack.eoc.funnyDied=哈哈哈! %1$s 太滑稽以至于他去世了
 effect.eoc.funny=滑稽
 
 entity.eoc.entity_zijing.name=zijing_233

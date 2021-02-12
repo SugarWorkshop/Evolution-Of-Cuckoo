@@ -17,7 +17,7 @@ public class EventHandlerServer {
     public static void onPlayerJoin(EntityJoinWorldEvent event) {
         Entity entity = event.getEntity();
         if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-            String message = "Welcome to Evolution Of Cuckoo ," + entity.getName() + " !";
+            String message = "Welcome to Evolution Of Cuckoo , " + entity.getName() + " !";
             TextComponentString text = new TextComponentString(message);
             entity.sendMessage(text);
         }

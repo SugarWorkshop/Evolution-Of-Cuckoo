@@ -4,6 +4,7 @@ import com.github.mo_ink.eoc.EOC;
 import com.github.mo_ink.eoc.EOCTab;
 import com.github.mo_ink.eoc.handler.PotionHandler;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -37,6 +38,8 @@ public class ItemFunnyApple extends ItemFood {
             }
 
             player.addPotionEffect(new PotionEffect(PotionHandler.POTION_FUNNY, (multiple + 1) * 100, multiple - 1));
+            player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, (multiple + 1) * 80, multiple));
+            player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, (multiple + 1) * 200, multiple - 1));
         }
     }
 }
