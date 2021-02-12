@@ -44,7 +44,9 @@ public class PotionHandler {
                             !"lava".equals(damageType) &&
                             !"inWall".equals(damageType) &&
                             !"hotFloor".equals(damageType) &&
-                            !"drown".equals(damageType)
+                            !"drown".equals(damageType) &&
+                            !"starve".equals(damageType) &&
+                            !"wither".equals(damageType)
             ) {
                 IAttributeInstance targetEntityAttribute = target.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
                 double health = targetEntityAttribute.getAttributeValue();
