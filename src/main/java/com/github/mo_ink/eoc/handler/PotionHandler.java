@@ -4,6 +4,7 @@ import com.github.mo_ink.eoc.items.tools.ICuckooTools;
 import com.github.mo_ink.eoc.potion.PotionFunny;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
@@ -45,8 +46,11 @@ public class PotionHandler {
                             !"hotFloor".equals(damageType) &&
                             !"drown".equals(damageType)
             ) {
-                target.setHealth(target.getHealth() + event.getAmount() / 5 * amplifier); //增加生命值
-                event.setAmount(0); //将伤害调为0
+                IAttributeInstance attributeInstance = target.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
+                Double health = attributeInstance.getAttributeValue();
+                attributeInstance.setBaseValue(1024.0D); //防止生命值限制
+                target.setHealth(target.getHealth() + event.getAmount() / 5 * amplifier + event.getAmount()); //增加生命值
+                attributeInstance.setBaseValue(health);
             }
         }
     }
@@ -59,15 +63,13 @@ public class PotionHandler {
             int amplifier = player.getActivePotionEffect(POTION_FUNNY).getAmplifier() + 1; //滑稽药水效果
             float playerAttackDamage = (float) player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue(); //玩家攻击伤害
 
-            float damage;
+            float damage = playerAttackDamage;
             if (item instanceof ItemTool) {//如果是工具（镐、斧、铲）
-                damage = (Item.ToolMaterial.valueOf(((ItemTool) item).getToolMaterialName())).getAttackDamage() + 2.8F + playerAttackDamage;
+                damage = (Item.ToolMaterial.valueOf(((ItemTool) item).getToolMaterialName())).getAttackDamage() + 2.8F;
             } else if (item instanceof ItemSword) {  //如果是剑
-                damage = ((ItemSword) item).getAttackDamage() + 2.8F + playerAttackDamage;
+                damage = ((ItemSword) item).getAttackDamage() + 2.8F;
             } else if (item instanceof ItemHoe) { //如果是锄头
-                damage = (Item.ToolMaterial.valueOf(((ItemHoe) item).getMaterialName())).getAttackDamage() + 2.8F + playerAttackDamage;
-            } else { //其他
-                damage = playerAttackDamage;
+                damage = (Item.ToolMaterial.valueOf(((ItemHoe) item).getMaterialName())).getAttackDamage() + 2.8F;
             }
 
             float amount = damage / 3 * amplifier;
