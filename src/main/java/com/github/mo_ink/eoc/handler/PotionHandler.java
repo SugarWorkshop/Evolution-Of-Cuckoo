@@ -31,33 +31,6 @@ public class PotionHandler {
     }
 
     @SubscribeEvent
-    public static void onLivingHurt(LivingHurtEvent event) {
-        EntityLivingBase target = event.getEntityLiving();
-        if (target.isPotionActive(POTION_FUNNY) && target instanceof EntityPlayer) {
-            String damageType = event.getSource().getDamageType();
-            int amplifier = target.getActivePotionEffect(POTION_FUNNY).getAmplifier() + 1;
-            if (
-                    !"outOfWorld".equals(damageType) &&
-                            !"eoc.funnyDied".equals(damageType) &&
-                            !"inFire".equals(damageType) &&
-                            !"onFire".equals(damageType) &&
-                            !"lava".equals(damageType) &&
-                            !"inWall".equals(damageType) &&
-                            !"hotFloor".equals(damageType) &&
-                            !"drown".equals(damageType) &&
-                            !"starve".equals(damageType) &&
-                            !"wither".equals(damageType)
-            ) {
-                IAttributeInstance targetEntityAttribute = target.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
-                double health = targetEntityAttribute.getAttributeValue();
-                targetEntityAttribute.setBaseValue(1024.0D); //防止生命值限制
-                target.setHealth(target.getHealth() + event.getAmount() / 10 * amplifier + event.getAmount());
-                targetEntityAttribute.setBaseValue(health);
-            }
-        }
-    }
-
-    @SubscribeEvent
     public static void onPlayerAttack(AttackEntityEvent event) {
         EntityPlayer player = event.getEntityPlayer();
         if (player.isPotionActive(POTION_FUNNY)) {
@@ -75,7 +48,7 @@ public class PotionHandler {
 
             double amount = damage / 2.0 * amplifier;
             if (heldItem instanceof ICuckooTools) { //如果是不咕工具则减少扣血
-                amount = amount / (new Random().nextInt(10) / 9.0 + 1.5);
+                amount = amount / (new Random().nextInt(10) / 9.0 + 3);
             }
             player.attackEntityFrom(DamageSourceHandler.FUNNY_DIED, (float) amount);
         }
