@@ -34,7 +34,7 @@ public class EntityMoInk extends EntityNPCBase {
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        this.entityDropItem(new ItemStack(Items.DIAMOND, RandomCreator.randomTenth(1)), 0.3F);
+        this.dropNPCItem(new ItemStack(Items.DIAMOND, RandomCreator.randomTenth(1)));
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 

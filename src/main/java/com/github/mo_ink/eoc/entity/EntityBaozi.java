@@ -14,7 +14,7 @@ public class EntityBaozi extends EntityNPCBase {
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        this.entityDropItem(new ItemStack(Blocks.PLANKS, RandomCreator.randomTenth(7)), 0.3F);
+        this.dropNPCItem(new ItemStack(Blocks.PLANKS, RandomCreator.randomTenth(7)));
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 }

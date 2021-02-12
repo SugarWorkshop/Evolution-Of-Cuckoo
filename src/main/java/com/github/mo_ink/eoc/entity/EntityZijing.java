@@ -13,8 +13,8 @@ public class EntityZijing extends EntityNPCBase {
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        this.entityDropItem(new ItemStack(Items.STICK, RandomCreator.randomTenth(5)), 0.3F);
-        this.entityDropItem(new ItemStack(Items.ARROW, RandomCreator.randomTenth(3)), 0.3F);
+        this.dropNPCItem(new ItemStack(Items.STICK, RandomCreator.randomTenth(5)));
+        this.dropNPCItem(new ItemStack(Items.ARROW, RandomCreator.randomTenth(3)));
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 }
