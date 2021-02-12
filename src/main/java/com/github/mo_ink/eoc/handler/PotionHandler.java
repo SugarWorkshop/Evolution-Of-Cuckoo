@@ -51,7 +51,7 @@ public class PotionHandler {
                 IAttributeInstance targetEntityAttribute = target.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
                 double health = targetEntityAttribute.getAttributeValue();
                 targetEntityAttribute.setBaseValue(1024.0D); //防止生命值限制
-                target.setHealth(target.getHealth() + event.getAmount() / 5 * amplifier + event.getAmount());
+                target.setHealth(target.getHealth() + event.getAmount() / 10 * amplifier + event.getAmount());
                 targetEntityAttribute.setBaseValue(health);
             }
         }
@@ -73,9 +73,9 @@ public class PotionHandler {
                 damage = (Item.ToolMaterial.valueOf(((ItemHoe) heldItem).getMaterialName())).getAttackDamage() + 2.8;
             }
 
-            double amount = damage / 3.0 * amplifier;
+            double amount = damage / 2.0 * amplifier;
             if (heldItem instanceof ICuckooTools) { //如果是不咕工具则减少扣血
-                amount = amount / (new Random().nextInt(10) / 9.0 + 3.5);
+                amount = amount / (new Random().nextInt(10) / 9.0 + 1.5);
             }
             player.attackEntityFrom(DamageSourceHandler.FUNNY_DIED, (float) amount);
         }
