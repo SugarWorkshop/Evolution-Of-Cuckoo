@@ -4,9 +4,9 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.EnumParticleTypes;
 
 public enum EnumNPCLevel {
-    A("eoc.enum_npc_level.a", 25, 28.0D, 2.0D, 0.8D, EnumParticleTypes.FLAME, 2),
-    B("eoc.enum_npc_level.b", 20, 24.0D, 1.5D, 0.75D, EnumParticleTypes.CLOUD, 1),
-    C("eoc.enum_npc_level.c", 15, 20.0D, 1.0D, 0.7D, null, 0),
+    A("eoc.enum_npc_level.a", 25, 28.0D, 2.0D, 0.8D, EnumParticleTypes.SPELL_INSTANT, 3),
+    B("eoc.enum_npc_level.b", 20, 24.0D, 1.5D, 0.75D, EnumParticleTypes.FLAME, 2),
+    C("eoc.enum_npc_level.c", 15, 20.0D, 1.0D, 0.7D, EnumParticleTypes.CLOUD, 1),
     D("eoc.enum_npc_level.d", 0, 14.0D, 0.5D, 0.55D, null, 0);
 
     private final String descriptionTranslationKey;

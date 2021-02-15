@@ -22,8 +22,7 @@ public class ItemFunnyBoots extends ItemFunnyArmorBase {
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack item) {
         if (!world.isRemote) {
-            player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 300, 0));
-            player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 300, 1));
+            player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 300, 0));
         }
     }
 }

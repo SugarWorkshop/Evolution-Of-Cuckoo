@@ -22,11 +22,8 @@ public class ItemFunnyChestplate extends ItemFunnyArmorBase {
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack item) {
         if (!world.isRemote) {
-            if (!player.isPotionActive(MobEffects.HEALTH_BOOST)) {
-                player.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 300, 1));
-            }
-            if (!player.isPotionActive(MobEffects.REGENERATION)) {
-                player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 300, 1));
+            if (!player.isPotionActive(MobEffects.ABSORPTION)) {
+                player.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, 600, 2));
             }
         }
     }

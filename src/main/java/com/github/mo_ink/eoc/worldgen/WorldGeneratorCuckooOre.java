@@ -17,7 +17,7 @@ public class WorldGeneratorCuckooOre extends WorldGenerator {
     @Override
     public boolean generate(World world, Random rand, BlockPos pos) {
         if (TerrainGen.generateOre(world, rand, this, pos, OreGenEvent.GenerateMinable.EventType.CUSTOM)) {
-            for (int i = 1; i <= 3; ++i) {
+            for (int i = 1; i <= 2; ++i) {
                 int posX = pos.getX() + rand.nextInt(16);
                 int posY = 16 + rand.nextInt(16);
                 int posZ = pos.getZ() + rand.nextInt(16);

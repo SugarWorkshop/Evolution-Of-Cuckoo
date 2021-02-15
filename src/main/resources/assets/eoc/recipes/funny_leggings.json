@@ -10,8 +10,7 @@
   ],
   "key": {
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "ingotFunny"
+      "item": "eoc:funny_block"
     }
   }
 }

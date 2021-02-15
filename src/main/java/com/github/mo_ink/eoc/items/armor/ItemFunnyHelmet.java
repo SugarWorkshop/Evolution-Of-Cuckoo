@@ -22,7 +22,6 @@ public class ItemFunnyHelmet extends ItemFunnyArmorBase {
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack item) {
         if (!world.isRemote) {
-            player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 300, 0));
             player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 300, 0));
         }
     }

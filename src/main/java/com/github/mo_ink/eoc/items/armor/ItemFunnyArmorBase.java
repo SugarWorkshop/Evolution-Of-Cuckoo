@@ -9,7 +9,7 @@ import net.minecraftforge.common.util.EnumHelper;
 public class ItemFunnyArmorBase extends ItemArmor {
     public static final ItemArmor.ArmorMaterial FUNNY = EnumHelper.addArmorMaterial("funny",
             EOC.MODID + ":" + "funny", 23, new int[]
-                    {2, 6, 7, 3}, 9, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.0F);
+                    {1, 6, 7, 1}, 9, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.0F);
 
     public ItemFunnyArmorBase(EntityEquipmentSlot equipmentSlotIn) {
         super(FUNNY, 0, equipmentSlotIn);

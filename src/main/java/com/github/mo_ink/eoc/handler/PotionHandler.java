@@ -15,8 +15,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import java.util.Random;
-
 @Mod.EventBusSubscriber
 public class PotionHandler {
     public static final Potion POTION_FUNNY = new PotionFunny();
@@ -36,16 +34,16 @@ public class PotionHandler {
 
             double damage = player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
             if (heldItem instanceof ItemTool) {
-                damage = (Item.ToolMaterial.valueOf(((ItemTool) heldItem).getToolMaterialName())).getAttackDamage() + 2.8;
+                damage += (Item.ToolMaterial.valueOf(((ItemTool) heldItem).getToolMaterialName())).getAttackDamage() + 2.5;
             } else if (heldItem instanceof ItemSword) {
-                damage = ((ItemSword) heldItem).getAttackDamage() + 2.8;
+                damage += ((ItemSword) heldItem).getAttackDamage() + 2.5;
             } else if (heldItem instanceof ItemHoe) {
-                damage = (Item.ToolMaterial.valueOf(((ItemHoe) heldItem).getMaterialName())).getAttackDamage() + 2.8;
+                damage += (Item.ToolMaterial.valueOf(((ItemHoe) heldItem).getMaterialName())).getAttackDamage() + 2.5;
             }
 
             double amount = damage / 2.0 * amplifier;
             if (heldItem instanceof ICuckooTools) { //如果是不咕工具则减少扣血
-                amount = amount / (new Random().nextInt(10) / 9.0 + 3);
+                amount = amount / 4;
             }
             player.attackEntityFrom(DamageSourceHandler.FUNNY_DIED, (float) amount);
         }
