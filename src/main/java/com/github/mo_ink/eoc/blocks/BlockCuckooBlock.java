@@ -2,7 +2,6 @@ package com.github.mo_ink.eoc.blocks;
 
 import com.github.mo_ink.eoc.EOC;
 import com.github.mo_ink.eoc.EOCTab;
-import com.github.mo_ink.eoc.utils.BlockMaterials;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
