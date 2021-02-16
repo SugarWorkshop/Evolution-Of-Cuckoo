@@ -23,42 +23,42 @@ public class AttackTargetAI {
     public EntityAIAttackWithBow aiArrowAttack;
     public EntityAIAttackMelee aiAttackOnCollide;
 
-    public AttackTargetAI(EntityNPCBase npc) {
-        aiAttackAllLiving = new EntityAINearestAttackableTarget(npc, EntityLivingBase.class, 10, true, false, new Predicate<Entity>() {
+    public AttackTargetAI(EntityNPCBase npcIn) {
+        aiAttackAllLiving = new EntityAINearestAttackableTarget(npcIn, EntityLivingBase.class, 10, true, false, new Predicate<Entity>() {
             public boolean apply(@Nullable Entity entity) {
                 return true;
             }
         });
-        aiAttackMob = new EntityAINearestAttackableTarget(npc, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
+        aiAttackMob = new EntityAINearestAttackableTarget(npcIn, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
             public boolean apply(@Nullable Entity entity) {
                 return entity instanceof IMob && !entity.isInvisible();
             }
         });
-        aiAttackMobAndHorse = new EntityAINearestAttackableTarget(npc, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
+        aiAttackMobAndHorse = new EntityAINearestAttackableTarget(npcIn, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
             public boolean apply(@Nullable Entity entity) {
                 return (entity instanceof IMob || entity instanceof EntityHorse) && !entity.isInvisible();
             }
         });
-        aiAttackMobWhitoutEnderman = new EntityAINearestAttackableTarget(npc, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
+        aiAttackMobWhitoutEnderman = new EntityAINearestAttackableTarget(npcIn, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
             public boolean apply(@Nullable Entity entity) {
                 return entity instanceof IMob && !entity.isInvisible() && !(entity instanceof EntityEnderman);
             }
         });
-        aiAttackMobAndHorseWhitoutEnderman = new EntityAINearestAttackableTarget(npc, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
+        aiAttackMobAndHorseWhitoutEnderman = new EntityAINearestAttackableTarget(npcIn, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
             public boolean apply(@Nullable Entity entity) {
                 return (entity instanceof IMob || entity instanceof EntityHorse) && !entity.isInvisible() && !(entity instanceof EntityEnderman);
             }
         });
-        aiArrowAttack = new EntityAIAttackWithBow(npc, 0.12D, 16, 16.0F);
-        aiAttackOnCollide = new EntityAIAttackMelee(npc, 0.62D, true) {
+        aiArrowAttack = new EntityAIAttackWithBow(npcIn, 0.12D, 16, 16.0F);
+        aiAttackOnCollide = new EntityAIAttackMelee(npcIn, 0.62D, true) {
             public void resetTask() {
                 super.resetTask();
-                npc.setSwingingArms(false);
+                npcIn.setSwingingArms(false);
             }
 
             public void startExecuting() {
                 super.startExecuting();
-                npc.setSwingingArms(true);
+                npcIn.setSwingingArms(true);
             }
         };
     }
