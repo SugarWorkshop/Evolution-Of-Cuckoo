@@ -14,7 +14,7 @@ import net.minecraft.entity.passive.EntityHorse;
 
 import javax.annotation.Nullable;
 
-public class AIAttackTarget {
+public class AttackTargetAI {
     public EntityAINearestAttackableTarget aiAttackAllLiving;
     public EntityAINearestAttackableTarget aiAttackMob;
     public EntityAINearestAttackableTarget aiAttackMobAndHorse;
@@ -23,7 +23,7 @@ public class AIAttackTarget {
     public EntityAIAttackWithBow aiArrowAttack;
     public EntityAIAttackMelee aiAttackOnCollide;
 
-    public AIAttackTarget(EntityNPCBase npc) {
+    public AttackTargetAI(EntityNPCBase npc) {
         aiAttackAllLiving = new EntityAINearestAttackableTarget(npc, EntityLivingBase.class, 10, true, false, new Predicate<Entity>() {
             public boolean apply(@Nullable Entity entity) {
                 return true;
