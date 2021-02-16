@@ -4,13 +4,17 @@
     "item": "eoc:funny_chestplate"
   },
   "pattern": [
-    "X X",
+    "Y Y",
     "XXX",
     "XXX"
   ],
   "key": {
     "X": {
-      "item": "eoc:funny_block"
+      "item": "eoc:funny_plate"
+    },
+    "Y": {
+      "type": "forge:ore_dict",
+      "ore": "ingotFunny"
     }
   }
 }

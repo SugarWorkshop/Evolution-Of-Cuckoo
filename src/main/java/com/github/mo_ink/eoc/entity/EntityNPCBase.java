@@ -3,14 +3,12 @@ package com.github.mo_ink.eoc.entity;
 import com.github.mo_ink.eoc.entity.ai.EntityAIAttackWithBow;
 import com.github.mo_ink.eoc.handler.ItemHandler;
 import com.github.mo_ink.eoc.items.ItemFunnyApple;
+import com.github.mo_ink.eoc.utils.AIAttackTarget;
+import com.github.mo_ink.eoc.utils.EnumAttackType;
 import com.github.mo_ink.eoc.utils.EnumNPCLevel;
 import com.github.mo_ink.eoc.utils.RandomCreator;
-import com.google.common.base.Predicate;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -20,6 +18,7 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -38,60 +37,36 @@ import javax.annotation.Nullable;
 
 public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityNPCBase.class, DataSerializers.BOOLEAN);
-    private final EntityAIAttackWithBow aiArrowAttack = new EntityAIAttackWithBow(this, 0.12D, 16, 16.0F);
-    private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 0.62D, true) {
-        public void resetTask() {
-            super.resetTask();
-            EntityNPCBase.this.setSwingingArms(false);
-        }
-
-        public void startExecuting() {
-            super.startExecuting();
-            EntityNPCBase.this.setSwingingArms(true);
-        }
-    };
-    EntityAINearestAttackableTarget aiNearestAttackableTarget = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
-        public boolean apply(@Nullable Entity entity) {
-            return entity instanceof IMob && !entity.isInvisible();
-        }
-    });
-    EntityAINearestAttackableTarget aiNearestAttackableTargetKillHorse = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
-        public boolean apply(@Nullable Entity entity) {
-            return (entity instanceof IMob || entity instanceof EntityHorse) && !entity.isInvisible();
-        }
-    });
-    EntityAINearestAttackableTarget aiNearestAttackableTargetWhitoutEnderman = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
-        public boolean apply(@Nullable Entity entity) {
-            return entity instanceof IMob && !entity.isInvisible() && !(entity instanceof EntityEnderman);
-        }
-    });
-    EntityAINearestAttackableTarget aiNearestAttackableTargetWhitoutEndermanKillHorse = new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
-        public boolean apply(@Nullable Entity entity) {
-            return (entity instanceof IMob || entity instanceof EntityHorse) && !entity.isInvisible() && !(entity instanceof EntityEnderman);
-        }
-    });
+    private final AIAttackTarget aiAttackTarget = new AIAttackTarget(this);
+    private final EntityAIAttackWithBow aiArrowAttack = aiAttackTarget.aiArrowAttack;
+    private final EntityAIAttackMelee aiAttackOnCollide = aiAttackTarget.aiAttackOnCollide;
+    private final EntityAINearestAttackableTarget aiAttackAllLiving = aiAttackTarget.aiAttackAllLiving;
+    private final EntityAINearestAttackableTarget aiAttackMob = aiAttackTarget.aiAttackMob;
+    private final EntityAINearestAttackableTarget aiAttackMobAndHorse = aiAttackTarget.aiAttackMobAndHorse;
+    private final EntityAINearestAttackableTarget aiAttackMobWhitoutEnderman = aiAttackTarget.aiAttackMobWhitoutEnderman;
+    private final EntityAINearestAttackableTarget aiAttackMobAndHorseWhitoutEnderman = aiAttackTarget.aiAttackMobAndHorseWhitoutEnderman;
     private EnumNPCLevel enumNPCLevel;
     private Item mainHandItem;
-    private boolean killHorse;
+    private EnumAttackType attackType;
 
-    public EntityNPCBase(World worldIn, Item itemIn, EnumNPCLevel levelIn, boolean killHorseIn) {
+    public EntityNPCBase(World worldIn, Item itemIn, EnumNPCLevel levelIn, EnumAttackType attackTypeIn) {
         super(worldIn);
         this.setTamed(false);
         this.setSize(0.6F, 1.8F);
         this.setEnumNPCLevel(levelIn);
         this.changeEntityAttributes();
         this.setItem(itemIn);
-        this.setKillHorse(killHorseIn);
+        this.setAttackType(attackTypeIn);
         this.setEquipmentBased();
         this.setCombatTask();
     }
 
     public EntityNPCBase(World worldIn) {
-        this(worldIn, null, EnumNPCLevel.C, false);
+        this(worldIn, null, EnumNPCLevel.C, EnumAttackType.Normal);
     }
 
     public EntityNPCBase(World worldIn, Item itemIn, EnumNPCLevel levelIn) {
-        this(worldIn, itemIn, levelIn, false);
+        this(worldIn, itemIn, levelIn, EnumAttackType.Normal);
     }
 
     protected void entityInit() {
@@ -216,24 +191,30 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
         if (this.world != null && !this.world.isRemote) {
             this.tasks.removeTask(this.aiAttackOnCollide);
             this.tasks.removeTask(this.aiArrowAttack);
-            this.targetTasks.removeTask(this.aiNearestAttackableTarget);
-            this.targetTasks.removeTask(this.aiNearestAttackableTargetKillHorse);
-            this.targetTasks.removeTask(this.aiNearestAttackableTargetWhitoutEnderman);
-            this.targetTasks.removeTask(this.aiNearestAttackableTargetWhitoutEndermanKillHorse);
-            ItemStack itemstack = this.getHeldItemMainhand();
-            if (itemstack.getItem() instanceof net.minecraft.item.ItemBow) {
+            this.targetTasks.removeTask(this.aiAttackAllLiving);
+            this.targetTasks.removeTask(this.aiAttackMob);
+            this.targetTasks.removeTask(this.aiAttackMobAndHorse);
+            this.targetTasks.removeTask(this.aiAttackMobWhitoutEnderman);
+            this.targetTasks.removeTask(this.aiAttackMobAndHorseWhitoutEnderman);
+            Item item = this.getHeldItemMainhand().getItem();
+            EnumAttackType attackType = this.getAttackType();
+            if (item instanceof ItemBow) {
                 this.tasks.addTask(3, this.aiArrowAttack);
-                if (getKillhorse()) {
-                    this.targetTasks.addTask(4, aiNearestAttackableTargetWhitoutEndermanKillHorse);
+                if (attackType.equals(EnumAttackType.All)) {
+                    this.targetTasks.addTask(4, this.aiAttackAllLiving);
+                } else if (attackType.equals(EnumAttackType.Horse)) {
+                    this.targetTasks.addTask(4, this.aiAttackMobAndHorseWhitoutEnderman);
                 } else {
-                    this.targetTasks.addTask(4, aiNearestAttackableTargetWhitoutEnderman);
+                    this.targetTasks.addTask(4, this.aiAttackMobWhitoutEnderman);
                 }
             } else {
                 this.tasks.addTask(3, this.aiAttackOnCollide);
-                if (getKillhorse()) {
-                    this.targetTasks.addTask(4, aiNearestAttackableTargetKillHorse);
+                if (attackType.equals(EnumAttackType.All)) {
+                    this.targetTasks.addTask(4, this.aiAttackAllLiving);
+                } else if (attackType.equals(EnumAttackType.Horse)) {
+                    this.targetTasks.addTask(4, this.aiAttackMobAndHorse);
                 } else {
-                    this.targetTasks.addTask(4, aiNearestAttackableTarget);
+                    this.targetTasks.addTask(4, this.aiAttackMob);
                 }
             }
         }
@@ -306,12 +287,12 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
         this.mainHandItem = itemIn;
     }
 
-    protected void setKillHorse(boolean killHorse) {
-        this.killHorse = killHorse;
+    public EnumAttackType getAttackType() {
+        return this.attackType;
     }
 
-    public boolean getKillhorse() {
-        return this.killHorse;
+    protected void setAttackType(EnumAttackType attackType) {
+        this.attackType = attackType;
     }
 
     public void dropNPCItem(ItemStack itemStack) {

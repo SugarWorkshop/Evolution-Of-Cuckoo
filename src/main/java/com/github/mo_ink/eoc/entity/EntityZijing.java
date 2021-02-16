@@ -1,5 +1,6 @@
 package com.github.mo_ink.eoc.entity;
 
+import com.github.mo_ink.eoc.utils.EnumAttackType;
 import com.github.mo_ink.eoc.utils.EnumNPCLevel;
 import com.github.mo_ink.eoc.utils.RandomCreator;
 import net.minecraft.init.Items;
@@ -8,7 +9,7 @@ import net.minecraft.world.World;
 
 public class EntityZijing extends EntityNPCBase {
     public EntityZijing(World worldIn) {
-        super(worldIn, Items.BOW, EnumNPCLevel.A, true);
+        super(worldIn, Items.BOW, EnumNPCLevel.A, EnumAttackType.Horse);
     }
 
     @Override

@@ -1,0 +1,24 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "ingotFunny"
+    },
+    {
+      "item": "eoc:funny_plate"
+    },
+    {
+      "item": "eoc:funny_plate"
+    },
+    {
+      "item": "eoc:funny_plate"
+    },
+    {
+      "item": "eoc:funny_plate"
+    }
+  ],
+  "result": {
+    "item": "eoc:funny_block"
+  }
+}

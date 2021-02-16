@@ -77,5 +77,6 @@ public class EntityHandler {
         registerEntitySpawn(EntitySmalldew.class, 8, 1, 3, EnumCreatureType.CREATURE, biomes);
         registerEntitySpawn(EntityNat.class, 12, 1, 4, EnumCreatureType.CREATURE, biomes);
         registerEntitySpawn(EntityOsIr.class, 12, 1, 4, EnumCreatureType.CREATURE, biomes);
+        registerEntitySpawn(EntityBaozi.class, 16, 1, 5, EnumCreatureType.CREATURE, biomes);
     }
 }

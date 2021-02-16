@@ -1,6 +1,7 @@
 package com.github.mo_ink.eoc.entity;
 
 import com.github.mo_ink.eoc.handler.ItemHandler;
+import com.github.mo_ink.eoc.utils.EnumAttackType;
 import com.github.mo_ink.eoc.utils.EnumNPCLevel;
 import com.github.mo_ink.eoc.utils.RandomCreator;
 import net.minecraft.client.Minecraft;
@@ -29,7 +30,7 @@ public class EntityMoInk extends EntityNPCBase {
     private static DataParameter<Byte> SPRINKLED = EntityDataManager.createKey(EntityMoInk.class, DataSerializers.BYTE);
 
     public EntityMoInk(World worldIn) {
-        super(worldIn, Items.DIAMOND_SWORD, EnumNPCLevel.A, true);
+        super(worldIn, Items.DIAMOND_SWORD, EnumNPCLevel.A, EnumAttackType.Horse);
     }
 
     @Override
