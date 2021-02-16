@@ -2,6 +2,7 @@ package com.github.mo_ink.eoc.entity;
 
 import com.github.mo_ink.eoc.entity.ai.EntityAIAttackWithBow;
 import com.github.mo_ink.eoc.handler.ItemHandler;
+import com.github.mo_ink.eoc.items.ItemFunnyApple;
 import com.github.mo_ink.eoc.utils.EnumNPCLevel;
 import com.github.mo_ink.eoc.utils.RandomCreator;
 import com.google.common.base.Predicate;
@@ -19,7 +20,6 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -145,32 +145,30 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
     }
 
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
-        ItemStack itemstack = player.getHeldItem(hand);
-        if (this.isTamed()) {
-            if (!itemstack.isEmpty()) {
-                if (itemstack.getItem() instanceof ItemFood) {
-                    ItemFood itemfood = (ItemFood) itemstack.getItem();
-                    if (itemfood.equals(ItemHandler.ITEM_FUNNY_APPLE) && this.getHealth() < this.getMaxHealth()) {
-                        if (!player.capabilities.isCreativeMode) {
-                            itemstack.shrink(1);
-                        }
-                        int heal = itemfood.getHealAmount(itemstack);
-                        this.heal(heal);
-                        this.playEffect(EnumParticleTypes.HEART, this.posX, this.posY + 0.05F, this.posZ, heal);
-                        return true;
+        ItemStack itemStack = player.getHeldItem(hand);
+        if (!itemStack.isEmpty() && itemStack.getItem().equals(ItemHandler.ITEM_FUNNY_APPLE)) {
+            ItemFunnyApple itemFunnyApple = (ItemFunnyApple) itemStack.getItem();
+            if (this.isTamed()) {
+                if (this.getHealth() < this.getMaxHealth()) {
+                    if (!player.capabilities.isCreativeMode) {
+                        itemStack.shrink(1);
+                    }
+                    int heal = itemFunnyApple.getHealAmount(itemStack);
+                    this.heal(heal);
+                    this.playEffect(EnumParticleTypes.HEART, this.posX, this.posY + 0.05F, this.posZ, heal);
+                }
+            } else {
+                if (!player.capabilities.isCreativeMode) {
+                    itemStack.shrink(1);
+                }
+                if (!net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+                    if (!this.world.isRemote) {
+                        this.setTamedBy(player);
+                        this.setAttackTarget(null);
+                    } else {
+                        this.playEffect(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 0.08F, this.posZ, 10);
                     }
                 }
-            }
-        } else if (itemstack.getItem().equals(ItemHandler.ITEM_FUNNY_APPLE) || itemstack.getItem().equals(Items.APPLE)) {
-            if (!player.capabilities.isCreativeMode) {
-                itemstack.shrink(1);
-            }
-            if (!net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
-                if (!this.world.isRemote) {
-                    this.setTamedBy(player);
-                    this.setAttackTarget((EntityLivingBase) null);
-                } else
-                    this.playEffect(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 0.08F, this.posZ, 10);
             }
             return true;
         }
