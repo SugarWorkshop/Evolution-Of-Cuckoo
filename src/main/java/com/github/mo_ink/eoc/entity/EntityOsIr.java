@@ -13,7 +13,7 @@ public class EntityOsIr extends EntityNPCBase {
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        this.dropNPCItem(new ItemStack(Items.GOLD_INGOT, RandomCreator.randomTenth(4)));
+        this.dropNPCItem(new ItemStack(Items.GOLD_INGOT, RandomCreator.randomTenth(3)));
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 }

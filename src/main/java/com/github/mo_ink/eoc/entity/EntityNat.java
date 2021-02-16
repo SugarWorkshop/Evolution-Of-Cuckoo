@@ -14,7 +14,7 @@ public class EntityNat extends EntityNPCBase {
 
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-        this.dropNPCItem(new ItemStack(Blocks.COBBLESTONE, RandomCreator.randomTenth(6)));
+        this.dropNPCItem(new ItemStack(Blocks.COBBLESTONE, RandomCreator.randomTenth(5)));
         super.dropFewItems(wasRecentlyHit, lootingModifier);
     }
 }
