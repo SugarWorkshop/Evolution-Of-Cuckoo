@@ -1,7 +1,6 @@
-package com.github.mo_ink.eoc.utils;
+package com.github.mo_ink.eoc.entity.ai;
 
 import com.github.mo_ink.eoc.entity.EntityNPCBase;
-import com.github.mo_ink.eoc.entity.ai.EntityAIAttackWithBow;
 import com.google.common.base.Predicate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -14,16 +13,20 @@ import net.minecraft.entity.passive.EntityHorse;
 
 import javax.annotation.Nullable;
 
-public class AttackTargetAI {
-    public EntityAINearestAttackableTarget aiAttackAllLiving;
-    public EntityAINearestAttackableTarget aiAttackMob;
-    public EntityAINearestAttackableTarget aiAttackMobAndHorse;
-    public EntityAINearestAttackableTarget aiAttackMobWhitoutEnderman;
-    public EntityAINearestAttackableTarget aiAttackMobAndHorseWhitoutEnderman;
-    public EntityAIAttackWithBow aiArrowAttack;
-    public EntityAIAttackMelee aiAttackOnCollide;
+public class AttackAI { //整理实体AI
+    EntityAINearestAttackableTarget aiAttackAllLiving;
+    EntityAINearestAttackableTarget aiAttackMob;
+    EntityAINearestAttackableTarget aiAttackMobAndHorse;
+    EntityAINearestAttackableTarget aiAttackMobWithoutAlderman;
+    EntityAINearestAttackableTarget aiAttackMobAndHorseWithoutAlderman;
+    EntityAIAttackWithBow aiArrowAttack;
+    EntityAIAttackMelee aiAttackOnCollide;
 
-    public AttackTargetAI(EntityNPCBase npcIn) {
+    public AttackAI(EntityNPCBase npcIn) {
+        initAI(npcIn);
+    }
+
+    private void initAI(EntityNPCBase npcIn) {
         aiAttackAllLiving = new EntityAINearestAttackableTarget(npcIn, EntityLivingBase.class, 10, true, false, new Predicate<Entity>() {
             public boolean apply(@Nullable Entity entity) {
                 return true;
@@ -39,12 +42,12 @@ public class AttackTargetAI {
                 return (entity instanceof IMob || entity instanceof EntityHorse) && !entity.isInvisible();
             }
         });
-        aiAttackMobWhitoutEnderman = new EntityAINearestAttackableTarget(npcIn, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
+        aiAttackMobWithoutAlderman = new EntityAINearestAttackableTarget(npcIn, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
             public boolean apply(@Nullable Entity entity) {
                 return entity instanceof IMob && !entity.isInvisible() && !(entity instanceof EntityEnderman);
             }
         });
-        aiAttackMobAndHorseWhitoutEnderman = new EntityAINearestAttackableTarget(npcIn, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
+        aiAttackMobAndHorseWithoutAlderman = new EntityAINearestAttackableTarget(npcIn, EntityLiving.class, 10, true, false, new Predicate<Entity>() {
             public boolean apply(@Nullable Entity entity) {
                 return (entity instanceof IMob || entity instanceof EntityHorse) && !entity.isInvisible() && !(entity instanceof EntityEnderman);
             }
@@ -61,5 +64,33 @@ public class AttackTargetAI {
                 npcIn.setSwingingArms(true);
             }
         };
+    }
+
+    public EntityAINearestAttackableTarget getAIAttackAllLiving() {
+        return aiAttackAllLiving;
+    }
+
+    public EntityAINearestAttackableTarget getAIAttackMob() {
+        return aiAttackMob;
+    }
+
+    public EntityAINearestAttackableTarget getAIAttackMobAndHorse() {
+        return aiAttackMobAndHorse;
+    }
+
+    public EntityAINearestAttackableTarget getAIAttackMobWithoutAlderman() {
+        return aiAttackMobWithoutAlderman;
+    }
+
+    public EntityAINearestAttackableTarget getAIAttackMobAndHorseWithoutAlderman() {
+        return aiAttackMobAndHorseWithoutAlderman;
+    }
+
+    public EntityAIAttackWithBow getAIArrowAttack() {
+        return aiArrowAttack;
+    }
+
+    public EntityAIAttackMelee getAIAttackOnCollide() {
+        return aiAttackOnCollide;
     }
 }

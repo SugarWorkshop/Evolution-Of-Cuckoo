@@ -1,9 +1,9 @@
 package com.github.mo_ink.eoc.entity;
 
+import com.github.mo_ink.eoc.entity.ai.AttackAI;
 import com.github.mo_ink.eoc.entity.ai.EntityAIAttackWithBow;
 import com.github.mo_ink.eoc.handler.ItemHandler;
 import com.github.mo_ink.eoc.items.ItemFunnyApple;
-import com.github.mo_ink.eoc.utils.AttackTargetAI;
 import com.github.mo_ink.eoc.utils.EnumAttackType;
 import com.github.mo_ink.eoc.utils.EnumNPCLevel;
 import com.github.mo_ink.eoc.utils.RandomCreator;
@@ -37,14 +37,14 @@ import javax.annotation.Nullable;
 
 public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityNPCBase.class, DataSerializers.BOOLEAN);
-    private final AttackTargetAI attackTargetAI = new AttackTargetAI(this);
-    private final EntityAIAttackWithBow aiArrowAttack = attackTargetAI.aiArrowAttack;
-    private final EntityAIAttackMelee aiAttackOnCollide = attackTargetAI.aiAttackOnCollide;
-    private final EntityAINearestAttackableTarget aiAttackAllLiving = attackTargetAI.aiAttackAllLiving;
-    private final EntityAINearestAttackableTarget aiAttackMob = attackTargetAI.aiAttackMob;
-    private final EntityAINearestAttackableTarget aiAttackMobAndHorse = attackTargetAI.aiAttackMobAndHorse;
-    private final EntityAINearestAttackableTarget aiAttackMobWhitoutEnderman = attackTargetAI.aiAttackMobWhitoutEnderman;
-    private final EntityAINearestAttackableTarget aiAttackMobAndHorseWhitoutEnderman = attackTargetAI.aiAttackMobAndHorseWhitoutEnderman;
+    private final AttackAI attackAI = new AttackAI(this);
+    private final EntityAIAttackWithBow aiArrowAttack = attackAI.getAIArrowAttack();
+    private final EntityAIAttackMelee aiAttackOnCollide = attackAI.getAIAttackOnCollide();
+    private final EntityAINearestAttackableTarget aiAttackAllLiving = attackAI.getAIAttackAllLiving();
+    private final EntityAINearestAttackableTarget aiAttackMob = attackAI.getAIAttackMob();
+    private final EntityAINearestAttackableTarget aiAttackMobAndHorse = attackAI.getAIAttackMobAndHorse();
+    private final EntityAINearestAttackableTarget aiAttackMobWithoutAlderman = attackAI.getAIAttackMobWithoutAlderman();
+    private final EntityAINearestAttackableTarget aiAttackMobAndHorseWithoutAlderman = attackAI.getAIAttackMobAndHorseWithoutAlderman();
     private EnumNPCLevel enumNPCLevel;
     private Item mainHandItem;
     private EnumAttackType attackType;
@@ -194,8 +194,8 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
             this.targetTasks.removeTask(this.aiAttackAllLiving);
             this.targetTasks.removeTask(this.aiAttackMob);
             this.targetTasks.removeTask(this.aiAttackMobAndHorse);
-            this.targetTasks.removeTask(this.aiAttackMobWhitoutEnderman);
-            this.targetTasks.removeTask(this.aiAttackMobAndHorseWhitoutEnderman);
+            this.targetTasks.removeTask(this.aiAttackMobWithoutAlderman);
+            this.targetTasks.removeTask(this.aiAttackMobAndHorseWithoutAlderman);
             Item item = this.getHeldItemMainhand().getItem();
             EnumAttackType attackType = this.getAttackType();
             if (item instanceof ItemBow) {
@@ -203,9 +203,9 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
                 if (attackType.equals(EnumAttackType.All)) {
                     this.targetTasks.addTask(4, this.aiAttackAllLiving);
                 } else if (attackType.equals(EnumAttackType.Horse)) {
-                    this.targetTasks.addTask(4, this.aiAttackMobAndHorseWhitoutEnderman);
+                    this.targetTasks.addTask(4, this.aiAttackMobAndHorseWithoutAlderman);
                 } else {
-                    this.targetTasks.addTask(4, this.aiAttackMobWhitoutEnderman);
+                    this.targetTasks.addTask(4, this.aiAttackMobWithoutAlderman);
                 }
             } else {
                 this.tasks.addTask(3, this.aiAttackOnCollide);
