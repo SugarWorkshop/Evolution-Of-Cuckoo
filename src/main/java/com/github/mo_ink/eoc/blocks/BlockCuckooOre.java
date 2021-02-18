@@ -11,7 +11,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -34,7 +33,7 @@ public class BlockCuckooOre extends BlockOre {
     @Nonnull
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return ItemHandler.ITEM_CUCKOO_INGOT;
+        return ItemHandler.ITEM_CUCKOO_ORE;
     }
 
     @Override
@@ -44,18 +43,12 @@ public class BlockCuckooOre extends BlockOre {
 
     @Override
     public int quantityDroppedWithBonus(int fortune, Random random) {
-        if (fortune > 0) {
-            int bonusFactor = Math.max(random.nextInt(fortune + 2) - 1, 0);
-            return this.quantityDropped(random) * (bonusFactor + 1);
-        } else {
-            return this.quantityDropped(random);
-        }
+        return 1;
     }
 
     @Override
     public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
-        Random random = world instanceof World ? ((World) world).rand : new Random();
-        return MathHelper.getInt(random, 2, 6);
+        return 0;
     }
 
     @Override
