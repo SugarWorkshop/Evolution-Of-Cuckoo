@@ -13,8 +13,8 @@ This is the development repository of the Minecraft mod The Evolution Of Cuckoo 
 - [Introduction](#introduction)
 - [About Development](#about-development)
 - [Features](#features)
-- [Development Guide](#development-guide)
-  - [How to Build](#how-to-build)
+- [How to Play](#how-to-play)
+- [How to Build](#how-to-build)
 - [Special Thanks](#special-thanks)
 
 # Introduction
@@ -28,19 +28,23 @@ EOC is maintained by Cuckoo Dev Team and the mod is still under development. The
 * Forge Version: 14.23.5.2847
 * Current Mod Version: N / A
 
-# Development Guide
+# How to Play
 
-## How to Build
+1. Make sure that you have already installed **Minecraft 1.12.2** and **Forge 14.23.5.2847**.
+2. Goto **[Release Page](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)**.
+3. Choose the version you want to play.
+4. Download `EOC-Build.tar` in **Assets** and extract it.
+5. Copy the `.jar` file without `-sources` to `.minecraft\mods`
 
-If you are using Windows, execute the command below in the project root directory:
+# How to Build
+
+Execute the command below in the project root directory:
 
 ```
+* Windows *
 gradlew build
-```
 
-or if you're using Linux/Unix:
-
-```
+* Linux / Unix *
 ./gradlew build
 ```
 
