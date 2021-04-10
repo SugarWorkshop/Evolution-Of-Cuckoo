@@ -4,10 +4,10 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.EnumParticleTypes;
 
 public enum EnumNPCLevel {
-    A("eoc.enum_npc_level.a", 25, 28.0D, 2.0D, 0.8D, EnumParticleTypes.SPELL_INSTANT, 3),
-    B("eoc.enum_npc_level.b", 20, 24.0D, 1.5D, 0.75D, EnumParticleTypes.FLAME, 2),
-    C("eoc.enum_npc_level.c", 15, 20.0D, 1.0D, 0.7D, EnumParticleTypes.CLOUD, 1),
-    D("eoc.enum_npc_level.d", 0, 14.0D, 0.5D, 0.55D, EnumParticleTypes.SMOKE_LARGE, 3);
+    A("eoc.enum_npc_level.a", 25, 28.0D, 2.0D, 0.8D, EnumParticleTypes.SPELL_INSTANT, 3, 2),
+    B("eoc.enum_npc_level.b", 20, 24.0D, 1.5D, 0.75D, EnumParticleTypes.FLAME, 2, 1),
+    C("eoc.enum_npc_level.c", 15, 20.0D, 1.0D, 0.7D, EnumParticleTypes.CLOUD, 1, 0),
+    D("eoc.enum_npc_level.d", 0, 14.0D, 0.5D, 0.55D, EnumParticleTypes.SMOKE_LARGE, 3, -1);
 
     private final String descriptionTranslationKey;
     private final int experienceValue;
@@ -17,7 +17,9 @@ public enum EnumNPCLevel {
     private final EnumParticleTypes particleType;
     private final int particleTimes;
 
-    EnumNPCLevel(String descriptionTranslationKey, int experienceValue, double maxHealth, double attackDamage, double movementSpeed, EnumParticleTypes particleType, int particleTimes) {
+    private final int regenerationLevel;
+
+    EnumNPCLevel(String descriptionTranslationKey, int experienceValue, double maxHealth, double attackDamage, double movementSpeed, EnumParticleTypes particleType, int particleTimes, int regenerationLevel) {
         this.descriptionTranslationKey = descriptionTranslationKey;
         this.experienceValue = experienceValue;
         this.maxHealth = maxHealth;
@@ -25,6 +27,7 @@ public enum EnumNPCLevel {
         this.movementSpeed = movementSpeed;
         this.particleType = particleType;
         this.particleTimes = particleTimes;
+        this.regenerationLevel = regenerationLevel;
     }
 
     @Override
@@ -60,5 +63,9 @@ public enum EnumNPCLevel {
 
     public int getParticleTimes() {
         return this.particleTimes;
+    }
+
+    public int getRegenerationLevel() {
+        return this.regenerationLevel;
     }
 }

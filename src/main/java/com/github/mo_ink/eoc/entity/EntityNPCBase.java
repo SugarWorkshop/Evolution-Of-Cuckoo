@@ -15,6 +15,7 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntitySpectralArrow;
 import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -24,6 +25,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
@@ -48,6 +50,7 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
     private EnumNPCLevel enumNPCLevel;
     private Item mainHandItem;
     private EnumAttackType attackType;
+    private boolean isRegenerated = false;
 
     public EntityNPCBase(World worldIn, Item itemIn, EnumNPCLevel levelIn, EnumAttackType attackTypeIn) {
         super(worldIn);
@@ -76,11 +79,20 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
 
     public void onLivingUpdate() {
         this.updateArmSwingProgress();
+
+        if (!this.isRegenerated) { //在生成后补充血量
+            this.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 100, 25565, false, false));
+            this.isRegenerated = true;
+        }
+
         EnumParticleTypes particleTypes = this.getEnumNPCLevel().getParticleType();
         int particleTimes = this.getEnumNPCLevel().getParticleTimes();
-        if (particleTypes != null) {
-            this.playEffect(particleTypes, this.posX, this.posY - 1.3F, this.posZ, particleTimes);
-        }
+        this.playEffect(particleTypes, this.posX, this.posY - 1.3F, this.posZ, particleTimes);
+
+        int regenerationLevel = this.getEnumNPCLevel().getRegenerationLevel();
+        if (!this.isPotionActive(MobEffects.REGENERATION) && regenerationLevel >= 0)
+            this.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 72000, regenerationLevel, false, false));
+
         super.onLivingUpdate();
     }
 
@@ -88,7 +100,7 @@ public class EntityNPCBase extends EntityTameable implements IRangedAttackMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1024.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(0.0D);
     }
 
     protected void changeEntityAttributes() {
