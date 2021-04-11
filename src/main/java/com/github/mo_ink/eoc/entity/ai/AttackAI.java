@@ -52,7 +52,7 @@ public class AttackAI { //整理实体AI
                 return (entity instanceof IMob || entity instanceof EntityHorse) && !entity.isInvisible() && !(entity instanceof EntityEnderman);
             }
         });
-        aiArrowAttack = new EntityAIAttackWithBow(npcIn, 0.12D, 16, 16.0F);
+        aiArrowAttack = new EntityAIAttackWithBow(npcIn, 0.12D, 12, 16.0F);
         aiAttackOnCollide = new EntityAIAttackMelee(npcIn, 0.62D, true) {
             public void resetTask() {
                 super.resetTask();
