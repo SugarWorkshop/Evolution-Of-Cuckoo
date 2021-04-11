@@ -20,6 +20,7 @@ public class EventHandlerServer {
             String message = "eoc.welcome";
             TextComponentTranslation text = new TextComponentTranslation(message, entity.getName());
             entity.sendMessage(text);
+            ((EntityPlayer) entity).addItemStackToInventory(new ItemStack(ItemHandler.ITEM_EOC_MANUAL));
         }
     }
 

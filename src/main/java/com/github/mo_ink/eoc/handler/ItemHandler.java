@@ -1,9 +1,6 @@
 package com.github.mo_ink.eoc.handler;
 
-import com.github.mo_ink.eoc.items.ItemCuckooIngot;
-import com.github.mo_ink.eoc.items.ItemFunnyApple;
-import com.github.mo_ink.eoc.items.ItemFunnyIngot;
-import com.github.mo_ink.eoc.items.ItemFunnyPlate;
+import com.github.mo_ink.eoc.items.*;
 import com.github.mo_ink.eoc.items.armor.ItemFunnyBoots;
 import com.github.mo_ink.eoc.items.armor.ItemFunnyChestplate;
 import com.github.mo_ink.eoc.items.armor.ItemFunnyHelmet;
@@ -27,6 +24,7 @@ public class ItemHandler {
     public static final ItemFunnyIngot ITEM_FUNNY_INGOT = new ItemFunnyIngot();
     public static final ItemFunnyPlate ITEM_FUNNY_PLATE = new ItemFunnyPlate();
     public static final ItemCuckooIngot ITEM_CUCKOO_INGOT = new ItemCuckooIngot();
+    public static final ItemEOCManual ITEM_EOC_MANUAL = new ItemEOCManual();
 
     public static final ItemCuckooAxe ITEM_CUCKOO_AXE = new ItemCuckooAxe();
     public static final ItemCuckooSpade ITEM_CUCKOO_SPADE = new ItemCuckooSpade();
@@ -51,6 +49,7 @@ public class ItemHandler {
         registry.register(ITEM_FUNNY_INGOT);
         registry.register(ITEM_FUNNY_PLATE);
         registry.register(ITEM_CUCKOO_INGOT);
+        registry.register(ITEM_EOC_MANUAL);
 
         registry.register(ITEM_CUCKOO_AXE);
         registry.register(ITEM_CUCKOO_PICKAXE);
@@ -76,6 +75,7 @@ public class ItemHandler {
         ModelLoader.setCustomModelResourceLocation(ITEM_FUNNY_INGOT, 0, new ModelResourceLocation(ITEM_FUNNY_INGOT.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(ITEM_FUNNY_PLATE, 0, new ModelResourceLocation(ITEM_FUNNY_PLATE.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(ITEM_CUCKOO_INGOT, 0, new ModelResourceLocation(ITEM_CUCKOO_INGOT.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ITEM_EOC_MANUAL, 0, new ModelResourceLocation(ITEM_EOC_MANUAL.getRegistryName(), "inventory"));
 
         ModelLoader.setCustomModelResourceLocation(ITEM_CUCKOO_AXE, 0, new ModelResourceLocation(ITEM_CUCKOO_AXE.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(ITEM_CUCKOO_HOE, 0, new ModelResourceLocation(ITEM_CUCKOO_HOE.getRegistryName(), "inventory"));
