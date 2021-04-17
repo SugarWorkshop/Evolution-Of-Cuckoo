@@ -26,8 +26,8 @@ EOC 目前由 **Cuckoo Dev Team** 维护，目前处于非常早期的版本；E
 # 模组基本信息
 * Minecraft 版本: 1.12.2
 * Forge 版本: 14.23.5.2847
-* 最新 Release 版本: [![Release](https://img.shields.io/github/v/release/Mo-Ink/Evolution-Of-Cuckoo)](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)
-* 最新 Pre-Release 版本: [![Pre-release](https://img.shields.io/github/v/release/Mo-Ink/Evolution-Of-Cuckoo?include_prereleases)](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)
+* 最新稳定版本: [![Release](https://img.shields.io/github/v/release/Mo-Ink/Evolution-Of-Cuckoo)](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)
+* 最新版本: [![Pre-release](https://img.shields.io/github/v/release/Mo-Ink/Evolution-Of-Cuckoo?include_prereleases)](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)
 
 # 如何游玩
 
