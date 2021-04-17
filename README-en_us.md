@@ -26,8 +26,8 @@ EOC is maintained by Cuckoo Dev Team and the mod is still under development. The
 # Features
 * Minecraft Version: 1.12.2
 * Forge Version: 14.23.5.2847
-* Latest Release Version: [![Release](https://img.shields.io/github/v/release/Mo-Ink/Evolution-Of-Cuckoo)](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)
-* Latest Pre-Release Version: [![Pre-release](https://img.shields.io/github/v/release/Mo-Ink/Evolution-Of-Cuckoo?include_prereleases)](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)
+* Latest Stable Version: [![Latest-Stable](https://img.shields.io/github/v/release/Mo-Ink/Evolution-Of-Cuckoo)](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)
+* Latest Version: [![Latest](https://img.shields.io/github/v/release/Mo-Ink/Evolution-Of-Cuckoo?include_prereleases)](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)
 
 # How to Play
 
