@@ -58,13 +58,13 @@ gradlew build
 
 构建完成后，你可以在 `build/libs` 目录找到生成的归档文件。
 
-**注意：如果你遇到了像“找不到xxx”这样的编译错误，你可以试试[引入CuckooLib仓库](#与CuckooLib协同开发)，这可能会解决问题。**
+**注意：如果你遇到了编译错误，你可以试试[引入 CuckooLib 仓库](#与CuckooLib协同开发)，这可能会解决问题。**
 
 ## 与CuckooLib协同开发
 
 [CuckooLib](https://github.com/zi-jing/CuckooLib) 是 EOC 项目的一个依赖库，包含了 Cuckoo Dev Team 需要用到的大量可重用代码。
 
-如果你想更好地调试 EOC 项目或利用 EOC 项目来调试 CuckooLib，你可以 Clone [CuckooLib仓库](https://github.com/zi-jing/CuckooLib)，然后在 EOC 项目根目录创建文件`gradle.properties`，添加以下内容：
+如果你想更好地调试 EOC 项目或利用 EOC 项目来调试 CuckooLib，你可以 Clone [CuckooLib 仓库](https://github.com/zi-jing/CuckooLib)，然后在 EOC 项目根目录创建文件`gradle.properties`，添加以下内容：
 
 ```properties
 CuckooLibIncludeBuildPath=../CuckooLib
