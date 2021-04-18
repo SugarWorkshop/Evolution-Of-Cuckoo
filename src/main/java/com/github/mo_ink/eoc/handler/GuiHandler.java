@@ -9,15 +9,13 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 public class GuiHandler implements IGuiHandler {
     public static final int GUIEOCManual = 0;
 
-    public GuiHandler()
-    {
+    public GuiHandler() {
         NetworkRegistry.INSTANCE.registerGuiHandler(EOC.instance, this);
     }
 
     @Override
-    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-    {
-        switch (ID){
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+        switch (ID) {
             case GUIEOCManual:
                 return null;
             default:
@@ -26,9 +24,8 @@ public class GuiHandler implements IGuiHandler {
     }
 
     @Override
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-    {
-        switch (ID){
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+        switch (ID) {
             case GUIEOCManual:
                 return null;
             default:

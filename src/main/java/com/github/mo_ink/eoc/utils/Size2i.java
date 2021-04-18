@@ -21,7 +21,7 @@ public class Size2i {
     /**
      * 利用图形相似原理，在不改变纵横比的前提下把它缩放到给定的最大尺寸，并返回它本身。
      *
-     * @param width 缩放宽度
+     * @param width  缩放宽度
      * @param height 缩放高度
      * @return 结果
      */

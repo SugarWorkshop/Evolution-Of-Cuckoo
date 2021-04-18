@@ -10,24 +10,24 @@ import net.minecraftforge.fml.relauncher.Side;
 
 public class PacketTestGuiScreen implements IMessage {
 
-	@Override
-	public void fromBytes(ByteBuf buf) {
-	}
+    @Override
+    public void fromBytes(ByteBuf buf) {
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf) {
-	}
+    @Override
+    public void toBytes(ByteBuf buf) {
+    }
 
-	public static class Handler implements IMessageHandler<PacketTestGuiScreen, IMessage> {
+    public static class Handler implements IMessageHandler<PacketTestGuiScreen, IMessage> {
 
-		@Override
-		public IMessage onMessage(PacketTestGuiScreen message, MessageContext ctx) {
-			if(ctx.side == Side.CLIENT) {
-				Minecraft.getMinecraft().addScheduledTask(() -> Minecraft.getMinecraft().displayGuiScreen(new GuiEOCManual()));
-			}
-			return null;
-		}
+        @Override
+        public IMessage onMessage(PacketTestGuiScreen message, MessageContext ctx) {
+            if (ctx.side == Side.CLIENT) {
+                Minecraft.getMinecraft().addScheduledTask(() -> Minecraft.getMinecraft().displayGuiScreen(new GuiEOCManual()));
+            }
+            return null;
+        }
 
-	}
+    }
 
 }

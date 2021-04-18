@@ -31,6 +31,14 @@ public class EOC {
     private static Logger logger;
     private SimpleNetworkWrapper network;
 
+    public static Logger getLogger() {
+        return logger;
+    }
+
+    public static SimpleNetworkWrapper getNetwork() {
+        return instance.network;
+    }
+
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);
@@ -54,13 +62,5 @@ public class EOC {
         List<String> brandings = new ArrayList<>(FMLCommonHandler.instance().getBrandings(true));
         brandings.add(0, "§bEvolution §cOf §eCuckoo §r" + VERSION);
         ReflectionHelper.setPrivateValue(FMLCommonHandler.class, FMLCommonHandler.instance(), brandings, "brandings");
-    }
-
-    public static Logger getLogger(){
-        return logger;
-    }
-
-    public static SimpleNetworkWrapper getNetwork() {
-        return instance.network;
     }
 }
