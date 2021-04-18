@@ -14,20 +14,25 @@
 - [开发状态](#开发状态)
 - [模组基本信息](#模组基本信息)
 - [如何游玩](#如何游玩)
-- [如何构建](#如何构建)
+- [开发者指南](#开发者指南)
+  - [如何构建](#如何构建)
+  - [与CuckooLib协同开发](#与cuckoolib协同开发)
 - [特别鸣谢](#特别鸣谢)
 
 # 模组介绍
+
 **Cuckoo Dev Team**，是一个 Minecraft Mod 开发团队，团队成员们**成绩优越、品德高尚、乐于助人、和蔼可亲、人见人爱**，为团队做出了**莫大贡献**，所以团队的一名成员（ [@Mo_Ink](https://github.com/Mo-Ink) ）决定编写一个模组，以此**纪念团队和感恩成员们的高尚道德情操**，让每一个 Minecraft 玩家都能感受到**不咕鸟的魅力**。
 
 # 开发状态
+
 EOC 目前由 **Cuckoo Dev Team** 维护，目前处于非常早期的版本；EOC 目前还没有发布公开的正式版本。如果你对这个模组有意见或建议，你可以直接联系我们或者[提出 Issue](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/issues)。
 
 # 模组基本信息
-* Minecraft 版本: 1.12.2
-* Forge 版本: 14.23.5.2847
-* 最新稳定版本: [![Latest-Stable](https://img.shields.io/github/v/release/Mo-Ink/Evolution-Of-Cuckoo)](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)
-* 最新版本: [![Latest](https://img.shields.io/github/v/release/Mo-Ink/Evolution-Of-Cuckoo?include_prereleases)](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)
+
+- Minecraft 版本: 1.12.2
+- Forge 版本: 14.23.5.2847
+- 最新稳定版本: [![Latest-Stable](https://img.shields.io/github/v/release/Mo-Ink/Evolution-Of-Cuckoo)](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)
+- 最新版本: [![Latest](https://img.shields.io/github/v/release/Mo-Ink/Evolution-Of-Cuckoo?include_prereleases)](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)
 
 # 如何游玩
 
