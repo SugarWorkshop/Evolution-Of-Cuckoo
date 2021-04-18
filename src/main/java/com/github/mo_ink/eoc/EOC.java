@@ -1,5 +1,7 @@
 package com.github.mo_ink.eoc;
 
+import com.github.mo_ink.eoc.network.PacketGuiScreen;
+import com.github.mo_ink.eoc.network.PacketTestGuiScreen;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -8,8 +10,10 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
@@ -35,6 +39,9 @@ public class EOC {
     @EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
+        network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
+        network.registerMessage(new PacketTestGuiScreen.Handler(), PacketTestGuiScreen.class, 0, Side.CLIENT);
+        network.registerMessage(new PacketGuiScreen.Handler(), PacketGuiScreen.class, 1, Side.CLIENT);
     }
 
     @EventHandler
