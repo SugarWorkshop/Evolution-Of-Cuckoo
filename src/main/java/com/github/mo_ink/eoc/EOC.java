@@ -46,4 +46,8 @@ public class EOC {
         brandings.add(0, "§bEvolution §cOf §eCuckoo §r" + VERSION);
         ReflectionHelper.setPrivateValue(FMLCommonHandler.class, FMLCommonHandler.instance(), brandings, "brandings");
     }
+
+    public static Logger getLogger(){
+        return logger;
+    }
 }

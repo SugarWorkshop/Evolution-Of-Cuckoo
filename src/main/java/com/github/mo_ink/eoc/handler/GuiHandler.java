@@ -17,12 +17,22 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        // TODO
+        switch (ID){
+            case GUIEOCManual:
+                return null;
+            default:
+                return null;
+        }
     }
 
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        // TODO
+        switch (ID){
+            case GUIEOCManual:
+                return null;
+            default:
+                return null;
+        }
     }
 }
