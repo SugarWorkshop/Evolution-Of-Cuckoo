@@ -26,7 +26,7 @@ public class GuiEOCManual extends ModularGuiScreen {
 
     public GuiEOCManual() {
         super(ModularGuiConstants.NORMAL);
-        this.setTexture(new ResourceLocation(EOC.MODID + ":textures/gui/screen/eoc_manual.png"));
+        this.setTexture(new ResourceLocation(EOC.MODID + ":textures/gui/eoc_manual.png"));
         this.setTextureSize(512, 512);
         this.setWindowSize(279, 180);
         this.setTitle("");

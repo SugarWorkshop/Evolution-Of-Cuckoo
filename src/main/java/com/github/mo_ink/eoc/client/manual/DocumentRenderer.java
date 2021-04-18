@@ -26,8 +26,8 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 /**
- * 用来读取并显示EOK文档。<br><br>
- * It is used for reading and displaying EOK documents.<br><br>
+ * 用来读取并显示EOC文档。<br><br>
+ * It is used for reading and displaying EOC documents.<br><br>
  * <p>
  * 类结构较复杂，下面给出快捷导航列表：
  * 默认构造器-{@link #DocumentRenderer(int, int, int, int, int, int, String)}
