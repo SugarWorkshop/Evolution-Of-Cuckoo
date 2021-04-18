@@ -16,7 +16,7 @@
 - [如何游玩](#如何游玩)
 - [开发者指南](#开发者指南)
   - [如何构建](#如何构建)
-  - [与CuckooLib协同开发](#与cuckoolib协同开发)
+  - [与 CuckooLib 协同开发](#与-cuckoolib-协同开发)
 - [特别鸣谢](#特别鸣谢)
 
 # 模组介绍
@@ -58,9 +58,9 @@ gradlew build
 
 构建完成后，你可以在 `build/libs` 目录找到生成的归档文件。
 
-**注意：如果你遇到了编译错误，你可以试试[引入 CuckooLib 仓库](#与CuckooLib协同开发)，这可能会解决问题。**
+**注意：如果你遇到了编译错误，你可以试试[引入 CuckooLib 仓库](#与-cuckoolib-协同开发)，这可能会解决问题。**
 
-## 与CuckooLib协同开发
+## 与 CuckooLib 协同开发
 
 [CuckooLib](https://github.com/zi-jing/CuckooLib) 是 EOC 项目的一个依赖库，包含了 Cuckoo Dev Team 需要用到的大量可重用代码。
 
