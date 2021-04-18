@@ -37,7 +37,9 @@ EOC 目前由 **Cuckoo Dev Team** 维护，目前处于非常早期的版本；E
 4. 下载 **Assets** 中的 `EOC-Build.tar` 并解压
 5. 将不带 `-sources` 字样的 `.jar` 文件复制到 `.minecraft\mods` 文件夹
 
-# 如何构建
+# 开发者指南
+
+## 如何构建
 
 请在项目根目录执行以下命令：
 
@@ -50,6 +52,22 @@ gradlew build
 ```
 
 构建完成后，你可以在 `build/libs` 目录找到生成的归档文件。
+
+**注意：如果你遇到了像“找不到xxx”这样的编译错误，你可以试试[引入CuckooLib仓库](#与CuckooLib协同开发)，这可能会解决问题。**
+
+## 与CuckooLib协同开发
+
+[CuckooLib](https://github.com/zi-jing/CuckooLib) 是 EOC 项目的一个依赖库，包含了 Cuckoo Dev Team 需要用到的大量可重用代码。
+
+如果你想更好地调试 EOC 项目或利用 EOC 项目来调试 CuckooLib，你可以 Clone [CuckooLib仓库](https://github.com/zi-jing/CuckooLib)，然后在 EOC 项目根目录创建文件`gradle.properties`，添加以下内容：
+
+```properties
+CuckooLibIncludeBuildPath=../CuckooLib
+```
+
+其中，键`CuckooLibIncludeBuildPath`的值为 CuckooLib 项目根目录路径。
+
+保存文件，在 IDE 中刷新 Gradle 项目，即可引入 CuckooLib 项目。
 
 # 特别鸣谢
 
