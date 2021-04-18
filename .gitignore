@@ -16,6 +16,7 @@ out
 # gradle
 build
 .gradle
+gradle.properties
 
 # apple
 **/.DS_Store
@@ -24,3 +25,5 @@ build
 eclipse
 run
 test
+server
+.vscode/
