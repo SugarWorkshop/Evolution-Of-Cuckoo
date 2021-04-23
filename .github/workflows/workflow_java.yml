@@ -2,43 +2,56 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
 name: EOC Snapshot Build
-on: [push]
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Clone CuckooLib repository
+        uses: actions/checkout@v2
+        with:
+          repository: zi-jing/CuckooLib
+          ref: 1.12
+          path: CuckooLib-1.12
+
       - name: Clone EOC repository
         uses: actions/checkout@v2
+        with:
+          path: EOC-1.12
 
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
 
+      - name: Copy gradle.properties
+        run: cp ./EOC-1.12/.github/gradle.properties ./EOC-1.12/
+
       - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
+        run: chmod +x ./CuckooLib-1.12/gradlew && chmod +x ./EOC-1.12/gradlew
 
       - name: CI Setup
-        run: ./gradlew setupCIWorkspace
-
-      - name: Clean Build
-        run: ./gradlew clean
+        run: cd ./EOC-1.12/ && ./gradlew setupCIWorkspace
 
       - name: Build
-        run: ./gradlew build
+        run: cd ./EOC-1.12/ && ./gradlew build
 
       - uses: actions/upload-artifact@v2
         with:
           name: EOC snapshot
-          path: ./build/libs
+          path: ./EOC-1.12/build/libs
 
       - name: Package Release
         if: ${{github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')}}
         run: |
           mkdir EOC-Build
-          mv ./build/libs/* ./EOC-Build
+          mv ./EOC-1.12/build/libs/* ./EOC-Build
           tar -cvf EOC-Build.tar ./EOC-Build
 
       - name: Create a new GitHub release if a new tag is pushed
