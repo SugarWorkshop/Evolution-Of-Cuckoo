@@ -1,7 +1,6 @@
 package com.github.mo_ink.eoc.handler;
 
 import com.github.mo_ink.eoc.EOC;
-import com.github.mo_ink.eoc.client.gui.GuiEOCManual;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
