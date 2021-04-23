@@ -16,6 +16,7 @@ out
 # gradle
 build
 .gradle
+gradle.properties
 
 # apple
 **/.DS_Store
