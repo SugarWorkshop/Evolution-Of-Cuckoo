@@ -34,7 +34,7 @@ jobs:
         run: chmod +x ./CuckooLib-1.12/gradlew && chmod +x ./EOC-1.12/gradlew
 
       - name: Build
-        run: cd ./EOC-1.12/ && ./gradlew build --refresh-dependencies --debug
+        run: cd ./EOC-1.12/ && ./gradlew build
 
       - uses: actions/upload-artifact@v2
         with:
