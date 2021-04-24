@@ -27,19 +27,11 @@ jobs:
         with:
           java-version: 1.8
 
-      - name: Cache .gradle
-        uses: burrunan/gradle-cache-action@v1
-        with:
-          job-id: eoc
-
       - name: Copy gradle.properties
         run: cp ./EOC-1.12/.github/gradle.properties ./EOC-1.12/
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./CuckooLib-1.12/gradlew && chmod +x ./EOC-1.12/gradlew
-
-      - name: CI Setup
-        run: cd ./EOC-1.12/ && ./gradlew setupCIWorkspace
 
       - name: Build
         run: cd ./EOC-1.12/ && ./gradlew build
@@ -48,11 +40,6 @@ jobs:
         with:
           name: EOC snapshot
           path: ./EOC-1.12/build/libs
-
-      - uses: actions/upload-artifact@v2
-        with:
-          name: CuckooLib snapshot for EOC
-          path: ./CuckooLib-1.12/build/libs
 
       - name: Package Release
         if: ${{github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')}}
