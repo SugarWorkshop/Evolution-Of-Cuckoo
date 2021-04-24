@@ -1,7 +1,7 @@
 package com.github.mo_ink.eoc.client.manual;
 
-import com.github.mo_ink.eoc.utils.Size2i;
 import com.github.zi_jing.cuckoolib.client.render.GLUtils;
+import com.github.zi_jing.cuckoolib.util.math.Vector2i;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.util.ResourceLocation;
@@ -21,10 +21,9 @@ class ElementImage extends Element {
         BufferedImage orgImage = TextureUtil.readBufferedImage(Minecraft.getMinecraft().getResourceManager().getResource(location).getInputStream());
         this.width = orgImage.getWidth();
         this.height = orgImage.getHeight();
-        Size2i size = new Size2i(width, height);
-        size.scaleToSize(windowWidth, windowHeight);
-        this.realWidth = size.getWidth();
-        this.realHeight = size.getHeight();
+        Vector2i size = new Vector2i(width,height);
+        this.realWidth = size.getX();
+        this.realHeight = size.getY();
         this.location = location;
     }
 
