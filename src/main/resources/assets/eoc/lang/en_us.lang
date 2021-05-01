@@ -34,6 +34,32 @@ eoc.enum_npc_level.b=Good
 eoc.enum_npc_level.c=Normal
 eoc.enum_npc_level.d=Inferior
 
+eoc.message.documentrenderer.error=A fatal error occurred when loading document. See latest.log or debug.log for more information.
+eoc.message.ducumentrenderer.syntaxerror=Warning: Some syntax error were found in the document. Check the log file for more information.
+eoc.message.documentrenderer.loadingscreen.title=Loading document
+eoc.message.documentrenderer.loadingscreen.status0=Initializating
+eoc.message.documentrenderer.loadingscreen.status1=1/3 - Reading file: %s
+eoc.message.documentrenderer.loadingscreen.status2=2/3 - Parsing document structure: Line %d: %s
+eoc.message.documentrenderer.loadingscreen.status2.readfile=2/3 - Reading file: %s 
+eoc.message.documentrenderer.loadingscreen.status3=3/3 - Building document: Processing page elements: %d/%d
+
+eoc.manual.msg.error=§cError in %s at line %d: %s
+eoc.manual.msg.warning=§eWarning in %s at line %d: %s
+eoc.manual.msg.document_empty=Wait...WTF? 0 pages?? What's wrong???
+eoc.manual.error=Warning:Error loading document.
+eoc.manual.error1=See the log file for more information.
+eoc.manual.error2=Invalid "%s" at line %d
+eoc.manual.text.error=Error
+eoc.manual.error.text_area_too_small=Text area is too small! It must be larger than 20*20 pixels.
+eoc.manual.error.cant_read_document_file=Can't read document file "%s".
+eoc.manual.error.invalid_token=Invalid token "%s".
+eoc.manual.error.error_processing_statement=Can't parse the statement.
+eoc.manual.error.element_too_large=This element's size exceeds the limit(%d*%d)! Loading won't continue.
+eoc.manual.error.illegal_arguments=There must be only %d argument(s).
+eoc.manual.error.syntax_error=Syntax error.
+eoc.manual.hyperlink.mouseon=Click to jump
+eoc.manual.error.render_error=Error while rendering document.
+
 tile.eoc.funny_ore.name=Funny Ore
 tile.eoc.cuckoo_ore.name=Cuckoo Ore
 tile.eoc.funny_block.name=Funny Block

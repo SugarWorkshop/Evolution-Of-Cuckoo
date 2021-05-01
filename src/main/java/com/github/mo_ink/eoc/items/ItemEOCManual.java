@@ -2,6 +2,7 @@ package com.github.mo_ink.eoc.items;
 
 import com.github.mo_ink.eoc.EOC;
 import com.github.mo_ink.eoc.EOCTab;
+import com.github.mo_ink.eoc.handler.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,10 +24,9 @@ public class ItemEOCManual extends Item {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-
         BlockPos pos = playerIn.getPosition();
 
-        playerIn.openGui(EOC.instance, 1, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        playerIn.openGui(EOC.instance, GuiHandler.GUIEOCManual, worldIn, pos.getX(), pos.getY(), pos.getZ());
 
         return new ActionResult<>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
     }

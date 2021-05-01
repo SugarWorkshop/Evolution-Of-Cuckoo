@@ -42,7 +42,7 @@ public class ElementHyperLink extends Element {
             GLUtils.drawCenteredString(this.text, x + renderer.width / 2, y, Colors.DEFAULT_BLACK);
         } else {
             GLUtils.drawCenteredString(this.text, x + renderer.width / 2, y, 0x00FF00);
-            GLUtils.drawSimpleToolTip(Lists.newArrayList(text, I18n.format("eok.manual.hyperlink.mouseon")));
+            GLUtils.drawSimpleToolTip(Lists.newArrayList(text, I18n.format("eoc.manual.hyperlink.mouseon")));
         }
     }
 

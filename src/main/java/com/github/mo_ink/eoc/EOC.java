@@ -28,7 +28,7 @@ public class EOC {
     public static EOC instance;
     @SidedProxy(clientSide = "com.github.mo_ink.eoc.ClientProxy", serverSide = "com.github.mo_ink.eoc.CommonProxy")
     public static CommonProxy proxy;
-    private static Logger logger;
+    public static Logger logger;
     private SimpleNetworkWrapper network;
 
     public static Logger getLogger() {
@@ -41,6 +41,7 @@ public class EOC {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        logger = event.getModLog();
         proxy.preInit(event);
     }
 

@@ -14,7 +14,7 @@ final class GuiDocumentLoading extends ModularGuiScreen {
 
     public GuiDocumentLoading() {
         super(ModularGuiConstants.GUI_NOT_PAUSE_GAME | ModularGuiConstants.GUI_HAS_CUSTOM_BACKGROUND);
-        this.setTitle(I18n.format("eok.message.documentrenderer.loadingscreen.title"));
+        this.setTitle(I18n.format("eoc.message.documentrenderer.loadingscreen.title"));
         this.setWindowSize(250, 70);
         this.setPreRenderFunction((gui) -> GLUtils.drawRect(gui.getOffsetX(), gui.getOffsetY(), gui.getOffsetX() + gui.getWindowWidth(), gui.getOffsetY() + gui.getWindowHeight(), 0x90E8ECEC));
         this.progress = this.controlFactory.createProgressBar(220, 10);

@@ -22,6 +22,7 @@ class ElementImage extends Element {
         this.width = orgImage.getWidth();
         this.height = orgImage.getHeight();
         Vector2i size = new Vector2i(width,height);
+        size.scaleToSize(windowWidth, windowHeight);
         this.realWidth = size.getX();
         this.realHeight = size.getY();
         this.location = location;

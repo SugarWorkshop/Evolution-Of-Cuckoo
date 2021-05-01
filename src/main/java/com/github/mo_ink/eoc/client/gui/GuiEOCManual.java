@@ -10,12 +10,6 @@ import net.minecraft.util.ResourceLocation;
 
 import java.io.IOException;
 
-/**
- * This is an example of ModularGuiScreen
- * Send /eoktestscreen command in the game to open this interface
- *
- * @see ModularGuiScreen
- */
 public class GuiEOCManual extends ModularGuiScreen {
 
     private final GuiControl.Button pageUp;

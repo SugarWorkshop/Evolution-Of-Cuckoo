@@ -24,7 +24,7 @@ final class Page {
             try {
                 element.draw(currentX, currentY, renderer);
             } catch (Exception e) {
-                renderer.error(I18n.format("eok.manual.error.render_error"));
+                renderer.error(I18n.format("eoc.manual.error.render_error"));
                 renderer.error(e.toString());
                 e.printStackTrace();
                 Minecraft.getMinecraft().player.closeScreen();
