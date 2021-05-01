@@ -9,6 +9,8 @@ buildscript {
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
 
 def versionProperties = new Properties();
 versionProperties.load(new StringReader(project.file('version.properties').getText('UTF-8')))
@@ -16,10 +18,7 @@ version = versionProperties.getOrDefault('modVersion', 'unknown')
 group = "com.github.mo_ink.eoc"
 archivesBaseName = "eoc"
 
-sourceCompatibility = targetCompatibility = '1.8' 
-compileJava {
-    sourceCompatibility = targetCompatibility = '1.8'
-}
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
     version = "1.12.2-14.23.5.2847"
