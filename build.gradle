@@ -32,7 +32,7 @@ minecraft {
 }
 
 dependencies {
-    compile 'com.github.zi_jing.cuckoolib:CuckooLib:1.0.4'
+    compile 'com.github.zi_jing.cuckoolib:CuckooLib:1.0.5'
 }
 
 processResources {

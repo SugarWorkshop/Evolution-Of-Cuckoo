@@ -19,11 +19,13 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod(modid = EOC.MODID, name = EOC.NAME, version = EOC.VERSION)
+@Mod(modid = EOC.MODID, name = EOC.NAME, version = EOC.VERSION, dependencies = EOC.DEPENDENCIES)
 public class EOC {
     public static final String MODID = "eoc";
     public static final String NAME = "Evolution Of Cuckoo";
     public static final String VERSION = "@EOCVERSION@";
+    public static final String DEPENDENCIES = "required-after:cuckoolib";
+
     @Mod.Instance
     public static EOC instance;
     @SidedProxy(clientSide = "com.github.mo_ink.eoc.ClientProxy", serverSide = "com.github.mo_ink.eoc.CommonProxy")
