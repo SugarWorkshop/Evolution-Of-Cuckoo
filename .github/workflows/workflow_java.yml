@@ -33,6 +33,9 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./CuckooLib-1.12/gradlew && chmod +x ./EOC-1.12/gradlew
 
+      - name: CI Setup
+        run: cd ./EOC-1.12/ && ./gradlew setupCIWorkspace
+
       - name: Build
         run: cd ./EOC-1.12/ && ./gradlew build
 
