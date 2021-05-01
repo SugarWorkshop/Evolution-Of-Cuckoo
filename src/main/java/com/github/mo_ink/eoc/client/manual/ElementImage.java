@@ -21,7 +21,7 @@ class ElementImage extends Element {
         BufferedImage orgImage = TextureUtil.readBufferedImage(Minecraft.getMinecraft().getResourceManager().getResource(location).getInputStream());
         this.width = orgImage.getWidth();
         this.height = orgImage.getHeight();
-        Vector2i size = new Vector2i(width,height);
+        Vector2i size = new Vector2i(width, height);
         size.scaleToSize(windowWidth, windowHeight);
         this.realWidth = size.getX();
         this.realHeight = size.getY();
