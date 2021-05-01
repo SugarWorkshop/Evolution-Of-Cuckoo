@@ -16,7 +16,7 @@ def versionProperties = new Properties();
 versionProperties.load(new StringReader(project.file('version.properties').getText('UTF-8')))
 version = versionProperties.getOrDefault('modVersion', 'unknown')
 group = "com.github.mo_ink.eoc"
-archivesBaseName = "eoc"
+archivesBaseName = "EOC"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
