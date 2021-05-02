@@ -39,7 +39,7 @@ EOC 目前由 **Cuckoo Dev Team** 维护，目前处于非常早期的版本；E
 2. 前往 **[Release 页面](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)**
 3. 单击你想游玩的版本
 4. 下载 **Assets** 中的 `EOC-Build.tar` 并解压
-5. 将不带 `-sources` 字样的 `.jar` 文件复制到 `.minecraft\mods` 文件夹
+5. 将不带 `-sources` 和 `-javadoc` 字样的所有 `.jar` 文件复制到 `.minecraft\mods` 文件夹
 
 # 开发者指南
 

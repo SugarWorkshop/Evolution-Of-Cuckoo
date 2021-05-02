@@ -40,7 +40,7 @@ EOC is maintained by Cuckoo Dev Team and the mod is still under development. The
 2. Goto **[Release Page](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)**.
 3. Choose the version you want to play.
 4. Download `EOC-Build.tar` in **Assets** and extract it.
-5. Copy the `.jar` file without `-sources` to `.minecraft\mods`
+5. Copy all the `.jar` files without `-sources` and `-javadoc` to `.minecraft\mods`
 
 # Development Guide
 
