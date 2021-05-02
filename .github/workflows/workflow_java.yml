@@ -33,17 +33,14 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./CuckooLib-1.12/gradlew && chmod +x ./EOC-1.12/gradlew
 
-      - name: CI Setup For CuckooLib
-        run: cd ./CuckooLib-1.12/ && ./gradlew setupCIWorkspace
-
-      - name: Build For CuckooLib
-        run: cd ./CuckooLib-1.12/ && ./gradlew build
-
-      - name: CI Setup For EOC
+      - name: CI Setup
         run: cd ./EOC-1.12/ && ./gradlew setupCIWorkspace
 
       - name: Build For EOC
         run: cd ./EOC-1.12/ && ./gradlew build
+
+      - name: Build For CuckooLib
+        run: cd ./CuckooLib-1.12/ && ./gradlew build
 
       - uses: actions/upload-artifact@v2
         with:
