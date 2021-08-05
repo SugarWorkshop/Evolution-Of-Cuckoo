@@ -1,7 +1,5 @@
 package com.github.mo_ink.eoc;
 
-import com.github.mo_ink.eoc.network.PacketGuiScreen;
-import com.github.mo_ink.eoc.network.PacketTestGuiScreen;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -51,8 +49,6 @@ public class EOC {
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
         network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
-        network.registerMessage(new PacketTestGuiScreen.Handler(), PacketTestGuiScreen.class, 0, Side.CLIENT);
-        network.registerMessage(new PacketGuiScreen.Handler(), PacketGuiScreen.class, 1, Side.CLIENT);
     }
 
     @EventHandler
