@@ -15,23 +15,26 @@
 - [模组基本信息](#模组基本信息)
 - [如何游玩](#如何游玩)
 - [开发者指南](#开发者指南)
-  - [如何构建](#如何构建)
-  - [与 CuckooLib 协同开发](#与-cuckoolib-协同开发)
+    - [如何构建](#如何构建)
+    - [与 CuckooLib 协同开发](#与-cuckoolib-协同开发)
 - [特别鸣谢](#特别鸣谢)
 
 # 模组介绍
 
-**Cuckoo Dev Team**，是一个 Minecraft Mod 开发团队，团队成员们**成绩优越、品德高尚、乐于助人、和蔼可亲、人见人爱**，为团队做出了**莫大贡献**，所以团队的一名成员（ [@SugarMGP](https://github.com/SugarMGP) ）决定编写一个模组，以此**纪念团队和感恩成员们的高尚道德情操**，让每一个 Minecraft 玩家都能感受到**鸽子的魅力**。
+**Cuckoo Dev Team**，是一个 Minecraft Mod 开发团队，团队成员们**成绩优越、品德高尚、乐于助人、和蔼可亲、人见人爱**，为团队做出了**莫大贡献**
+，所以团队的一名成员（ [@SugarMGP](https://github.com/SugarMGP) ）决定编写一个模组，以此**纪念团队和感恩成员们的高尚道德情操**，让每一个 Minecraft 玩家都能感受到**鸽子的魅力**。
 
 # 开发状态
 
-EOC 目前由 **Cuckoo Dev Team** 维护，目前处于非常早期的版本；EOC 目前还没有发布公开的正式版本。如果你对这个模组有意见或建议，你可以直接联系我们或者[提出 Issue](https://github.com/SugarMGP/Evolution-Of-Cuckoo/issues)。
+EOC 目前由 **Cuckoo Dev Team** 维护，目前处于非常早期的版本；EOC
+目前还没有发布公开的正式版本。如果你对这个模组有意见或建议，你可以直接联系我们或者[提出 Issue](https://github.com/SugarMGP/Evolution-Of-Cuckoo/issues)。
 
 # 模组基本信息
 
 - Minecraft 版本: 1.12.2
 - Forge 版本: 14.23.5.2847
-- Mod 版本: [![Latest](https://img.shields.io/github/v/release/SugarMGP/Evolution-Of-Cuckoo?include_prereleases)](https://github.com/SugarMGP/Evolution-Of-Cuckoo/releases)
+- Mod
+  版本: [![Latest](https://img.shields.io/github/v/release/SugarMGP/Evolution-Of-Cuckoo?include_prereleases)](https://github.com/SugarMGP/Evolution-Of-Cuckoo/releases)
 
 # 如何游玩
 
@@ -63,7 +66,8 @@ gradlew build
 
 [CuckooLib](https://github.com/zi-jing/CuckooLib) 是 EOC 项目的一个依赖库，包含了 Cuckoo Dev Team 需要用到的大量可重用代码。
 
-如果你想更好地调试 EOC 项目或利用 EOC 项目来调试 CuckooLib，你可以 Clone [CuckooLib 仓库](https://github.com/zi-jing/CuckooLib)，然后在 EOC 项目根目录创建文件`gradle.properties`，添加以下内容：
+如果你想更好地调试 EOC 项目或利用 EOC 项目来调试 CuckooLib，你可以 Clone [CuckooLib 仓库](https://github.com/zi-jing/CuckooLib)，然后在 EOC
+项目根目录创建文件`gradle.properties`，添加以下内容：
 
 ```properties
 CuckooLibIncludeBuildPath=../CuckooLib

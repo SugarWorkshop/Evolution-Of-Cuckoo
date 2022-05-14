@@ -16,7 +16,7 @@ apply plugin: 'idea'
 def versionProperties = new Properties();
 versionProperties.load(new StringReader(project.file('version.properties').getText('UTF-8')))
 version = versionProperties.getOrDefault('modVersion', 'unknown')
-group = "com.github.mo_ink.eoc"
+group = "com.github.sugarmgp.eoc"
 archivesBaseName = "EOC"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
@@ -26,7 +26,7 @@ minecraft {
     runDir = "run"
 
     mappings = "snapshot_20171003"
-    
+
     // 替换EOC版本号
     replaceIn 'EOC.java'
     replace '@EOCVERSION@', project.version
@@ -42,16 +42,16 @@ processResources {
 
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+
+        expand 'version': project.version, 'mcversion': project.minecraft.version
     }
-        
+
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
 }
 
-repositories{
+repositories {
     maven {
         name = 'AliyunMaven'
         url = 'http://maven.aliyun.com/nexus/content/groups/public'
@@ -61,6 +61,6 @@ repositories{
 // 强制UTF-8构建
 compileJava.options.encoding = 'UTF-8'
 tasks.withType(JavaCompile) {
-	options.encoding = 'UTF-8'
+    options.encoding = 'UTF-8'
 }
 

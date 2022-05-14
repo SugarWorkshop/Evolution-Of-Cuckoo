@@ -3,7 +3,7 @@
 
 name: EOC Snapshot Build
 
-on: [push]
+on: [ push ]
 
 jobs:
   build:
