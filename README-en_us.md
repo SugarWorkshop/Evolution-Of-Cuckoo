@@ -21,23 +21,23 @@ This is the development repository of the Minecraft mod The Evolution Of Cuckoo 
 
 # Introduction
 
-**Cuckoo Dev Team** is a development team of Minecraft Mod. The members are **friendly and morality**, they also **has good grades in mod development**. So one of the members, [@Mo_Ink](https://github.com/Mo-Ink), decides to develop a mod to **commemorate the noble moral sentiments of the team and its members**.
+**Cuckoo Dev Team** is a development team of Minecraft Mod. The members are **friendly and morality**, they also **has good grades in mod development**. So one of the members, [@SugarMGP](https://github.com/SugarMGP), decides to develop a mod to **commemorate the noble moral sentiments of the team and its members**.
 
 # About Development
 
-EOC is maintained by Cuckoo Dev Team and the mod is still under development. There is no open-release version of this mod for now. If you have any issues or suggestions on the mod, you can directly contact us or [start an issue](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/issues).
+EOC is maintained by Cuckoo Dev Team and the mod is still under development. There is no open-release version of this mod for now. If you have any issues or suggestions on the mod, you can directly contact us or [start an issue](https://github.com/SugarMGP/Evolution-Of-Cuckoo/issues).
 
 # Features
 
 - Minecraft Version: 1.12.2
 - Forge Version: 14.23.5.2847
-- Latest Stable Version: [![Latest-Stable](https://img.shields.io/github/v/release/Mo-Ink/Evolution-Of-Cuckoo)](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)
-- Latest Version: [![Latest](https://img.shields.io/github/v/release/Mo-Ink/Evolution-Of-Cuckoo?include_prereleases)](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)
+- Latest Stable Version: [![Latest-Stable](https://img.shields.io/github/v/release/SugarMGP/Evolution-Of-Cuckoo)](https://github.com/SugarMGP/Evolution-Of-Cuckoo/releases)
+- Latest Version: [![Latest](https://img.shields.io/github/v/release/SugarMGP/Evolution-Of-Cuckoo?include_prereleases)](https://github.com/SugarMGP/Evolution-Of-Cuckoo/releases)
 
 # How to Play
 
 1. Make sure that you have already installed **Minecraft 1.12.2** and **Forge 14.23.5.2847**.
-2. Goto **[Release Page](https://github.com/Mo-Ink/Evolution-Of-Cuckoo/releases)**.
+2. Goto **[Release Page](https://github.com/SugarMGP/Evolution-Of-Cuckoo/releases)**.
 3. Choose the version you want to play.
 4. Download `EOC-Build.tar` in **Assets** and extract it.
 5. Copy all the `.jar` files without `-sources` and `-javadoc` to `.minecraft\mods`
