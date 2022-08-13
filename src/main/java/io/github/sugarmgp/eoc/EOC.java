@@ -1,7 +1,9 @@
 package io.github.sugarmgp.eoc;
 
+import io.github.sugarmgp.eoc.handler.ItemHandler;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,5 +16,9 @@ public class EOC {
 
     public static Logger getLogger() {
         return LOGGER;
+    }
+
+    public EOC(){
+        ItemHandler.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 }
