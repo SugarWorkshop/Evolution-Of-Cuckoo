@@ -1,5 +1,6 @@
 package io.github.sugarmgp.eoc;
 
+import io.github.sugarmgp.eoc.handler.ItemHandler;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
@@ -11,6 +12,6 @@ public class EOCItemGroup extends ItemGroup {
 
     @Override
     public ItemStack createIcon() {
-        return null;
+        return new ItemStack(ItemHandler.itemCuckooIngot.get());
     }
 }
