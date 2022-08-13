@@ -12,6 +12,7 @@ public class ItemFunnyApple extends Item {
             .hunger(5)
             .effect(() -> new EffectInstance(Effects.REGENERATION, 160, 2), 1)
             .effect(() -> new EffectInstance(Effects.HEALTH_BOOST, 400, 1), 1)
+            .setAlwaysEdible()
             .build();
 
     public ItemFunnyApple() {
