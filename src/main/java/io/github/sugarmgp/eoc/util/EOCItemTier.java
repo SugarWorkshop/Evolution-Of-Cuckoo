@@ -8,7 +8,7 @@ import net.minecraftforge.fml.RegistryObject;
 
 public enum EOCItemTier implements IItemTier {
 
-    CUCKOO(3, 850, 7.5F, 4.5F, 8, ItemHandler.itemCuckooIngot);
+    CUCKOO(3, 150, 10.0F, 2.5F, 16, ItemHandler.itemCuckooIngot);
 
     private final int harvestLevel;
     private final int maxUses;

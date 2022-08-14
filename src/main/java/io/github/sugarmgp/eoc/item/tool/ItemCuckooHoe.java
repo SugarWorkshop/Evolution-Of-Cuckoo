@@ -8,7 +8,7 @@ public class ItemCuckooHoe extends HoeItem implements ICuckooTool {
     public ItemCuckooHoe() {
         super(
                 EOCItemTier.CUCKOO,
-                -3,
+                -2,
                 0.0F,
                 new Properties().group(EOC.ITEMGROUP)
         );
