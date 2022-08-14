@@ -8,7 +8,7 @@ public class ItemCuckooAxe extends AxeItem implements ICuckooTool {
     public ItemCuckooAxe() {
         super(
                 EOCItemTier.CUCKOO,
-                5.5F,
+                5.0F,
                 -3.0F,
                 new Properties().group(EOC.ITEMGROUP)
         );
