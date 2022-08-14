@@ -1,6 +1,11 @@
 {
-  "item.eoc.cuckoo_ingot": "鸽子锭",
+  "item.eoc.cuckoo_ingot": "咕咕锭",
   "item.eoc.funny_apple": "滑稽果",
   "item.eoc.funny_ingot": "滑稽锭",
+  "item.eoc.cuckoo_axe": "咕咕斧",
+  "item.eoc.cuckoo_pickaxe": "咕咕镐",
+  "item.eoc.cuckoo_sword": "咕咕剑",
+  "item.eoc.cuckoo_hoe": "咕咕锄",
+  "item.eoc.cuckoo_shovel": "咕咕铲",
   "itemGroup.eoc_group": "Evolution Of Cuckoo"
 }

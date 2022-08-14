@@ -2,5 +2,10 @@
   "item.eoc.cuckoo_ingot": "Cuckoo Ingot",
   "item.eoc.funny_apple": "Funny Apple",
   "item.eoc.funny_ingot": "Funny Ingot",
+  "item.eoc.cuckoo_axe": "Cuckoo Axe",
+  "item.eoc.cuckoo_pickaxe": "Cuckoo Pickaxe",
+  "item.eoc.cuckoo_sword": "Cuckoo Sword",
+  "item.eoc.cuckoo_hoe": "Cuckoo Hoe",
+  "item.eoc.cuckoo_shovel": "Cuckoo Shovel",
   "itemGroup.eoc_group": "Evolution Of Cuckoo"
 }
