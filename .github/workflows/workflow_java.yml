@@ -30,7 +30,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: EOC snapshot
+          name: EOC Snapshot
           path: ./EOC-1.16/build/libs
 
       - name: Package Release
