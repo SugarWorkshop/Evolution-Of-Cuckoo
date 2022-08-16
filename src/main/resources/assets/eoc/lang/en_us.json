@@ -11,9 +11,9 @@
   "item.eoc.funny_chestplate": "Funny Chestplate",
   "item.eoc.funny_leggings": "Funny Leggings",
   "item.eoc.funny_boots": "Funny Boots",
-  "item.eoc.funny_ore": "Funny Ore",
-  "item.eoc.cuckoo_ore": "Cuckoo Ore",
-  "item.eoc.funny_block": "Funny Block",
-  "item.eoc.cuckoo_block": "Cuckoo Block",
+  "block.eoc.funny_ore": "Funny Ore",
+  "block.eoc.cuckoo_ore": "Cuckoo Ore",
+  "block.eoc.funny_block": "Funny Block",
+  "block.eoc.cuckoo_block": "Cuckoo Block",
   "itemGroup.eoc_group": "Evolution Of Cuckoo"
 }
