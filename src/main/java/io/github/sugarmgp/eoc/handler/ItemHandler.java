@@ -39,4 +39,10 @@ public class ItemHandler {
     public static RegistryObject<Item> itemCuckooOre = ITEMS.register("cuckoo_ore", () -> {
         return new BlockItem(BlockHandler.blockCuckooOre.get(), new Item.Properties().group(EOC.ITEMGROUP));
     });
+    public static RegistryObject<Item> itemFunnyBlock = ITEMS.register("funny_block", () -> {
+        return new BlockItem(BlockHandler.blockFunnyBlock.get(), new Item.Properties().group(EOC.ITEMGROUP));
+    });
+    public static RegistryObject<Item> itemCuckooBlock = ITEMS.register("cuckoo_block", () -> {
+        return new BlockItem(BlockHandler.blockCuckooBlock.get(), new Item.Properties().group(EOC.ITEMGROUP));
+    });
 }

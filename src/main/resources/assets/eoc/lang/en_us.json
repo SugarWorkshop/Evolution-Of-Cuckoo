@@ -13,5 +13,7 @@
   "item.eoc.funny_boots": "Funny Boots",
   "item.eoc.funny_ore": "Funny Ore",
   "item.eoc.cuckoo_ore": "Cuckoo Ore",
+  "item.eoc.funny_block": "Funny Block",
+  "item.eoc.cuckoo_block": "Cuckoo Block",
   "itemGroup.eoc_group": "Evolution Of Cuckoo"
 }
