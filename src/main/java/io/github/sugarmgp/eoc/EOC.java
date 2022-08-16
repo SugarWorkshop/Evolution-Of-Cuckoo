@@ -1,5 +1,6 @@
 package io.github.sugarmgp.eoc;
 
+import io.github.sugarmgp.eoc.handler.BlockHandler;
 import io.github.sugarmgp.eoc.handler.ItemHandler;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.common.Mod;
@@ -12,10 +13,11 @@ public class EOC {
 
     public static final ItemGroup ITEMGROUP = new EOCItemGroup();
     public static final String MODID = "eoc";
-    private static final Logger LOGGER = LogManager.getLogger("EvolutionOfCuckoo");
+    private static final Logger LOGGER = LogManager.getLogger("Evolution Of Cuckoo");
 
     public EOC() {
         ItemHandler.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        BlockHandler.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     public static Logger getLogger() {

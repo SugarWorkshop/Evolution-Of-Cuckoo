@@ -5,6 +5,6 @@ import net.minecraft.item.Item;
 
 public class ItemFunnyIngot extends Item {
     public ItemFunnyIngot() {
-        super(new Item.Properties().group(EOC.ITEMGROUP));
+        super(new Properties().group(EOC.ITEMGROUP));
     }
 }

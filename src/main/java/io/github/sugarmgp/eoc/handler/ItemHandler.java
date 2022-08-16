@@ -9,6 +9,7 @@ import io.github.sugarmgp.eoc.item.armor.ItemFunnyChestplate;
 import io.github.sugarmgp.eoc.item.armor.ItemFunnyHelmet;
 import io.github.sugarmgp.eoc.item.armor.ItemFunnyLeggings;
 import io.github.sugarmgp.eoc.item.tool.*;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -31,4 +32,11 @@ public class ItemHandler {
     public static final RegistryObject<Item> itemFunnyChestplate = ITEMS.register("funny_chestplate", ItemFunnyChestplate::new);
     public static final RegistryObject<Item> itemFunnyHelmet = ITEMS.register("funny_helmet", ItemFunnyHelmet::new);
     public static final RegistryObject<Item> itemFunnyLeggings = ITEMS.register("funny_leggings", ItemFunnyLeggings::new);
+
+    public static RegistryObject<Item> itemFunnyOre = ITEMS.register("funny_ore", () -> {
+        return new BlockItem(BlockHandler.blockFunnyOre.get(), new Item.Properties().group(EOC.ITEMGROUP));
+    });
+    public static RegistryObject<Item> itemCuckooOre = ITEMS.register("cuckoo_ore", () -> {
+        return new BlockItem(BlockHandler.blockCuckooOre.get(), new Item.Properties().group(EOC.ITEMGROUP));
+    });
 }
