@@ -25,7 +25,7 @@ println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getPro
 
 repositories {
     if (System.getenv().containsKey("GITHUB_ACTIONS") || System.getenv().containsKey("CI")) {
-        println 'Detected Github Actions environment, Aliyun Maven will be disabled'
+        println 'Detected Github Actions environment, Aliyun Maven will be disabled.'
     } else {
         maven {
             name = 'AliyunMaven'
