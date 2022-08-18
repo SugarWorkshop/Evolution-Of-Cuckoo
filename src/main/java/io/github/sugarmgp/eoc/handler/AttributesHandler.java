@@ -11,7 +11,7 @@ public class AttributesHandler {
     @SubscribeEvent
     public static void setupAttributes(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            GlobalEntityTypeAttributes.put(EntityTypeHandler.entitySugarMGP.get(), EntitySugarMGP.createAttributes().create());
+            GlobalEntityTypeAttributes.put(EntityTypeHandler.entitySugarMGP.get(), EntitySugarMGP.createDefaultAttributes().create());
         });
     }
 }
