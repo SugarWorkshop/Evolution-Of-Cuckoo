@@ -5,14 +5,15 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.world.World;
 
 public class ItemFunnyApple extends Item {
     private static final Food food = new Food.Builder()
-            .saturation(0.4f)
-            .hunger(5)
+            .saturation(0.8f)
+            .hunger(3)
             .effect(() -> new EffectInstance(Effects.REGENERATION, 70, 4), 1)
             .setAlwaysEdible()
             .build();
