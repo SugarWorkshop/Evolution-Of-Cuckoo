@@ -58,14 +58,14 @@ public class EntityNPCBase extends TameableEntity {
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.625D, true));
-        this.goalSelector.addGoal(3, new FollowOwnerGoal(this, 0.525D, 4, 10, true));
+        this.goalSelector.addGoal(3, new FollowOwnerGoal(this, 0.525D, 8, 2, true));
         this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 0.31D));
-        this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 5));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setCallsForHelp());
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, LivingEntity.class, 6, true, false, new Predicate<LivingEntity>() {
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, LivingEntity.class, 7, true, false, new Predicate<LivingEntity>() {
             public boolean apply(@Nullable LivingEntity entity) {
                 return entity instanceof IMob && !entity.isInvisible();
             }
