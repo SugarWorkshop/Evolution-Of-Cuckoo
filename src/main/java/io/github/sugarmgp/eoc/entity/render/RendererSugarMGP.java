@@ -5,8 +5,8 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderSugarMGP extends RenderNPCBase {
-    public RenderSugarMGP(EntityRendererManager managerIn) {
+public class RendererSugarMGP extends RendererNPCBase {
+    public RendererSugarMGP(EntityRendererManager managerIn) {
         super(managerIn);
     }
 
