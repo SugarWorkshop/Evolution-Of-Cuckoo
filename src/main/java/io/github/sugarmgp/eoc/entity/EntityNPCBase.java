@@ -14,13 +14,14 @@ import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.GhastEntity;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
@@ -56,15 +57,15 @@ public class EntityNPCBase extends TameableEntity {
 
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.65D, true));
-        this.goalSelector.addGoal(3, new FollowOwnerGoal(this, 0.525D, 6F, 12F, true));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.625D, true));
+        this.goalSelector.addGoal(3, new FollowOwnerGoal(this, 0.525D, 4, 10, true));
         this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 0.31D));
         this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setCallsForHelp());
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, true, false, new Predicate<LivingEntity>() {
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, LivingEntity.class, 6, true, false, new Predicate<LivingEntity>() {
             public boolean apply(@Nullable LivingEntity entity) {
                 return entity instanceof IMob && !entity.isInvisible();
             }
@@ -124,14 +125,27 @@ public class EntityNPCBase extends TameableEntity {
                 return !entity.isTamed() || entity.getOwner() != owner;
             } else if (target instanceof PlayerEntity && owner instanceof PlayerEntity && !((PlayerEntity) owner).canAttackPlayer((PlayerEntity) target)) {
                 return false;
-            } else if (target instanceof AbstractHorseEntity && ((AbstractHorseEntity) target).isTame()) {
-                return false;
             } else {
                 return !(target instanceof TameableEntity) || !((TameableEntity) target).isTamed();
             }
         } else {
             return false;
         }
+    }
+
+    @Override
+    public void livingTick() {
+        this.updateArmSwingProgress();
+
+        BasicParticleType particleType = this.getEnumNPCLevel().getParticleType();
+        int particleTimes = this.getEnumNPCLevel().getParticleTimes();
+        this.playEffect(particleType, this.getPosX(), this.getPosY() - 1.3F, this.getPosZ(), particleTimes);
+
+        int regenerationLevel = this.getEnumNPCLevel().getRegenerationLevel();
+        if (!this.isPotionActive(Effects.REGENERATION) && regenerationLevel >= 0)
+            this.addPotionEffect(new EffectInstance(Effects.REGENERATION, 72000, regenerationLevel, false, false));
+
+        super.livingTick();
     }
 
     protected void setEquipmentBased() {
