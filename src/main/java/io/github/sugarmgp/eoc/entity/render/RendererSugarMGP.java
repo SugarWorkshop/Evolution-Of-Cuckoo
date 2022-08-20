@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RendererSugarMGP extends RendererNPCBase {
     public RendererSugarMGP(EntityRendererManager managerIn) {
-        super(managerIn);
+        super(managerIn, false);
     }
 
     @Override

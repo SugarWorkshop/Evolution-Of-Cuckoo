@@ -15,8 +15,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class RendererNPCBase extends LivingRenderer {
-    public RendererNPCBase(EntityRendererManager managerIn) {
-        super(managerIn, new ModelNPC(0.0F, false), 0.5F);
+    public RendererNPCBase(EntityRendererManager managerIn, Boolean smallArmIn) {
+        super(managerIn, new ModelNPC(0.0F, smallArmIn), 0.5F);
         this.addLayer(new BipedArmorLayer<>(this, new BipedModel(0.5F), new BipedModel(1.0F)));
         this.addLayer(new HeldItemLayer<>(this));
         this.addLayer(new ArrowLayer<>(this));

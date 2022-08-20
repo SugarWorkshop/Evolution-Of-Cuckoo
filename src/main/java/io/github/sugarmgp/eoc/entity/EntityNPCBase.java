@@ -85,7 +85,7 @@ public class EntityNPCBase extends TameableEntity {
                     }
                     int heal = item.getFood().getHealing();
                     this.heal(heal);
-                    this.playEffect(ParticleTypes.HEART, this.getPosX(), this.getPosY() + 0.05, this.getPosZ(), heal);
+                    this.playEffect(ParticleTypes.HEART, this.getPosX(), this.getPosY() + 0.035, this.getPosZ(), 4);
                 }
             } else {
                 if (!player.isCreative()) {
@@ -96,7 +96,7 @@ public class EntityNPCBase extends TameableEntity {
                         this.setTamedBy(player);
                         this.setAttackTarget(null);
                     } else {
-                        this.playEffect(ParticleTypes.HAPPY_VILLAGER, this.getPosX(), this.getPosY() + 0.08F, this.getPosZ(), 10);
+                        this.playEffect(ParticleTypes.HAPPY_VILLAGER, this.getPosX(), this.getPosY() + 0.035, this.getPosZ(), 8);
                     }
                 }
             }
@@ -106,9 +106,9 @@ public class EntityNPCBase extends TameableEntity {
 
     protected void playEffect(BasicParticleType particleTypes, Double posX, Double posY, Double posZ, int times) {
         for (int i = 1; i <= times; ++i) {
-            double d0 = this.rand.nextGaussian() * 0.015D;
-            double d1 = this.rand.nextGaussian() * 0.015D;
-            double d2 = this.rand.nextGaussian() * 0.015D;
+            double d0 = this.rand.nextGaussian() * 0.015;
+            double d1 = this.rand.nextGaussian() * 0.015;
+            double d2 = this.rand.nextGaussian() * 0.015;
             this.world.addParticle(particleTypes,
                     posX + this.rand.nextDouble() * this.getWidth() * 1.5 - this.getWidth(),
                     posY + 0.4 + this.rand.nextDouble() * this.getHeight(),
@@ -138,12 +138,14 @@ public class EntityNPCBase extends TameableEntity {
         this.updateArmSwingProgress();
 
         BasicParticleType particleType = this.getEnumNPCLevel().getParticleType();
-        int particleTimes = this.getEnumNPCLevel().getParticleTimes();
-        this.playEffect(particleType, this.getPosX(), this.getPosY() - 1.3F, this.getPosZ(), particleTimes);
+        if (this.getMotion().x != 0.0D || this.getMotion().z != 0.0D) {
+            this.playEffect(particleType, this.getPosX(), this.getPosY() - 1.1, this.getPosZ(), 1);
+        }
 
         int regenerationLevel = this.getEnumNPCLevel().getRegenerationLevel();
-        if (!this.isPotionActive(Effects.REGENERATION) && regenerationLevel >= 0)
+        if (!this.isPotionActive(Effects.REGENERATION) && regenerationLevel >= 0) {
             this.addPotionEffect(new EffectInstance(Effects.REGENERATION, 72000, regenerationLevel, false, false));
+        }
 
         super.livingTick();
     }
