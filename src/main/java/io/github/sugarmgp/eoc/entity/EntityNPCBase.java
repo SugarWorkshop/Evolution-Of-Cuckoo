@@ -85,7 +85,7 @@ public class EntityNPCBase extends TameableEntity {
                     }
                     int heal = item.getFood().getHealing();
                     this.heal(heal);
-                    this.playEffect(ParticleTypes.HEART, this.getPosX(), this.getPosY() + 0.035, this.getPosZ(), 4);
+                    this.playEffect(ParticleTypes.HEART, this.getPosX(), this.getPosY() + 0.425, this.getPosZ(), 4);
                 }
             } else {
                 if (!player.isCreative()) {
@@ -96,7 +96,7 @@ public class EntityNPCBase extends TameableEntity {
                         this.setTamedBy(player);
                         this.setAttackTarget(null);
                     } else {
-                        this.playEffect(ParticleTypes.HAPPY_VILLAGER, this.getPosX(), this.getPosY() + 0.035, this.getPosZ(), 8);
+                        this.playEffect(ParticleTypes.HAPPY_VILLAGER, this.getPosX(), this.getPosY() + 0.425, this.getPosZ(), 8);
                     }
                 }
             }
@@ -111,7 +111,7 @@ public class EntityNPCBase extends TameableEntity {
             double d2 = this.rand.nextGaussian() * 0.015;
             this.world.addParticle(particleTypes,
                     posX + this.rand.nextDouble() * this.getWidth() * 1.5 - this.getWidth(),
-                    posY + 0.4 + this.rand.nextDouble() * this.getHeight(),
+                    posY + this.rand.nextDouble() * this.getHeight() * 0.8,
                     posZ + this.rand.nextDouble() * this.getWidth() * 1.5 - this.getWidth(),
                     d0, d1, d2
             );
@@ -139,7 +139,7 @@ public class EntityNPCBase extends TameableEntity {
 
         BasicParticleType particleType = this.getEnumNPCLevel().getParticleType();
         if (this.getMotion().x != 0.0D || this.getMotion().z != 0.0D) {
-            this.playEffect(particleType, this.getPosX(), this.getPosY() - 1.1, this.getPosZ(), 1);
+            this.playEffect(particleType, this.getPosX(), this.getPosY() - 0.45, this.getPosZ(), 1);
         }
 
         int regenerationLevel = this.getEnumNPCLevel().getRegenerationLevel();

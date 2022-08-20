@@ -7,7 +7,7 @@ import net.minecraft.particles.ParticleTypes;
 public enum EnumNPCLevel {
     A("eoc.npc_level.a", 25, 28.0D, 2.0D, 0.8D, ParticleTypes.FLAME, 2),
     B("eoc.npc_level.b", 20, 24.0D, 1.5D, 0.75D, ParticleTypes.INSTANT_EFFECT, 1),
-    C("eoc.npc_level.c", 15, 20.0D, 1.0D, 0.7D, ParticleTypes.CLOUD, 0);
+    C("eoc.npc_level.c", 15, 20.0D, 1.0D, 0.7D, ParticleTypes.SMOKE, 0);
 
     private final String descriptionTranslationKey;
     private final int experienceValue;
