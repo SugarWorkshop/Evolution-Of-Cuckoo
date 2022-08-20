@@ -1,7 +1,6 @@
 package io.github.sugarmgp.eoc.entity.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GlStateManager;
 import io.github.sugarmgp.eoc.entity.model.ModelNPC;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.LivingRenderer;
@@ -26,6 +25,6 @@ public abstract class RendererNPCBase extends LivingRenderer {
 
     @Override
     protected void preRenderCallback(LivingEntity livingEntityIn, MatrixStack matrixStackIn, float partialTickTime) {
-        GlStateManager.scaled(0.9375F, 0.9375F, 0.9375F);
+        matrixStackIn.scale(0.9375F, 0.9375F, 0.9375F);
     }
 }
