@@ -11,6 +11,8 @@ import io.github.sugarmgp.eoc.item.armor.ItemFunnyLeggings;
 import io.github.sugarmgp.eoc.item.tool.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.SpawnEggItem;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -32,6 +34,8 @@ public class ItemHandler {
     public static final RegistryObject<Item> itemFunnyChestplate = ITEMS.register("funny_chestplate", ItemFunnyChestplate::new);
     public static final RegistryObject<Item> itemFunnyHelmet = ITEMS.register("funny_helmet", ItemFunnyHelmet::new);
     public static final RegistryObject<Item> itemFunnyLeggings = ITEMS.register("funny_leggings", ItemFunnyLeggings::new);
+
+    public static final RegistryObject<SpawnEggItem> itemSugarMGPSpawnEgg = ITEMS.register("sugarmgp_spawn_egg", () -> new ForgeSpawnEggItem(EntityHandler.entitySugarMGP, 0xB3FFFF, 0x4D94FF, new Item.Properties().group(EOC.ITEMGROUP)));
 
     public static RegistryObject<Item> itemFunnyOre = ITEMS.register("funny_ore", () -> {
         return new BlockItem(BlockHandler.blockFunnyOre.get(), new Item.Properties().group(EOC.ITEMGROUP));
