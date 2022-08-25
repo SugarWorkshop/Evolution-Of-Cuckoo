@@ -3,6 +3,7 @@ package io.github.sugarmgp.eoc.entity;
 import com.google.common.base.Predicate;
 import io.github.sugarmgp.eoc.handler.ItemHandler;
 import io.github.sugarmgp.eoc.util.EnumNPCLevel;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -23,6 +24,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -31,14 +33,12 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class EntityNPCBase extends TameableEntity {
-    private Item mainHandItem;
     private EnumNPCLevel enumNPCLevel;
 
-    public EntityNPCBase(EntityType<? extends TameableEntity> typeIn, World worldIn, Item itemIn, EnumNPCLevel levelIn) {
+    public EntityNPCBase(EntityType<? extends TameableEntity> typeIn, World worldIn) {
         super(typeIn, worldIn);
         this.setTamed(false);
-        this.setEnumNPCLevel(levelIn);
-        this.setItem(itemIn);
+        this.setEnumNPCLevel();
         this.changeAttributes();
     }
 
@@ -49,7 +49,7 @@ public class EntityNPCBase extends TameableEntity {
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 1.0D);
     }
 
-    protected void changeAttributes() {
+    protected void changeAttributes() { //在生成后覆盖属性
         this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.getEnumNPCLevel().getMaxHealth());
         this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(this.getEnumNPCLevel().getAttackDamage());
         this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.getEnumNPCLevel().getMovementSpeed());
@@ -67,7 +67,7 @@ public class EntityNPCBase extends TameableEntity {
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setCallsForHelp());
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, LivingEntity.class, 7, true, false, new Predicate<LivingEntity>() {
             public boolean apply(@Nullable LivingEntity entity) {
-                return entity instanceof IMob && !entity.isInvisible();
+                return entity instanceof IMob && !entity.isInvisible(); //选择怪物进行攻击
             }
         }));
         this.targetSelector.addGoal(5, new ResetAngerGoal(this, true));
@@ -106,7 +106,7 @@ public class EntityNPCBase extends TameableEntity {
 
     protected void playEffect(BasicParticleType particleTypes, Double posX, Double posY, Double posZ, int times) {
         for (int i = 1; i <= times; ++i) {
-            double d0 = this.rand.nextGaussian() * 0.015;
+            double d0 = this.rand.nextGaussian() * 0.015; //白糖自研随机算法
             double d1 = this.rand.nextGaussian() * 0.015;
             double d2 = this.rand.nextGaussian() * 0.015;
             this.world.addParticle(particleTypes,
@@ -118,7 +118,7 @@ public class EntityNPCBase extends TameableEntity {
         }
     }
 
-    public boolean shouldAttackEntity(LivingEntity target, LivingEntity owner) {
+    public boolean shouldAttackEntity(LivingEntity target, LivingEntity owner) { //从WolfEntity修改来的
         if (!(target instanceof CreeperEntity) && !(target instanceof GhastEntity)) {
             if (target instanceof EntityNPCBase) {
                 EntityNPCBase entity = (EntityNPCBase) target;
@@ -138,29 +138,34 @@ public class EntityNPCBase extends TameableEntity {
         this.updateArmSwingProgress();
 
         BasicParticleType particleType = this.getEnumNPCLevel().getParticleType();
-        if (this.getMotion().x != 0.0D || this.getMotion().z != 0.0D) {
+        if (this.getMotion().x != 0.0D || this.getMotion().z != 0.0D) { //在移动时播放粒子效果
             this.playEffect(particleType, this.getPosX(), this.getPosY() - 0.45, this.getPosZ(), 1);
         }
 
         int regenerationLevel = this.getEnumNPCLevel().getRegenerationLevel();
-        if (!this.isPotionActive(Effects.REGENERATION) && regenerationLevel >= 0) {
+        if (!this.isPotionActive(Effects.REGENERATION) && regenerationLevel >= 0) { //给NPC添加生命恢复
             this.addPotionEffect(new EffectInstance(Effects.REGENERATION, 72000, regenerationLevel, false, false));
         }
 
         super.livingTick();
     }
 
-    protected void setEquipmentBased() {
-        this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(mainHandItem));
+    protected void setItem(Item handIn, Item feetIn) {
+        ItemStack hand = new ItemStack(handIn);
+        ItemStack feet = new ItemStack(feetIn);
+        hand.addEnchantment(Enchantments.UNBREAKING, 50);
+        feet.addEnchantment(Enchantments.UNBREAKING, 50);
+        this.setItemStackToSlot(EquipmentSlotType.MAINHAND, hand);
+        this.setItemStackToSlot(EquipmentSlotType.FEET, feet);
     }
 
-    public Item getItem() {
-        return mainHandItem;
-    }
-
-    protected void setItem(Item itemIn) {
-        this.mainHandItem = itemIn;
-        this.setEquipmentBased();
+    @Override
+    protected void spawnDrops(DamageSource damageSourceIn) {
+        ItemStack hand = new ItemStack(this.getEnumNPCLevel().getHand());
+        ItemStack feet = new ItemStack(this.getEnumNPCLevel().getFeet());
+        this.setItemStackToSlot(EquipmentSlotType.MAINHAND, hand); //在掉落时替换成无附魔的物品
+        this.setItemStackToSlot(EquipmentSlotType.FEET, feet);
+        super.spawnDrops(damageSourceIn);
     }
 
     @Override
@@ -172,9 +177,11 @@ public class EntityNPCBase extends TameableEntity {
         return this.enumNPCLevel;
     }
 
-    protected void setEnumNPCLevel(EnumNPCLevel enumNPCLevel) {
-        this.enumNPCLevel = enumNPCLevel;
-        this.experienceValue = enumNPCLevel.getExperienceValue();
+    protected void setEnumNPCLevel() {
+        EnumNPCLevel level = EnumNPCLevel.values()[new Random().nextInt(EnumNPCLevel.values().length)]; //随机选择Level
+        this.enumNPCLevel = level;
+        this.experienceValue = level.getExperienceValue();
+        this.setItem(level.getHand(), level.getFeet());
     }
 
     @Override

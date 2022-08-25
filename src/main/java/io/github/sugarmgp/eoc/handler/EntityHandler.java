@@ -1,7 +1,7 @@
 package io.github.sugarmgp.eoc.handler;
 
 import io.github.sugarmgp.eoc.EOC;
-import io.github.sugarmgp.eoc.entity.EntitySugarMGP;
+import io.github.sugarmgp.eoc.entity.EntityNPCBase;
 import io.github.sugarmgp.eoc.entity.render.RendererSugarMGP;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.entity.EntityClassification;
@@ -21,12 +21,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EntityHandler {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, EOC.MODID);
-    public static final RegistryObject<EntityType<EntitySugarMGP>> entitySugarMGP = ENTITY_TYPES.register("sugarmgp", () -> EntityType.Builder.create(EntitySugarMGP::new, EntityClassification.CREATURE).size(0.6F, 1.8F).build("sugarmgp"));
+    public static final RegistryObject<EntityType<EntityNPCBase>> entitySugarMGP = ENTITY_TYPES.register("sugarmgp", () -> EntityType.Builder.create(EntityNPCBase::new, EntityClassification.CREATURE).size(0.6F, 1.8F).build("sugarmgp"));
 
     @SubscribeEvent
     public static void setupAttributes(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            GlobalEntityTypeAttributes.put(EntityHandler.entitySugarMGP.get(), EntitySugarMGP.createDefaultAttributes().create());
+            GlobalEntityTypeAttributes.put(EntityHandler.entitySugarMGP.get(), EntityNPCBase.createDefaultAttributes().create());
         });
     }
 
