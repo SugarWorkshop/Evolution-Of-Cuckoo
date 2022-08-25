@@ -1,7 +1,7 @@
 package io.github.sugarmgp.eoc;
 
 import io.github.sugarmgp.eoc.handler.BlockHandler;
-import io.github.sugarmgp.eoc.handler.EntityTypeHandler;
+import io.github.sugarmgp.eoc.handler.EntityHandler;
 import io.github.sugarmgp.eoc.handler.ItemHandler;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.common.Mod;
@@ -19,7 +19,7 @@ public class EOC {
     public EOC() {
         ItemHandler.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         BlockHandler.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        EntityTypeHandler.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+        EntityHandler.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     public static Logger getLogger() {
