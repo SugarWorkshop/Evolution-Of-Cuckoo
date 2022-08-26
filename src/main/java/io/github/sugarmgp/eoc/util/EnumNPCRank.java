@@ -1,17 +1,19 @@
 package io.github.sugarmgp.eoc.util;
 
-import net.minecraft.client.resources.I18n;
+import io.github.sugarmgp.eoc.handler.ItemHandler;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
 
-public enum EnumNPCLevel {
-    A("eoc.npc_level.a", 25, 28.0D, 2.0D, 0.8D, ParticleTypes.FLAME, 2, Items.DIAMOND_SWORD, Items.DIAMOND_BOOTS),
-    B("eoc.npc_level.b", 20, 24.0D, 1.5D, 0.75D, ParticleTypes.INSTANT_EFFECT, 1, Items.IRON_SWORD, Items.IRON_BOOTS),
-    C("eoc.npc_level.c", 15, 20.0D, 1.0D, 0.7D, ParticleTypes.SMOKE, 0, Items.STONE_SWORD, Items.CHAINMAIL_BOOTS);
+import java.util.Random;
 
-    private final String descriptionTranslationKey;
+public enum EnumNPCRank {
+    A(1, 25, 28.0D, 2.0D, 0.8D, ParticleTypes.FLAME, 2, Items.NETHERITE_SWORD, Items.NETHERITE_BOOTS),
+    B(2, 20, 24.0D, 1.5D, 0.75D, ParticleTypes.INSTANT_EFFECT, 1, ItemHandler.itemCuckooSword.get(), ItemHandler.itemFunnyBoots.get()),
+    C(3, 15, 20.0D, 1.0D, 0.7D, null, 0, Items.STONE_SWORD, Items.CHAINMAIL_BOOTS);
+
+    private final int key;
     private final int experienceValue;
     private final double maxHealth;
     private final double attackDamage;
@@ -21,8 +23,8 @@ public enum EnumNPCLevel {
     private final Item hand;
     private final Item feet;
 
-    EnumNPCLevel(String descriptionTranslationKey, int experienceValue, double maxHealth, double attackDamage, double movementSpeed, BasicParticleType particleType, int regenerationLevel, Item hand, Item feet) {
-        this.descriptionTranslationKey = descriptionTranslationKey;
+    EnumNPCRank(int key, int experienceValue, double maxHealth, double attackDamage, double movementSpeed, BasicParticleType particleType, int regenerationLevel, Item hand, Item feet) {
+        this.key = key;
         this.experienceValue = experienceValue;
         this.maxHealth = maxHealth;
         this.attackDamage = attackDamage;
@@ -33,8 +35,28 @@ public enum EnumNPCLevel {
         this.feet = feet;
     }
 
-    public String getDisplayName() {
-        return I18n.format(this.descriptionTranslationKey);
+    public static EnumNPCRank getByKey(int key) {
+        for (EnumNPCRank rank : values()) {
+            if (rank.key == key) {
+                return rank;
+            }
+        }
+        throw new IllegalArgumentException("Invalid Key: " + key);
+    }
+
+    public static EnumNPCRank randomGet() {
+        int a = new Random().nextInt(100);
+        if (a < 10) {
+            return EnumNPCRank.A;
+        } else if (a < 30) {
+            return EnumNPCRank.B;
+        } else {
+            return EnumNPCRank.C;
+        }
+    }
+
+    public int getKey() {
+        return this.key;
     }
 
     public int getExperienceValue() {

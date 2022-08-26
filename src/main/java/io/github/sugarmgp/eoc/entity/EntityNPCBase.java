@@ -2,7 +2,7 @@ package io.github.sugarmgp.eoc.entity;
 
 import com.google.common.base.Predicate;
 import io.github.sugarmgp.eoc.handler.ItemHandler;
-import io.github.sugarmgp.eoc.util.EnumNPCLevel;
+import io.github.sugarmgp.eoc.util.EnumNPCRank;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -19,6 +19,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.IPacket;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
@@ -28,17 +33,19 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
 public class EntityNPCBase extends TameableEntity {
-    private EnumNPCLevel enumNPCLevel;
+    private static final DataParameter<Integer> RANK = EntityDataManager.createKey(EntityNPCBase.class, DataSerializers.VARINT);
 
     public EntityNPCBase(EntityType<? extends TameableEntity> typeIn, World worldIn) {
         super(typeIn, worldIn);
         this.setTamed(false);
-        this.setEnumNPCLevel();
+        this.setExperienceValue();
+        this.setItem(this.getRank().getHand(), this.getRank().getFeet());
         this.changeAttributes();
     }
 
@@ -50,9 +57,9 @@ public class EntityNPCBase extends TameableEntity {
     }
 
     protected void changeAttributes() { //在生成后覆盖属性
-        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.getEnumNPCLevel().getMaxHealth());
-        this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(this.getEnumNPCLevel().getAttackDamage());
-        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.getEnumNPCLevel().getMovementSpeed());
+        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.getRank().getMaxHealth());
+        this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(this.getRank().getAttackDamage());
+        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.getRank().getMovementSpeed());
     }
 
     protected void registerGoals() {
@@ -92,12 +99,9 @@ public class EntityNPCBase extends TameableEntity {
                     itemStack.shrink(1);
                 }
                 if (!net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
-                    if (!this.world.isRemote) {
-                        this.setTamedBy(player);
-                        this.setAttackTarget(null);
-                    } else {
-                        this.playEffect(ParticleTypes.HAPPY_VILLAGER, this.getPosX(), this.getPosY() + 0.425, this.getPosZ(), 8);
-                    }
+                    this.setTamedBy(player);
+                    this.setAttackTarget(null);
+                    this.playEffect(ParticleTypes.HAPPY_VILLAGER, this.getPosX(), this.getPosY() + 0.425, this.getPosZ(), 8);
                 }
             }
         }
@@ -105,6 +109,7 @@ public class EntityNPCBase extends TameableEntity {
     }
 
     protected void playEffect(BasicParticleType particleTypes, Double posX, Double posY, Double posZ, int times) {
+        if (!world.isRemote()) return;
         for (int i = 1; i <= times; ++i) {
             double d0 = this.rand.nextGaussian() * 0.015; //白糖自研随机算法
             double d1 = this.rand.nextGaussian() * 0.015;
@@ -137,12 +142,12 @@ public class EntityNPCBase extends TameableEntity {
     public void livingTick() {
         this.updateArmSwingProgress();
 
-        BasicParticleType particleType = this.getEnumNPCLevel().getParticleType();
-        if (this.getMotion().x != 0.0D || this.getMotion().z != 0.0D) { //在移动时播放粒子效果
+        BasicParticleType particleType = this.getRank().getParticleType();
+        if (particleType != null && (this.getMotion().x != 0.0D || this.getMotion().z != 0.0D)) { //在移动时播放粒子效果
             this.playEffect(particleType, this.getPosX(), this.getPosY() - 0.45, this.getPosZ(), 1);
         }
 
-        int regenerationLevel = this.getEnumNPCLevel().getRegenerationLevel();
+        int regenerationLevel = this.getRank().getRegenerationLevel();
         if (!this.isPotionActive(Effects.REGENERATION) && regenerationLevel >= 0) { //给NPC添加生命恢复
             this.addPotionEffect(new EffectInstance(Effects.REGENERATION, 72000, regenerationLevel, false, false));
         }
@@ -161,8 +166,8 @@ public class EntityNPCBase extends TameableEntity {
 
     @Override
     protected void spawnDrops(DamageSource damageSourceIn) {
-        ItemStack hand = new ItemStack(this.getEnumNPCLevel().getHand());
-        ItemStack feet = new ItemStack(this.getEnumNPCLevel().getFeet());
+        ItemStack hand = new ItemStack(this.getRank().getHand());
+        ItemStack feet = new ItemStack(this.getRank().getFeet());
         this.setItemStackToSlot(EquipmentSlotType.MAINHAND, hand); //在掉落时替换成无附魔的物品
         this.setItemStackToSlot(EquipmentSlotType.FEET, feet);
         super.spawnDrops(damageSourceIn);
@@ -173,19 +178,40 @@ public class EntityNPCBase extends TameableEntity {
         return this.experienceValue + (int) (new Random().nextInt(10) / 9.0 * 5);
     }
 
-    public EnumNPCLevel getEnumNPCLevel() {
-        return this.enumNPCLevel;
+    public EnumNPCRank getRank() {
+        return EnumNPCRank.getByKey(this.dataManager.get(RANK));
     }
 
-    protected void setEnumNPCLevel() {
-        EnumNPCLevel level = EnumNPCLevel.values()[new Random().nextInt(EnumNPCLevel.values().length)]; //随机选择Level
-        this.enumNPCLevel = level;
-        this.experienceValue = level.getExperienceValue();
-        this.setItem(level.getHand(), level.getFeet());
+    protected void setExperienceValue() {
+        this.experienceValue = this.getRank().getExperienceValue();
     }
 
     @Override
     public EntityNPCBase func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         return null;
+    }
+
+    @Override
+    protected void registerData() {
+        super.registerData();
+        EnumNPCRank rank = EnumNPCRank.randomGet(); //随机选择Level
+        this.dataManager.register(RANK, rank.getKey());
+    }
+
+    @Override
+    public void readAdditional(CompoundNBT compound) {
+        super.readAdditional(compound);
+        this.dataManager.set(RANK, compound.getInt("Rank"));
+    }
+
+    @Override
+    public void writeAdditional(CompoundNBT compound) {
+        super.writeAdditional(compound);
+        compound.putInt("Rank", this.dataManager.get(RANK));
+    }
+
+    @Override
+    public IPacket<?> createSpawnPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 }
