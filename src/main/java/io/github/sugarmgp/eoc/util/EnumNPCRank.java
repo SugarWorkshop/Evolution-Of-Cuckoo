@@ -9,11 +9,10 @@ import net.minecraft.particles.ParticleTypes;
 import java.util.Random;
 
 public enum EnumNPCRank {
-    A(1, 25, 28.0D, 2.0D, 0.8D, ParticleTypes.FLAME, 2, Items.NETHERITE_SWORD, Items.NETHERITE_BOOTS),
-    B(2, 20, 24.0D, 1.5D, 0.75D, ParticleTypes.INSTANT_EFFECT, 1, ItemHandler.itemCuckooSword.get(), ItemHandler.itemFunnyBoots.get()),
-    C(3, 15, 20.0D, 1.0D, 0.7D, null, 0, Items.STONE_SWORD, Items.CHAINMAIL_BOOTS);
+    A(25, 28.0D, 2.0D, 0.8D, ParticleTypes.FLAME, 2, Items.NETHERITE_SWORD, Items.NETHERITE_BOOTS),
+    B(20, 24.0D, 1.5D, 0.75D, ParticleTypes.INSTANT_EFFECT, 1, ItemHandler.itemCuckooSword.get(), ItemHandler.itemFunnyBoots.get()),
+    C(15, 20.0D, 1.0D, 0.7D, null, 0, Items.STONE_SWORD, Items.CHAINMAIL_BOOTS);
 
-    private final int key;
     private final int experienceValue;
     private final double maxHealth;
     private final double attackDamage;
@@ -23,8 +22,7 @@ public enum EnumNPCRank {
     private final Item hand;
     private final Item feet;
 
-    EnumNPCRank(int key, int experienceValue, double maxHealth, double attackDamage, double movementSpeed, BasicParticleType particleType, int regenerationLevel, Item hand, Item feet) {
-        this.key = key;
+    EnumNPCRank(int experienceValue, double maxHealth, double attackDamage, double movementSpeed, BasicParticleType particleType, int regenerationLevel, Item hand, Item feet) {
         this.experienceValue = experienceValue;
         this.maxHealth = maxHealth;
         this.attackDamage = attackDamage;
@@ -36,12 +34,7 @@ public enum EnumNPCRank {
     }
 
     public static EnumNPCRank getByKey(int key) {
-        for (EnumNPCRank rank : values()) {
-            if (rank.key == key) {
-                return rank;
-            }
-        }
-        throw new IllegalArgumentException("Invalid Key: " + key);
+        return EnumNPCRank.values()[key];
     }
 
     public static EnumNPCRank randomGet() {
@@ -56,7 +49,7 @@ public enum EnumNPCRank {
     }
 
     public int getKey() {
-        return this.key;
+        return this.ordinal();
     }
 
     public int getExperienceValue() {

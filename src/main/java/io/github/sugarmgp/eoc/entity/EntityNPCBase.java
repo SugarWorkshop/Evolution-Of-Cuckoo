@@ -44,7 +44,7 @@ public class EntityNPCBase extends TameableEntity {
     public EntityNPCBase(EntityType<? extends TameableEntity> typeIn, World worldIn) {
         super(typeIn, worldIn);
         this.setTamed(false);
-        this.setExperienceValue();
+        this.setExperiencePoints();
         this.setItem(this.getRank().getHand(), this.getRank().getFeet());
         this.changeAttributes();
     }
@@ -182,7 +182,7 @@ public class EntityNPCBase extends TameableEntity {
         return EnumNPCRank.getByKey(this.dataManager.get(RANK));
     }
 
-    protected void setExperienceValue() {
+    protected void setExperiencePoints() {
         this.experienceValue = this.getRank().getExperienceValue();
     }
 
@@ -194,7 +194,7 @@ public class EntityNPCBase extends TameableEntity {
     @Override
     protected void registerData() {
         super.registerData();
-        EnumNPCRank rank = EnumNPCRank.randomGet(); //随机选择Level
+        EnumNPCRank rank = EnumNPCRank.randomGet(); //随机选择Rank
         this.dataManager.register(RANK, rank.getKey());
     }
 
