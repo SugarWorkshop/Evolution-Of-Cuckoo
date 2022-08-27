@@ -10,10 +10,11 @@ public class BlockFunnyBlock extends Block {
     public BlockFunnyBlock() {
         super(Properties
                 .create(Material.IRON, MaterialColor.GOLD)
-                .hardnessAndResistance(5)
+                .hardnessAndResistance(5, 6)
                 .sound(SoundType.METAL)
                 .harvestTool(ToolType.PICKAXE)
                 .harvestLevel(2)
+                .setRequiresTool()
         );
     }
 }

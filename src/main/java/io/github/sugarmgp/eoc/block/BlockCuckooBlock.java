@@ -10,10 +10,11 @@ public class BlockCuckooBlock extends Block {
     public BlockCuckooBlock() {
         super(Properties
                 .create(Material.IRON, MaterialColor.IRON)
-                .hardnessAndResistance(4)
+                .hardnessAndResistance(4, 6)
                 .sound(SoundType.METAL)
                 .harvestTool(ToolType.PICKAXE)
                 .harvestLevel(2)
+                .setRequiresTool()
         );
     }
 }
