@@ -4,20 +4,19 @@ import io.github.sugarmgp.eoc.handler.ItemHandler;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraftforge.fml.RegistryObject;
 
 public enum ModItemTier implements IItemTier {
 
-    CUCKOO(3, 150, 10.0F, 2.5F, 16, ItemHandler.itemCuckooIngot);
+    CUCKOO(3, 150, 10.0F, 2.5F, 16, ItemHandler.itemCuckooIngot.get());
 
     private final int harvestLevel;
     private final int maxUses;
     private final float efficiency;
     private final float attackDamage;
     private final int enchantability;
-    private final RegistryObject<Item> repairMaterial;
+    private final Item repairMaterial;
 
-    ModItemTier(int harvestLevelIn, int maxUsesIn, float efficiencyIn, float attackDamageIn, int enchantabilityIn, RegistryObject<Item> repairMaterialIn) {
+    ModItemTier(int harvestLevelIn, int maxUsesIn, float efficiencyIn, float attackDamageIn, int enchantabilityIn, Item repairMaterialIn) {
         this.harvestLevel = harvestLevelIn;
         this.maxUses = maxUsesIn;
         this.efficiency = efficiencyIn;
@@ -53,6 +52,6 @@ public enum ModItemTier implements IItemTier {
 
     @Override
     public Ingredient getRepairMaterial() {
-        return Ingredient.fromItems(this.repairMaterial.get());
+        return Ingredient.fromItems(this.repairMaterial);
     }
 }

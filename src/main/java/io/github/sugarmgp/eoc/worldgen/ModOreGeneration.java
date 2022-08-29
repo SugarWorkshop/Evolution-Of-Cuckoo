@@ -18,8 +18,8 @@ public class ModOreGeneration {
         if (event.getCategory().equals(Biome.Category.THEEND) || event.getCategory().equals(Biome.Category.NETHER)) {
             return;
         }
-        generateOverWorldOre(event.getGeneration(), BlockHandler.blockCuckooOre.get().getDefaultState(), 9, 24, 1);
-        generateOverWorldOre(event.getGeneration(), BlockHandler.blockFunnyOre.get().getDefaultState(), 8, 20, 1);
+        generateOverWorldOre(event.getGeneration(), BlockHandler.blockCuckooOre.get().getDefaultState(), 9, 48, 10);
+        generateOverWorldOre(event.getGeneration(), BlockHandler.blockFunnyOre.get().getDefaultState(), 8, 24, 1);
     }
 
     private static void generateOverWorldOre(BiomeGenerationSettingsBuilder settings, BlockState state, int veinSize, int range, int spread) {
