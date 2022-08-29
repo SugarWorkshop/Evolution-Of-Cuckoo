@@ -7,20 +7,27 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Mod.EventBusSubscriber
 public class ModEntityGeneration {
-    public static void onEntitySpawn(BiomeLoadingEvent event) {
+    @SubscribeEvent
+    public static void onBiomeLoading(BiomeLoadingEvent event) {
         RegistryKey<Biome>[] biomes = new RegistryKey[]{
                 Biomes.PLAINS,
                 Biomes.SUNFLOWER_PLAINS,
                 Biomes.SNOWY_TUNDRA,
                 Biomes.FLOWER_FOREST,
-                Biomes.ICE_SPIKES
+                Biomes.FOREST,
+                Biomes.BIRCH_FOREST,
+                Biomes.ICE_SPIKES,
+                Biomes.TALL_BIRCH_FOREST
         };
-        addUseWhitelist(event, EntityHandler.entitySugarMGP.get(), 10, 1, 4, biomes);
+        addUseWhitelist(event, EntityHandler.entitySugarMGP.get(), 8, 1, 4, biomes);
     }
 
     //使用黑名单

@@ -1,11 +1,9 @@
 package io.github.sugarmgp.eoc.handler;
 
-import io.github.sugarmgp.eoc.worldgen.ModEntityGeneration;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -20,10 +18,5 @@ public class EventHandler {
             TranslationTextComponent text = new TranslationTextComponent(message, player.getDisplayName());
             player.sendStatusMessage(text, false);
         }
-    }
-
-    @SubscribeEvent
-    public static void onbBiomeLoading(BiomeLoadingEvent event) {
-        ModEntityGeneration.onEntitySpawn(event);
     }
 }
