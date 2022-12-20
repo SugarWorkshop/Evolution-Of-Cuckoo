@@ -27,19 +27,19 @@
 # 开发状态
 
 EOC 目前由 **Cuckoo Dev Team** 维护，目前处于非常早期的版本；EOC
-目前还没有发布公开的正式版本。如果你对这个模组有意见或建议，你可以直接联系我们或者[提出 Issue](https://github.com/SugarMGP/Evolution-Of-Cuckoo/issues)。
+目前还没有发布公开的正式版本。如果你对这个模组有意见或建议，你可以直接联系我们或者[提出 Issue](https://github.com/SugarWorkshop/Evolution-Of-Cuckoo/issues)。
 
 # 模组基本信息
 
 - Minecraft 版本: 1.12.2
 - Forge 版本: 14.23.5.2847
 - Mod
-  版本: [![Latest](https://img.shields.io/github/v/release/SugarMGP/Evolution-Of-Cuckoo?include_prereleases)](https://github.com/SugarMGP/Evolution-Of-Cuckoo/releases)
+  版本: [![Latest](https://img.shields.io/github/v/release/SugarWorkshop/Evolution-Of-Cuckoo?include_prereleases)](https://github.com/SugarWorkshop/Evolution-Of-Cuckoo/releases)
 
 # 如何游玩
 
 1. 确保您已经安装 **Minecraft 1.12.2** 和 **Forge 14.23.5.2847**
-2. 前往 **[Release 页面](https://github.com/SugarMGP/Evolution-Of-Cuckoo/releases)**
+2. 前往 **[Release 页面](https://github.com/SugarWorkshop/Evolution-Of-Cuckoo/releases)**
 3. 单击你想游玩的版本
 4. 下载 **Assets** 中的 `EOC-Build.tar` 并解压
 5. 将不带 `-sources` 和 `-javadoc` 字样的所有 `.jar` 文件复制到 `.minecraft\mods` 文件夹
